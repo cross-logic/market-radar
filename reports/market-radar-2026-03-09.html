@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 9, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 9, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>24</span></div>
+    <div>High relevance: <span>8</span></div>
+    <div>Sources scanned: <span>39</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">6</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">3</span></a>
+    <a href="#content-ecosystem">Content &amp; Ecosystem <span class="count">2</span></a>
+    <a href="#event-driven-automation">Event-Driven Automation <span class="count">1</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">1</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">2</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">3</span></a>
+    <a href="#competitive-migration">Competitive Migration <span class="count">1</span></a>
+    <a href="#product-led-growth">Product-Led Growth <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+<!-- ============================================================ -->
+<!-- AI & Agentic Orchestration -->
+<!-- ============================================================ -->
+<section class="theme-section" id="ai-agentic-orchestration">
+  <div class="theme-header">
+    <h2>AI &amp; Agentic Orchestration</h2>
+    <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.redhat.com/en/blog/it-automation-agentic-ai-introducing-mcp-server-red-hat-ansible-automation-platform" target="_blank">IT automation with agentic AI: Introducing the MCP server for Red Hat Ansible Automation Platform</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Red Hat Blog &middot; Marty Turner &middot; Jan 30, 2026
+    </div>
+    <div class="summary">Red Hat introduces an MCP server that allows LLMs to interact with Ansible Automation Platform through natural language, enabling conversational management of IT automation tasks. The server enforces dual-layer security via RBAC and supports read-only or read-write modes, with ephemeral container-based deployment for minimal attack surface.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1646</span>
+      <span>ANSTRAT-1670</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.techzine.eu/blogs/infrastructure/139296/red-hat-makes-ansible-the-execution-layer-for-agentic-ai-systems/" target="_blank">Red Hat makes Ansible the execution layer for agentic AI systems</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Techzine Global &middot; Sander Almekinders &middot; Mar 5, 2026
+    </div>
+    <div class="summary">Red Hat positions Ansible as the trusted execution layer for AI agents, introducing ephemeral MCP servers and expanded generative AI capabilities for safe production deployment. The architecture ensures AI agents can trigger automation jobs while inheriting enterprise governance controls.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1646</span>
+      <span>ANSTRAT-1670</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://developers.redhat.com/articles/2026/03/09/automate-ai-agents-responses-api-llama-stack" target="_blank">Automate AI agents with the Responses API in Llama Stack</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Red Hat Developer &middot; Michael Dawson &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Demonstrates building production-ready AI agents by combining the Responses API with Llama Stack and LangGraph. Uses MCP server request-specific headers for fine-grained access controls, ensuring agents only interact with data appropriate to each user's permissions.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1646</span>
+      <span>ANSTRAT-1670</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.latent.space/p/ainews-ai-engineer-will-be-the-last" target="_blank">[AINews] AI Engineer will be the LAST job</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Latent Space &middot; swyx &middot; Mar 7, 2026
+    </div>
+    <div class="summary">Explores why AI engineers may be the last profession to face automation, noting that software engineering dominates 50% of Claude model use cases. Argues that coding agents are rapidly consuming other professional domains while the AI engineer role becomes more central to enterprise operations.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1646</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.dynatrace.com/news/blog/the-runtime-reckoning-how-the-agentic-evolution-is-reshaping-security/" target="_blank">The Runtime Reckoning: How the Agentic Evolution is Reshaping Security</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Dynatrace Blog &middot; Andreas Kroier &middot; Mar 5, 2026
+    </div>
+    <div class="summary">AI-powered cyberattacks are accelerating with attackers moving from initial access to lateral movement in under 29 minutes. Argues that runtime visibility into applications is now essential, as production environments remain the definitive validation point where real threats manifest in the agentic era.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1646</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.techzine.eu/news/data-management/139339/mariadb-acquires-gridgain-for-agentic-ai-data/" target="_blank">MariaDB acquires GridGain for agentic AI data</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Techzine Global &middot; Mar 9, 2026
+    </div>
+    <div class="summary">MariaDB acquired GridGain Systems to integrate in-memory computing capabilities, targeting sub-millisecond data performance for agentic AI applications. Signals growing ecosystem investment in infrastructure optimized for autonomous agent workloads.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1670</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- AI DevEx / Lightspeed -->
+<!-- ============================================================ -->
+<section class="theme-section" id="ai-devex-lightspeed">
+  <div class="theme-header">
+    <h2>AI DevEx / Lightspeed</h2>
+    <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.infoq.com/presentations/patterns-ai-native-development/" target="_blank">4 Patterns of AI Native Development</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; InfoQ &middot; Patrick Debois &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Patrick Debois identifies four paradigm shifts in software development: moving from code producer to code manager, from implementation to intent-based specification, from delivery to discovery, and from individual to agentic knowledge management. Essential framing for how AI coding assistants like Lightspeed must evolve.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1244</span>
+      <span>ANSTRAT-1542</span>
+      <span>ANSTRAT-1648</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://developers.redhat.com/articles/2026/02/17/uncomfortable-truth-about-vibe-coding" target="_blank">The uncomfortable truth about vibe coding</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Red Hat Developer &middot; Todd Wardzinski &middot; Feb 17, 2026
+    </div>
+    <div class="summary">Examines how "vibe coding" works for prototypes but encounters cascading failures at the three-month mark in complex codebases. Argues that specification-driven development is the solution, positioning AI coding assistants as powerful when paired with engineering discipline rather than replacing it.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1244</span>
+      <span>ANSTRAT-1648</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://cursor.com/blog/automations" target="_blank">Build agents that run automatically</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Cursor &middot; Jack Pertschuk, Jon Kaplan, Josh Ma &middot; Mar 5, 2026
+    </div>
+    <div class="summary">Cursor introduces automations &mdash; scheduled or event-triggered agents that perform code review, monitoring, and maintenance tasks across integrated platforms like Slack, GitHub, and Linear. Represents the competitive landscape Lightspeed operates in as AI coding tools expand beyond code generation.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1244</span>
+      <span>ANSTRAT-1542</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.latent.space/p/ainews-gpt-54-sota-knowledge-work" target="_blank">[AINews] GPT 5.4: SOTA Knowledge Work and Coding Model</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Latent Space &middot; swyx &middot; Mar 6, 2026
+    </div>
+    <div class="summary">Coverage of OpenAI's GPT-5.4 launch, which achieves 69-71% win rates against domain experts and demonstrates significant improvements in coding and agentic performance. Sets a new bar for foundation models powering AI coding assistants.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1244</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Platform Modernization -->
+<!-- ============================================================ -->
+<section class="theme-section" id="platform-modernization">
+  <div class="theme-header">
+    <h2>Platform Modernization</h2>
+    <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://developers.redhat.com/articles/2026/03/09/5-steps-triage-vllm-performance" target="_blank">5 steps to triage vLLM performance</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Red Hat Developer &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Diagnostic workflow for optimizing vLLM deployments, examining Time to First Token vs. inter-token latency, server saturation, VRAM health, sequence lengths, and distributed inference. Relevant as AAP extends into AI model serving infrastructure.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1127</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://developers.redhat.com/articles/2026/03/09/smarter-multi-cluster-scheduling-dynamic-scoring-framework" target="_blank">Smarter multi-cluster scheduling with dynamic scoring framework</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Red Hat Developer &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Introduces a framework that bridges monitoring systems and the Placement API to continuously evaluate and score clusters for intelligent workload distribution. Enables automated cluster selection based on real-time metrics across multi-cluster environments.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1127</span>
+      <span>ANSTRAT-1818</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.redhat.com/en/blog/planning-design-your-production-grade-rag-system" target="_blank">Planning the design of your production-grade RAG system</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Red Hat Blog &middot; Frank La Vigne, Robbie Jerrom &middot; Mar 6, 2026
+    </div>
+    <div class="summary">Addresses production RAG challenges including the retrieval gap, latency management, cost implications, and access controls. Notes that "retrieval does not fail loudly &mdash; it fails subtly, probabilistically, and often convincingly," highlighting the need for robust platform architecture.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1127</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Content & Ecosystem -->
+<!-- ============================================================ -->
+<section class="theme-section" id="content-ecosystem">
+  <div class="theme-header">
+    <h2>Content &amp; Ecosystem</h2>
+    <span class="outcomes">ANSTRAT-1923, ANSTRAT-1686, ANSTRAT-119</span>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://developers.redhat.com/articles/2026/03/02/whats-new-ansible-certified-content-collection-aws" target="_blank">What's new in Ansible Certified Content Collection for AWS</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Red Hat Developer &middot; Alina Buzachis &middot; Mar 2, 2026
+    </div>
+    <div class="summary">The amazon.aws 11.0.0 release prioritizes stability and supportability over new features, with refactored S3 utilities, removal of deprecated functionality, and standardized snake_case return values. Demonstrates maturation of the certified content ecosystem toward enterprise reliability.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1923</span>
+      <span>ANSTRAT-1686</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://blogs.cisco.com/developer/elevating-meraki-operations-ansible-automation" target="_blank">Elevating Meraki Operations with Red Hat Ansible Automation Platform</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Cisco Blogs &middot; Oren Brigg &middot; Feb 5, 2026
+    </div>
+    <div class="summary">Demonstrates combining Cisco Meraki's cloud management with Ansible Automation Platform for consistent, scalable network operations across branch locations. Ansible Automation Platform is now available for purchase directly through Cisco, deepening the partnership.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1686</span>
+      <span>ANSTRAT-119</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Event-Driven Automation -->
+<!-- ============================================================ -->
+<section class="theme-section" id="event-driven-automation">
+  <div class="theme-header">
+    <h2>Event-Driven Automation</h2>
+    <span class="outcomes">ANSTRAT-910</span>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.infoq.com/news/2026/02/amazon-key-event-driven-platform/" target="_blank">Reducing Onboarding from 48 Hours to 4: Inside Amazon Key's Event-Driven Platform</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; InfoQ &middot; Mar 8, 2026
+    </div>
+    <div class="summary">Amazon Key rebuilt on a centralized event-driven architecture using Amazon EventBridge, processing millions of daily events with millisecond latency and 99.99% reliability. Demonstrates the operational advantages of EDA at scale &mdash; reducing service onboarding from 48 hours to 4.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-910</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Edge & Hybrid Cloud -->
+<!-- ============================================================ -->
+<section class="theme-section" id="edge-hybrid-cloud">
+  <div class="theme-header">
+    <h2>Edge &amp; Hybrid Cloud</h2>
+    <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.techzine.eu/news/devices/139387/amd-is-giving-its-embedded-chips-80-tops-of-ai-compute/" target="_blank">AMD is giving its embedded chips 80 TOPS of AI compute</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Techzine Global &middot; Mar 9, 2026
+    </div>
+    <div class="summary">AMD expands the Ryzen AI Embedded P100 Series with 8-12 Zen 5 cores and 80 TOPS of AI compute, targeting industrial automation and robotics. Signals growing edge compute capability that enables AI inference at the edge without cloud roundtrips.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-934</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Governance & Compliance -->
+<!-- ============================================================ -->
+<section class="theme-section" id="governance-compliance">
+  <div class="theme-header">
+    <h2>Governance &amp; Compliance</h2>
+    <span class="outcomes">ANSTRAT-1638</span>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.dynatrace.com/news/blog/unlock-business-centric-compliance-intelligence-with-dynatrace-compliance-assistant/" target="_blank">Unlock business-centric compliance intelligence with Dynatrace Compliance Assistant</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; Dynatrace Blog &middot; Catherine Altobelli &middot; Mar 6, 2026
+    </div>
+    <div class="summary">Dynatrace launches a Compliance Assistant that provides real-time compliance monitoring mapped to regulatory frameworks like EU DORA. Uses AI to classify incidents against compliance thresholds and bridges IT observability with business process tracking for proactive governance.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1638</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.hashicorp.com/en/blog/everything-as-code-for-your-security-lifecycle" target="_blank">Everything as code for your security lifecycle</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; HashiCorp Blog &middot; Feb 27, 2026
+    </div>
+    <div class="summary">Explores how codification enables security at scale with a developer-to-security ratio averaging 100:1. Covers infrastructure-as-code, policy-as-code, and secrets management as essential automation for preventing human error and maintaining compliance across environments.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1638</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Integrations & Partnerships -->
+<!-- ============================================================ -->
+<section class="theme-section" id="integrations-partnerships">
+  <div class="theme-header">
+    <h2>Integrations &amp; Partnerships</h2>
+    <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+  </div>
+
+  <div class="article-card relevance-high">
+    <div class="title"><a href="https://www.hashicorp.com/en/blog/adopting-hashicorp-vaults-transit-engine-high-performance-envelope-encryption-ariso-ai" target="_blank">High-performance envelope encryption at Ariso.ai with Vault</a></div>
+    <div class="meta">
+      <span class="relevance relevance-high">HIGH</span>
+      &middot; HashiCorp Blog &middot; Mar 5, 2026
+    </div>
+    <div class="summary">Ariso.ai achieved sub-millisecond encryption latency using Vault's Transit Engine for processing millions of sensitive records across tenant levels. Demonstrates production Vault integration patterns with an 8:1 encrypt-to-decrypt ratio, validating effective key caching strategies.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1362</span>
+      <span>ANSTRAT-1647</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://blogs.cisco.com/security/using-agentic-ai-to-shed-light-on-soc-operations" target="_blank">Cisco Live Amsterdam 2026: Using Agentic AI to shed light on SOC operations</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Cisco Blogs &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Cisco demonstrates how agentic AI reduces mean-time-to-respond for security operations analysts at Cisco Live Amsterdam. Showcases Cisco's integration of Foundation AI reasoning with Splunk for unified security operations.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1647</span>
+    </div>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://blogs.cisco.com/partner/unlocking-real-time-insights-announcing-native-splunk-in-cisco-nexus-one" target="_blank">Unlocking Real-Time Insights: Announcing Native Splunk in Cisco Nexus One</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Cisco Blogs &middot; Mar 9, 2026
+    </div>
+    <div class="summary">Native Splunk integration in Cisco Nexus One enables NetOps and SecOps teams to stream telemetry directly to Splunk. Reinforces the IBM/Cisco/Splunk partnership ecosystem that intersects with Ansible's enterprise integration strategy.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1647</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Competitive Migration -->
+<!-- ============================================================ -->
+<section class="theme-section" id="competitive-migration">
+  <div class="theme-header">
+    <h2>Competitive Migration</h2>
+    <span class="outcomes">ANSTRAT-1243</span>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.hashicorp.com/en/blog/building-day-2-ops-guardrails-with-terraform-and-packer" target="_blank">Building Day 2 ops guardrails with Terraform and Packer</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; HashiCorp Blog &middot; Feb 26, 2026
+    </div>
+    <div class="summary">Outlines five Day 2 guardrails &mdash; automatic cleanup, drift detection, security validation, image revocation, and workspace visibility &mdash; using Terraform and Packer. As IBM unifies Terraform and Ansible under one umbrella, Day 2 operations become a key battleground vs. Puppet/Chef's configuration management heritage.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1243</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- Product-Led Growth -->
+<!-- ============================================================ -->
+<section class="theme-section" id="product-led-growth">
+  <div class="theme-header">
+    <h2>Product-Led Growth</h2>
+    <span class="outcomes">ANSTRAT-1063, ANSTRAT-896</span>
+  </div>
+
+  <div class="article-card relevance-medium">
+    <div class="title"><a href="https://www.redhat.com/en/blog/friday-five-march-6-2026-red-hat" target="_blank">Friday Five &mdash; March 6, 2026</a></div>
+    <div class="meta">
+      <span class="relevance relevance-medium">MEDIUM</span>
+      &middot; Red Hat Blog &middot; Mar 6, 2026
+    </div>
+    <div class="summary">Weekly Red Hat news roundup covering MWC Barcelona announcements, including telecommunications partnerships on autonomous network capabilities. Provides visibility into Red Hat's go-to-market messaging and partner expansion efforts that drive awareness and adoption.</div>
+    <div class="outcomes-list">
+      <span>ANSTRAT-1063</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 10, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 10, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>17</span></div>
+    <div>High relevance: <span>10</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">9</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">4</span></a>
+    <a href="#event-driven-automation">Event-Driven Automation <span class="count">1</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">1</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">6</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">3</span></a>
+    <a href="#product-led-growth">Product-Led Growth <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/10/agent-skills-explore-security-threats-and-controls" target="_blank">Agent Skills: Explore security threats and controls</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Red Hat Developer &middot; Florencio Cano Gabarda &middot; March 10, 2026
+      </div>
+      <div class="summary">Examines security threats and controls for Anthropic's Agent Skills functionality, which extends agent capabilities through skill-based orchestration. Identifies key threat vectors including prompt injection, credential exposure, and unauthorized skill modification, and recommends layered controls spanning filesystem permissions, sandboxed execution, OAuth 2.0 credential management, and guardrails like TrustyAI.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://blogs.cisco.com/ai/prompt-injection-is-the-new-sql-injection-and-guardrails-arent-enough" target="_blank">Prompt injection is the new SQL injection, and guardrails aren't enough</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Cisco Blogs &middot; Dr. Giannis Tziakouris &middot; March 9, 2026
+      </div>
+      <div class="summary">Argues that prompt injection represents a fundamental, unfixable vulnerability in LLMs &mdash; unlike SQL injection, natural language systems cannot parameterize user input without compromising core functionality. Demonstrates how attackers can poison knowledge bases and compromise sessions without triggering application-level safeguards, advocating for infrastructure-level containment through network segmentation, endpoint detection, and forensic logging.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.latent.space/p/nvidia-brev-dynamo" target="_blank">NVIDIA's AI Engineers: Agent Inference at Planetary Scale and "Speed of Light"</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Latent Space &middot; March 10, 2026
+      </div>
+      <div class="summary">Pre-GTC episode featuring NVIDIA engineers discussing datacenter-scale agent inference frameworks, the "Speed of Light" (SOL) organizational principle for optimizing inference performance, and prefill/decode disaggregation techniques. Covers hardware-model co-design for long-context models and upcoming GTC sessions on the Dynamo framework for agent acceleration.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/vs-code-is-becoming-an-agent-control-plane-and-most-teams-havent-noticed-yet/" target="_blank">VS Code Is Becoming an Agent Control Plane &mdash; and Most Teams Haven't Noticed Yet</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; March 9, 2026
+      </div>
+      <div class="summary">Microsoft is embedding control plane primitives into VS Code 1.110, including agent plugins, hooks, and persistent memory. The release introduces versioned agent configuration and policy enforcement outside model decision-making, positioning the IDE as governance infrastructure for AI agents at scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/mcp-csharp-v1/" target="_blank">Microsoft Launches MCP C# SDK v1.0, Bringing Full Support for Latest Protocol Specification</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; InfoQ &middot; Almir Vuk &middot; March 9, 2026
+      </div>
+      <div class="summary">Microsoft released version 1.0 of the official Model Context Protocol C# SDK with comprehensive support for the November 2025 MCP specification. Introduces enhanced authorization server discovery, icon support for tools and resources, incremental scope consent following least-privilege principles, and tool calling support in sampling requests integrated with Microsoft.Extensions.AI.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/analytics/139391/dataiku-introduces-platform-for-scalable-enterprise-ai/" target="_blank">Dataiku introduces platform for scalable enterprise AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Berry Zwets &middot; March 9, 2026
+      </div>
+      <div class="summary">Dataiku launched the "Platform for AI Success" featuring Agent Management for tracking AI agent performance against business KPIs, Reasoning Systems for coordinated decision-making, and Cobuild for generating AI projects from plain-language descriptions. Underscores the enterprise shift toward governed agent orchestration: "Real enterprise decisions require data feeding models, models informing agents, and agents controlled by business rules and human oversight."</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/applications/139374/google-cli-simplifies-workspace-for-ai-agents/" target="_blank">Google CLI simplifies Workspace for AI agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Mels Dees &middot; March 9, 2026
+      </div>
+      <div class="summary">Google released a CLI tool ("gws") that consolidates Gmail, Drive, Calendar, Docs, Sheets, and other Workspace services through a single interface for AI agents. Functions as an MCP server, enabling AI systems to integrate with Google Workspace regardless of their underlying framework, with dynamic API discovery that automatically incorporates new capabilities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://openai.com/index/openai-to-acquire-promptfoo" target="_blank">OpenAI to acquire Promptfoo</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; OpenAI &middot; March 9, 2026
+      </div>
+      <div class="summary">OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems. The acquisition signals OpenAI's growing emphasis on securing agentic AI deployments and building enterprise-grade safety tooling into its platform ecosystem.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/applications/139361/microsoft-365-e7-unveiled-biggest-licensing-change-in-ten-years/" target="_blank">Microsoft 365 E7 unveiled: biggest licensing change in ten years</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 9, 2026
+      </div>
+      <div class="summary">Microsoft launches E7 Frontier Worker Suite on May 1, bundling Microsoft 365 E5, Copilot, and Agent 365 at $99 per user monthly. The inclusion of Agent 365 signals mainstream commercial packaging of AI agent capabilities alongside traditional productivity tools.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/vs-code-is-becoming-an-agent-control-plane-and-most-teams-havent-noticed-yet/" target="_blank">VS Code Is Becoming an Agent Control Plane &mdash; and Most Teams Haven't Noticed Yet</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; March 9, 2026
+      </div>
+      <div class="summary">VS Code 1.110 embeds agent plugins, hooks, and persistent memory directly into the IDE, creating a governed development environment where AI coding agents operate under versioned configuration and policy enforcement. Represents a significant evolution in AI-assisted developer experience.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/github-copilot-coding-agent-for-jira-connects-planning-to-pull-requests-without-leaving-your-workflow/" target="_blank">GitHub Copilot Coding Agent for Jira Connects Planning to Pull Requests</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; March 9, 2026
+      </div>
+      <div class="summary">GitHub's Copilot coding agent now integrates directly with Jira, allowing teams to assign Jira issues to the AI agent and receive draft pull requests. Eliminates context-switching between planning and development workflows, extending AI coding assistants from code generation into end-to-end workflow automation.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139364/openai-unveils-codex-security-to-detect-vulnerabilities-in-ai-code/" target="_blank">OpenAI unveils Codex Security to detect vulnerabilities in AI code</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Mels Dees &middot; March 9, 2026
+      </div>
+      <div class="summary">OpenAI introduced Codex Security, a research-preview AI security agent that analyzes entire codebases, builds project-specific threat models, and tests discovered issues in sandboxed environments. During beta, 14 discovered vulnerabilities received CVE designations, demonstrating the potential for AI-powered security tooling in developer workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/dropbox-scaling-human-judgement/" target="_blank">Scaling Human Judgment: How Dropbox Uses LLMs to Improve Labeling for RAG Systems</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; InfoQ &middot; March 7, 2026
+      </div>
+      <div class="summary">Dropbox employs LLMs to augment human labeling for document relevance identification in RAG systems powering their Dash product. Demonstrates practical approaches to scaling AI-assisted knowledge retrieval &mdash; relevant context for Lightspeed's content understanding capabilities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/nvidia-brev-dynamo" target="_blank">NVIDIA's AI Engineers: Agent Inference at Planetary Scale and "Speed of Light"</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Latent Space &middot; March 10, 2026
+      </div>
+      <div class="summary">Explores NVIDIA's Dynamo framework for datacenter-scale AI inference, including prefill/decode disaggregation and hardware-model co-design for long-context models. Relevant to platform teams evaluating inference infrastructure for agent workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/netflix-automates-rds-aurora/" target="_blank">Netflix Automates RDS PostgreSQL to Aurora PostgreSQL Migration Across 400 Production Clusters</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; InfoQ &middot; March 9, 2026
+      </div>
+      <div class="summary">Netflix built an automation platform to migrate nearly 400 RDS PostgreSQL clusters to Aurora, reducing downtime and operational risk through coordinated replication, CDC handling, and controlled cutover. A strong case study in large-scale infrastructure automation and platform modernization.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/analytics/139391/dataiku-introduces-platform-for-scalable-enterprise-ai/" target="_blank">Dataiku introduces platform for scalable enterprise AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; Berry Zwets &middot; March 9, 2026
+      </div>
+      <div class="summary">Dataiku's "Platform for AI Success" provides enterprise-grade agent management, reasoning systems, and AI project generation from natural language. Demonstrates the trend toward unified AI platforms that merge agent orchestration with traditional data science workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/10/how-run-slurm-workloads-openshift-slinky-operator" target="_blank">How to run Slurm workloads on OpenShift with Slinky operator</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Developer &middot; Prudhvi Vuda, Swati Kale &middot; March 10, 2026
+      </div>
+      <div class="summary">Demonstrates deploying Slurm, a high-performance computing workload manager, on OpenShift using the Slinky operator. Covers installation, cluster configuration, job submission, and scaling &mdash; bridging traditional HPC workloads into containerized, cloud-native environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event-Driven Automation -->
+  <section class="theme-section" id="event-driven-automation">
+    <div class="theme-header">
+      <h2>Event-Driven Automation</h2>
+      <span class="outcomes">ANSTRAT-910</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/how-we-got-here-alert-fatigue-to-decision-fatigue/" target="_blank">How We Got Here: Alert Fatigue to Decision Fatigue</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; DevOps.com &middot; March 9, 2026
+      </div>
+      <div class="summary">Organizations have solved alert overload through observability improvements but now face decision fatigue as a new bottleneck. Argues teams must architect decision-making frameworks to handle complex operational judgment at scale &mdash; a challenge that event-driven automation and intelligent rulebooks can directly address.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-910</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge & Hybrid Cloud -->
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/experts/infrastructure/139376/sovereign-the-new-normal-for-ai-and-cloud-native-and-how-to-make-it-work/" target="_blank">Sovereign: the new normal for AI and cloud native (and how to make it work)</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Ant Newman &middot; March 9, 2026
+      </div>
+      <div class="summary">Explores how data sovereignty requirements are reshaping AI and cloud infrastructure, pushing responsibility for the complete technology stack back onto organizations. Argues that sovereign deployments fundamentally alter operational models, requiring robust multi-tenancy isolation, rigorous software supply chain security, and governance-first infrastructure design.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/10/agent-skills-explore-security-threats-and-controls" target="_blank">Agent Skills: Explore security threats and controls</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Red Hat Developer &middot; Florencio Cano Gabarda &middot; March 10, 2026
+      </div>
+      <div class="summary">Provides a comprehensive security control framework for AI Agent Skills, covering YAML parser vulnerabilities, credential exposure, prompt injection, and unauthorized file modification. Recommends guardrails systems like TrustyAI, signed skill validation, and isolated execution environments as essential governance controls.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139364/openai-unveils-codex-security-to-detect-vulnerabilities-in-ai-code/" target="_blank">OpenAI unveils Codex Security to detect vulnerabilities in AI code</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Mels Dees &middot; March 9, 2026
+      </div>
+      <div class="summary">Codex Security uses an agent-based approach to analyze codebases, build project-specific threat models, and validate findings in sandboxed environments before severity ranking. Beta testing uncovered critical flaws including SSRF vulnerabilities and authentication errors, with 14 issues receiving CVE designations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/experts/infrastructure/139376/sovereign-the-new-normal-for-ai-and-cloud-native-and-how-to-make-it-work/" target="_blank">Sovereign: the new normal for AI and cloud native (and how to make it work)</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Ant Newman &middot; March 9, 2026
+      </div>
+      <div class="summary">Data sovereignty requirements demand that organizations treat governance, audit controls, and verifiable deployment pipelines as essential infrastructure components. Success requires multi-tenancy isolation and rigorous software supply chain security practices that go well beyond basic compliance checkboxes.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/ai/prompt-injection-is-the-new-sql-injection-and-guardrails-arent-enough" target="_blank">Prompt injection is the new SQL injection, and guardrails aren't enough</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Cisco Blogs &middot; Dr. Giannis Tziakouris &middot; March 9, 2026
+      </div>
+      <div class="summary">Makes the case that prompt injection defenses must move from model-level guardrails to infrastructure-level containment: network segmentation, endpoint detection, and forensic logging. Relevant context for compliance teams evaluating AI deployment risks.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/gov/white-house-national-cyber-strategy" target="_blank">White House National Cyber Strategy Modernizes Federal Cyber Capabilities</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Cisco Blogs &middot; Eric Wenger &middot; March 9, 2026
+      </div>
+      <div class="summary">The 2026 National Cyber Strategy aggressively modernizes federal cyber capabilities through procurement reforms and regulatory changes for advanced technology adoption. Signals increased government focus on security automation and compliance standards that may influence enterprise requirements.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://openai.com/index/openai-to-acquire-promptfoo" target="_blank">OpenAI to acquire Promptfoo</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; OpenAI &middot; March 9, 2026
+      </div>
+      <div class="summary">OpenAI's acquisition of the Promptfoo AI security platform underscores the growing enterprise demand for AI vulnerability detection and remediation tooling. Indicates that AI safety and compliance tooling is becoming a first-party platform capability rather than a bolt-on.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations & Partnerships -->
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/github-copilot-coding-agent-for-jira-connects-planning-to-pull-requests-without-leaving-your-workflow/" target="_blank">GitHub Copilot Coding Agent for Jira Connects Planning to Pull Requests</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; DevOps.com &middot; March 9, 2026
+      </div>
+      <div class="summary">GitHub's Copilot agent integrates directly with Jira for end-to-end workflow from issue to pull request. Demonstrates the competitive landscape of AI-powered ITSM integrations that Ansible's ServiceNow and Jira collections address.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/mcp-csharp-v1/" target="_blank">Microsoft Launches MCP C# SDK v1.0</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; InfoQ &middot; Almir Vuk &middot; March 9, 2026
+      </div>
+      <div class="summary">Microsoft's MCP C# SDK v1.0 expands the MCP ecosystem to .NET developers, increasing the integration surface for Ansible's own MCP server. Growing multi-vendor MCP adoption validates the protocol as a standard integration layer.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/applications/139374/google-cli-simplifies-workspace-for-ai-agents/" target="_blank">Google CLI simplifies Workspace for AI agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; Mels Dees &middot; March 9, 2026
+      </div>
+      <div class="summary">Google's MCP-compatible Workspace CLI creates new integration possibilities between productivity suites and automation platforms. Relevant to Ansible's positioning as the execution layer that AI agents orchestrate through MCP.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product-Led Growth -->
+  <section class="theme-section" id="product-led-growth">
+    <div class="theme-header">
+      <h2>Product-Led Growth</h2>
+      <span class="outcomes">ANSTRAT-1063, ANSTRAT-896</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/applications/139361/microsoft-365-e7-unveiled-biggest-licensing-change-in-ten-years/" target="_blank">Microsoft 365 E7 unveiled: biggest licensing change in ten years</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 9, 2026
+      </div>
+      <div class="summary">Microsoft bundles Copilot and Agent 365 into the new E7 suite at $99/user/month, normalizing AI agent access as a standard enterprise feature. This bundling approach to AI adoption &mdash; removing friction by including agents in existing subscriptions &mdash; is a product-led growth pattern relevant to AAP's own packaging strategy.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1063</span>
+        <span>ANSTRAT-896</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

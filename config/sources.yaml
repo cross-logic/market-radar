@@ -1,0 +1,115 @@
+# Market Radar - Content Sources
+# RSS feeds and search queries for content discovery.
+# Last updated by /market-radar setup on 2026-03-09
+
+freshness_days: 3
+
+feeds:
+  # Ansible & Red Hat
+  - url: https://www.ansible.com/blog/rss.xml
+    label: Ansible Blog
+  - url: https://www.redhat.com/en/blog/rss.xml
+    label: Red Hat Blog
+  - url: https://developers.redhat.com/blog/feed
+    label: Red Hat Developer
+  - url: https://blogs.cisco.com/feed
+    label: Cisco Blogs
+
+  # AI & Tech
+  - url: https://www.latent.space/feed
+    label: Latent Space
+  - url: https://openai.com/blog/rss.xml
+    label: OpenAI Blog
+
+  # DevOps & Infrastructure
+  - url: https://thenewstack.io/feed/
+    label: The New Stack
+  - url: https://devops.com/feed/
+    label: DevOps.com
+  - url: https://www.hashicorp.com/blog/feed.xml
+    label: HashiCorp Blog
+  - url: https://www.infoq.com/feed/
+    label: InfoQ
+  - url: https://blog.kubernetes.io/feed.xml
+    label: Kubernetes Blog
+  - url: https://crunchtools.com/feed/
+    label: Crunchtools
+
+  # Industry & Analyst
+  - url: https://www.techzine.eu/feed/
+    label: Techzine Global
+  - url: https://www.dynatrace.com/news/feed/
+    label: Dynatrace Blog
+
+search_queries:
+  # AI & Agentic Orchestration
+  - query: "MCP server LLM agentic orchestration automation"
+    themes: [ai-agentic-orchestration]
+  - query: "agentic AI infrastructure automation 2026"
+    themes: [ai-agentic-orchestration]
+  - query: "ansible MCP server agentic execution"
+    themes: [ai-agentic-orchestration]
+
+  # AI DevEx / Lightspeed
+  - query: "Ansible Lightspeed AI coding assistant"
+    themes: [ai-devex-lightspeed]
+  - query: "AI code generation DevOps automation"
+    themes: [ai-devex-lightspeed]
+  - query: "vibe coding AI developer experience"
+    themes: [ai-devex-lightspeed]
+
+  # Platform Modernization
+  - query: "platform engineering internal developer platform 2026"
+    themes: [platform-modernization]
+  - query: "automation platform extensibility feature flags"
+    themes: [platform-modernization]
+
+  # Content & Ecosystem
+  - query: "ansible collection galaxy certified content"
+    themes: [content-ecosystem]
+  - query: "ansible automation partner integration ecosystem"
+    themes: [content-ecosystem]
+
+  # Event-Driven Automation
+  - query: "event-driven automation EDA CloudEvents"
+    themes: [event-driven-automation]
+  - query: "reactive automation event processing infrastructure"
+    themes: [event-driven-automation]
+
+  # Edge & Hybrid Cloud
+  - query: "edge computing automation multi-cloud hybrid"
+    themes: [edge-hybrid-cloud]
+  - query: "Azure managed automation AWS edge deployment"
+    themes: [edge-hybrid-cloud]
+
+  # Governance & Compliance
+  - query: "policy as code compliance automation OPA"
+    themes: [governance-compliance]
+  - query: "infrastructure compliance audit automation"
+    themes: [governance-compliance]
+
+  # Integrations & Partnerships
+  - query: "terraform ansible integration HashiCorp"
+    themes: [integrations-partnerships]
+  - query: "ServiceNow ITSM automation integration ansible"
+    themes: [integrations-partnerships]
+  - query: "Cisco Meraki ansible network automation"
+    themes: [integrations-partnerships]
+
+  # Competitive Migration
+  - query: "puppet chef migration ansible alternative"
+    themes: [competitive-migration]
+  - query: "configuration management modernization puppet sunset"
+    themes: [competitive-migration]
+
+  # Product-Led Growth
+  - query: "developer sandbox self-service automation onboarding"
+    themes: [product-led-growth]
+  - query: "low-code no-code automation citizen developer"
+    themes: [product-led-growth]
+
+  # Cross-cutting (AI disruption & enterprise strategy)
+  - query: "AI agent autonomous operations enterprise"
+    themes: [ai-agentic-orchestration, platform-modernization]
+  - query: "AI replacing SaaS enterprise automation"
+    themes: [ai-agentic-orchestration, product-led-growth]

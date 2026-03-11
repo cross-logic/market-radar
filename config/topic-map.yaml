@@ -1,0 +1,173 @@
+# Market Radar - Topic Map
+# Maps strategic themes to ANSTRAT Outcomes and discovery keywords.
+# Used by /market-radar to classify articles.
+
+themes:
+  ai-agentic-orchestration:
+    label: "AI & Agentic Orchestration"
+    outcomes:
+      - ANSTRAT-1646
+      - ANSTRAT-1670
+    keywords:
+      - MCP server
+      - model context protocol
+      - LLM orchestration
+      - agentic AI
+      - agentic automation
+      - AI agent framework
+      - tool use AI
+      - function calling
+      - autonomous agent
+      - multi-agent system
+      - agent workflow
+
+  ai-devex-lightspeed:
+    label: "AI DevEx / Lightspeed"
+    outcomes:
+      - ANSTRAT-1244
+      - ANSTRAT-1542
+      - ANSTRAT-1648
+    keywords:
+      - AI coding assistant
+      - Ansible Lightspeed
+      - code generation AI
+      - copilot
+      - AI pair programming
+      - developer experience AI
+      - intelligent code completion
+      - natural language to code
+      - AI playbook generation
+
+  platform-modernization:
+    label: "Platform Modernization"
+    outcomes:
+      - ANSTRAT-1127
+      - ANSTRAT-1818
+    keywords:
+      - feature flags
+      - platform extensibility
+      - platform engineering
+      - internal developer platform
+      - automation platform
+      - API-first platform
+      - modular architecture
+      - microservices automation
+      - cloud-native platform
+      - automation mesh
+
+  content-ecosystem:
+    label: "Content & Ecosystem"
+    outcomes:
+      - ANSTRAT-1923
+      - ANSTRAT-1686
+      - ANSTRAT-119
+    keywords:
+      - ansible collection
+      - ansible galaxy
+      - partner content
+      - go-to-market
+      - certified content
+      - automation hub
+      - content curation
+      - community collection
+      - execution environment
+
+  event-driven-automation:
+    label: "Event-Driven Automation"
+    outcomes:
+      - ANSTRAT-910
+    keywords:
+      - EDA
+      - event-driven automation
+      - event processing
+      - CloudEvents
+      - event bus
+      - reactive automation
+      - event source
+      - rulebook
+      - event filter
+      - webhook automation
+
+  edge-hybrid-cloud:
+    label: "Edge & Hybrid Cloud"
+    outcomes:
+      - ANSTRAT-934
+      - ANSTRAT-1857
+    keywords:
+      - edge computing
+      - edge automation
+      - multi-cloud
+      - hybrid cloud
+      - Azure managed
+      - AWS automation
+      - cloud management
+      - distributed infrastructure
+      - IoT automation
+      - remote execution
+
+  governance-compliance:
+    label: "Governance & Compliance"
+    outcomes:
+      - ANSTRAT-1638
+    keywords:
+      - policy as code
+      - OPA
+      - Open Policy Agent
+      - compliance automation
+      - audit automation
+      - RBAC automation
+      - security compliance
+      - governance framework
+      - regulatory compliance
+      - SOX automation
+      - CIS benchmark
+
+  integrations-partnerships:
+    label: "Integrations & Partnerships"
+    outcomes:
+      - ANSTRAT-1362
+      - ANSTRAT-1647
+    keywords:
+      - terraform
+      - vault
+      - HashiCorp
+      - ServiceNow
+      - ITSM integration
+      - Palo Alto
+      - CyberArk
+      - Splunk integration
+      - infrastructure as code
+      - API integration
+      - CMDB
+
+  competitive-migration:
+    label: "Competitive Migration"
+    outcomes:
+      - ANSTRAT-1243
+    keywords:
+      - puppet migration
+      - chef migration
+      - salt migration
+      - puppet alternative
+      - chef alternative
+      - configuration management migration
+      - puppet to ansible
+      - chef to ansible
+      - legacy automation
+
+  product-led-growth:
+    label: "Product-Led Growth"
+    outcomes:
+      - ANSTRAT-1063
+      - ANSTRAT-896
+    keywords:
+      - developer sandbox
+      - self-service automation
+      - automation installer
+      - try ansible
+      - free tier
+      - developer onboarding
+      - automation adoption
+      - low-code automation
+      - citizen developer
+      - no-code automation

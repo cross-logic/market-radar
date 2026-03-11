@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 11, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 11, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>20</span></div>
+    <div>High relevance: <span>10</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">4</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">8</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">2</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">2</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">3</span></a>
+    <a href="#product-led-growth">Product-Led Growth <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/ai-bot-github-actions-exploit/" target="_blank">AI-Powered Bot Compromises GitHub Actions Workflows Across Microsoft, DataDog, and CNCF Projects</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; InfoQ &middot; Steef-Jan Wiggers &middot; March 11, 2026
+      </div>
+      <div class="summary">An autonomous AI bot ("hackerbot-claw") systematically attacked open-source repositories over a week, achieving remote code execution in 5 of 7 targets including Aqua Security's Trivy (25K stars) and awesome-go (140K stars). The campaign featured the first documented AI-on-AI attack, with the bot injecting prompt injection into a CLAUDE.md file to manipulate Claude Code. Highlights critical CI/CD pipeline security gaps analogous to SQL injection.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/microsoft-azure-skills-plugin-gives-ai-coding-agents-a-playbook-for-cloud-deployment/" target="_blank">Microsoft Azure Skills Plugin Gives AI Coding Agents a Playbook for Cloud Deployment</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; Tom Smith &middot; March 11, 2026
+      </div>
+      <div class="summary">Microsoft's Azure Skills Plugin packages 19+ Azure skills, 200+ tools, and decision frameworks into a single install for VS Code and Claude Code. The plugin bundles guidance (skills), execution (MCP servers), and validation into a unified agent orchestration layer, enabling AI coding agents to handle cloud deployment workflows while respecting organizational constraints.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1362</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/learning/top-5-skills-agenticops" target="_blank">Top 5 Skills to Power Your Career in the Age of AgenticOps</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Cisco Blogs &middot; Margaret Dilloway &middot; March 10, 2026
+      </div>
+      <div class="summary">Cisco identifies essential competencies for professionals entering the emerging AgenticOps field, where AI agents are becoming integral to enterprise operations. The article maps skills needed as organizations transition from traditional operations to agent-supervised workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://openai.com/index/instruction-hierarchy-challenge" target="_blank">Improving Instruction Hierarchy in Frontier LLMs</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; OpenAI &middot; March 10, 2026
+      </div>
+      <div class="summary">OpenAI introduces IH-Challenge, a training methodology that teaches models to prioritize trusted instructions over untrusted ones. The approach enhances safety steerability and resistance to prompt injection attacks, a critical capability as AI agents gain more autonomous execution authority in enterprise environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/gemini-code-assist-gets-agent-auto-approve-inline-diffs-and-custom-commands-to-speed-up-the-core-coding-loop/" target="_blank">Gemini Code Assist Gets Agent Auto-Approve, Inline Diffs, and Custom Commands</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; Tom Smith &middot; March 11, 2026
+      </div>
+      <div class="summary">Google updates Gemini Code Assist with workflow improvements over raw capability gains. Auto Approve enables agents to execute across files with post-execution review. Inline diffs and Context Drawer reduce cognitive friction in reviewing AI-generated changes. Custom commands encode team-specific patterns as reusable actions, moving AI coding toward organizational-scale automation.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/anthropic-code-review-dispatches-agent-teams-to-catch-the-bugs-that-skim-reads-miss/" target="_blank">Anthropic Code Review Dispatches Agent Teams to Catch the Bugs That Skim Reads Miss</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; Tom Smith &middot; March 11, 2026
+      </div>
+      <div class="summary">Anthropic launches a multi-agent code review system that automatically analyzes pull requests for logical errors, data handling issues, and inconsistencies. Internal data shows substantive review comments jumped from 16% to 54% after deployment. Token-based pricing of $15-$25 per review targets teams where missed bugs carry significant consequences.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/11/improve-code-quality-and-security-patchpatrol" target="_blank">Improve Code Quality and Security with PatchPatrol</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Red Hat Developer &middot; Herve Beraud &middot; March 11, 2026
+      </div>
+      <div class="summary">PatchPatrol is a community-driven open-source tool bringing AI-powered security and quality analysis directly into the commit process. It operates in dual modes (code quality + security/OWASP), supports local models (Granite, CodeLlama via ONNX/llama.cpp) and cloud backends (Gemini), and integrates via pre-commit hooks and CI/CD pipelines including OpenShift Pipelines.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139478/amazon-calls-engineers-together-after-ai-related-outages/" target="_blank">Amazon Calls Engineers Together After AI-Related Outages</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Berry Zwets &middot; March 11, 2026
+      </div>
+      <div class="summary">Amazon convened mandatory engineer meetings after a near 6-hour outage caused by AI-assisted code changes. The company now requires junior and mid-level engineers to obtain senior approval before deploying AI-generated modifications. Previous incidents with Kiro AI and Amazon Q Developer caused a 13-hour AWS outage in December. A cautionary signal for organizations scaling AI-assisted development without mature governance.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/report-lower-performing-software-engineering-teams-benefit-more-from-ai/" target="_blank">Report: Lower Performing Software Engineering Teams Benefit More from AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; Mike Vizard &middot; March 10, 2026
+      </div>
+      <div class="summary">A Plandek analysis of 2,000 organizations reveals that lower-performing engineering teams see nearly 50% improvement in lead time when adopting AI coding tools -- four times the improvement seen by high-performing teams. Despite gains, bottom-quartile teams still underperform top performers on PR merge time and bug density, suggesting AI tools are an equalizer rather than a differentiator.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/the-observability-bill-is-coming-due-and-ai-wrote-most-of-it/" target="_blank">The Observability Bill Is Coming Due -- and AI Wrote Most of It</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; DevOps.com &middot; Alan Shimel &middot; March 11, 2026
+      </div>
+      <div class="summary">AI coding agents are exacerbating telemetry quality problems by generating instrumentation without understanding logging standards or metrics validation. The article examines "agentic telemetry management" platforms designed to optimize observability data, as garbage-in telemetry drives up costs while reducing signal quality.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/cloudflare-vinext-experimental/" target="_blank">Cloudflare Releases Experimental Next.js Alternative Built With AI Assistance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; InfoQ &middot; March 10, 2026
+      </div>
+      <div class="summary">Cloudflare released vinext, a Vite-based Next.js reimplementation built by one engineer with AI guidance in just one week for $1,100 in compute costs. Early benchmarks show 4.4x faster builds. A striking proof point for AI-assisted development velocity, though the tool remains untested at production scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/blogs/applications/139467/ai-workflow-speed-trust/" target="_blank">JFrog: How to Leap Along the AI Workflow Tightrope</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 11, 2026
+      </div>
+      <div class="summary">JFrog's field CISO examines the tension between development velocity and security in AI-driven workflows. The article highlights risks from unauthorized AI systems ("shadow AI") and insufficient monitoring of AI-generated artifacts, proposing integrated solutions that embed security checks into the AI development pipeline without sacrificing speed.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/scaling-enterprise-federated-ai-with-flower-and-open-cluster-management" target="_blank">Scaling Enterprise Federated AI with Flower and Open Cluster Management</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Blog &middot; March 11, 2026
+      </div>
+      <div class="summary">Red Hat explores federated AI using the Flower framework on Open Cluster Management, enabling collaborative machine learning where the model travels to the data rather than centralizing datasets. The approach maintains compliance with GDPR and HIPAA while enabling multi-site AI training across distributed OpenShift clusters.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/unlocking-ci-cd-success-with-observability/" target="_blank">Unlocking CI/CD Success with Observability</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Dynatrace Blog &middot; March 10, 2026
+      </div>
+      <div class="summary">Dynatrace addresses visibility challenges in CI/CD pipelines through OpenTelemetry instrumentation, automated metric retrieval via Dynatrace Workflows, and SDLC event integration. Teams gain insights into pipeline performance bottlenecks, flaky test identification, artifact promotion speed measurement, and anomaly detection affecting release reliability.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge & Hybrid Cloud -->
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/experts/infrastructure/139480/the-zero-drift-frontier-modern-edge-demands-on-kubernetes/" target="_blank">The Zero-Drift Frontier: Modern Edge Demands on Kubernetes</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Jerry Ibrahim (Mirantis) &middot; March 11, 2026
+      </div>
+      <div class="summary">Edge computing has evolved from supplementary tech to mission-critical enterprise infrastructure. The article identifies "the snowflake problem" where hundreds of edge locations inevitably diverge due to asynchronous updates. Proposes stripped-down Kubernetes distributions as single binaries that operate in air-gapped environments with intermittent connectivity, enabling centralized management with distributed execution and compliance audit trails.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.hashicorp.com/blog/hcp-vault-dedicated-now-available-in-additional-aws-and-azure-regions" target="_blank">HCP Vault Dedicated Now Available in Additional AWS and Azure Regions</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; HashiCorp Blog &middot; March 10, 2026
+      </div>
+      <div class="summary">HashiCorp expanded HCP Vault Dedicated to new AWS regions (Stockholm, Paris) and Azure regions (Australia East, Australia Central). The expansion enables organizations to deploy secrets management infrastructure closer to applications, strengthening multi-region disaster recovery and supporting data residency requirements across hybrid cloud environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/gitlab-ai-governance/" target="_blank">GitLab Suggests AI Can Detect Vulnerabilities But It's AI Governance That Determines Risk</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; InfoQ &middot; Craig Risi &middot; March 10, 2026
+      </div>
+      <div class="summary">GitLab challenges the assumption that AI-powered vulnerability detection alone reduces risk. Detection capability doesn't automatically translate to risk reduction without proper governance: triage, prioritization, ownership, and remediation aligned to business objectives. GitLab advocates automated merge gates tied to severity metrics, auditable risk acceptance workflows, and alignment with NIST AI Risk Management Framework and ISO/IEC 42001.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/strengthen-your-security-posture-with-the-common-configuration-scoring-system-for-misconfigured-production-environments/" target="_blank">Strengthen Your Security Posture with the Common Configuration Scoring System</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Dynatrace Blog &middot; Stefan Achleitner, Roman Windischhofer &middot; March 10, 2026
+      </div>
+      <div class="summary">Dynatrace integrates NIST's CCSS (Common Configuration Scoring System) into its Security Posture Management platform, providing vendor-agnostic severity scoring for misconfigurations. Scores evaluate exploitation likelihood, technical impact, and configuration impact across CIS benchmarks, DORA, and DISA-STIGs. Version 1.334 (March 2026) will auto-transition SaaS deployments to CCSS-based classifications.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/safe-data-discovery-edbs-data-governance-co-pilot-ai-quickstart" target="_blank">Safe Data Discovery with EDB's Data Governance Co-Pilot AI Quickstart</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Blog &middot; March 10, 2026
+      </div>
+      <div class="summary">Red Hat and EDB detail a joint solution addressing the balance between data access and governance. Built on OpenShift AI and EDB Postgres AI, it provides a protected workspace where data consumers can navigate complex schemas while maintaining compliance boundaries -- relevant for organizations automating data governance alongside AI adoption.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product-Led Growth -->
+  <section class="theme-section" id="product-led-growth">
+    <div class="theme-header">
+      <h2>Product-Led Growth</h2>
+      <span class="outcomes">ANSTRAT-1063, ANSTRAT-896</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/red-hat-summit-2026-session-catalog-now-available" target="_blank">Red Hat Summit 2026 Session Catalog Now Available</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Blog &middot; March 10, 2026
+      </div>
+      <div class="summary">Red Hat announces session planning resources for Summit 2026 (May 11-14, Atlanta), featuring hundreds of sessions across AI, virtualization, and automation technologies. An opportunity for Ansible Automation Platform visibility and community engagement at Red Hat's premier annual event.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1063</span>
+        <span>ANSTRAT-896</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
