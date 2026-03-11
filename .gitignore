@@ -1,3 +1,4 @@
 .state/
 seeds/
-.claude/
+.claude/settings.*
+.claude/statsig/
