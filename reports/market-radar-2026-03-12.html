@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 12, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .sidebar .date { font-size: 13px; color: #95a5a6; margin-bottom: 24px; }
+  .sidebar .stats {
+    font-size: 12px; color: #95a5a6; margin-bottom: 24px;
+    padding: 12px; background: rgba(255,255,255,0.05); border-radius: 6px;
+  }
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+  .sidebar nav a {
+    display: block; color: #bdc3c7; text-decoration: none;
+    padding: 6px 12px; margin-bottom: 2px; border-radius: 4px;
+    font-size: 13px; transition: background 0.15s;
+  }
+  .sidebar nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .sidebar nav a .count {
+    float: right; background: rgba(255,255,255,0.1);
+    padding: 1px 8px; border-radius: 10px; font-size: 11px;
+  }
+  .main { margin-left: 260px; padding: 32px 40px; max-width: 960px; width: 100%; }
+  .theme-section { margin-bottom: 40px; }
+  .theme-header {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--color-border);
+  }
+  .theme-header h2 { font-size: 20px; font-weight: 700; }
+  .theme-header .outcomes { font-size: 12px; color: var(--color-muted); }
+  .article-card {
+    background: var(--color-card); border-radius: 8px; padding: 16px 20px;
+    margin-bottom: 12px; border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+  .article-card .title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .article-card .title a { color: var(--color-text); text-decoration: none; }
+  .article-card .title a:hover { color: var(--color-link); text-decoration: underline; }
+  .article-card .meta { font-size: 12px; color: var(--color-muted); margin-bottom: 8px; }
+  .article-card .meta .relevance { font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+  .article-card .summary { font-size: 13px; color: #555; line-height: 1.5; }
+  .article-card .outcomes-list { margin-top: 8px; font-size: 11px; }
+  .article-card .outcomes-list span {
+    display: inline-block; background: #eef2f7; color: #5a6c7d;
+    padding: 2px 8px; border-radius: 3px; margin-right: 4px; font-weight: 500;
+  }
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 12, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>16</span></div>
+    <div>High relevance: <span>7</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">8</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">3</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">1</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">1</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">2</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/12/how-develop-agentic-workflows-ci-pipeline-cicaddy" target="_blank">How to Develop Agentic Workflows in a CI Pipeline with Cicaddy</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Red Hat Developer &middot; Guannan Sun &middot; March 12, 2026
+      </div>
+      <div class="summary">Cicaddy is a Python framework that embeds AI-driven task execution directly into CI pipeline jobs, using existing CI/CD infrastructure as the scheduling layer rather than deploying separate agentic platforms. Supports multi-LLM providers (Gemini, OpenAI, Claude), MCP server integration for external services, and DSPy-based YAML workflow definitions. Runs in containerized UBI environments with no elevated privileges.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://openai.com/index/designing-agents-to-resist-prompt-injection" target="_blank">Designing AI Agents to Resist Prompt Injection</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; OpenAI &middot; March 11, 2026
+      </div>
+      <div class="summary">OpenAI details how ChatGPT defends against prompt injection and social engineering in agent workflows. The approach constrains risky actions, protects sensitive data, and applies layered defenses at the model, system, and application levels. Critical reading as enterprises deploy agents with increasing execution authority over production systems.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://openai.com/index/equip-responses-api-computer-environment" target="_blank">From Model to Agent: Equipping the Responses API with a Computer Environment</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; OpenAI &middot; March 11, 2026
+      </div>
+      <div class="summary">OpenAI introduces an agent runtime built on the Responses API with shell tool access and hosted containers. Agents get files, tools, and persistent state in secure, scalable sandboxed environments. Represents OpenAI's push to move from stateless model calls to full agent execution platforms with lifecycle management.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/opus-4-6-context-compaction/" target="_blank">Claude Opus 4.6 Introduces Adaptive Reasoning and Context Compaction for Long-Running Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; InfoQ &middot; Steef-Jan Wiggers &middot; March 12, 2026
+      </div>
+      <div class="summary">Anthropic's Opus 4.6 introduces Adaptive Thinking with granular effort levels and a Context Compaction API that addresses "context rot" in long-running agents. At 1M tokens, Opus 4.6 achieves 76% retrieval accuracy vs. Sonnet 4.5's 18.5%. Also features 128K max output, Agent Teams for parallel coordination, and state-of-the-art agentic coding benchmarks.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/innovation/from-curiosity-to-code-building-ai-workflows" target="_blank">From Curiosity to Code: Building an AI-First Culture at Cisco</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Cisco Blogs &middot; March 12, 2026
+      </div>
+      <div class="summary">Cisco details how its Innovation League Hackathon drives AI fluency and reimagines enterprise workflows for agentic AI. The initiative bridges the gap between AI curiosity and practical implementation, building organizational capability for agent-driven operations at scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/aws-strands-agents/" target="_blank">AWS Launches Strands Labs for Experimental AI Agent Projects</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; InfoQ &middot; March 12, 2026
+      </div>
+      <div class="summary">Amazon Web Services introduced Strands Labs, a new GitHub organization hosting experimental agent-based AI development projects. Signals AWS's investment in the agentic AI tooling ecosystem and potential future integration with AWS services for enterprise agent deployment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/analytics/139514/databricks-acquires-quotient-ai-in-push-for-agent-reliability/" target="_blank">Databricks Acquires Quotient AI in Push for Agent Reliability</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 12, 2026
+      </div>
+      <div class="summary">Databricks acquired Quotient AI to integrate agent evaluation and reinforcement learning capabilities into its Genie and Agent Bricks platforms. Addresses the growing enterprise need for reliable, measurable AI agent performance in production environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.microsoft.com/en-us/industry/blog/general/2026/03/11/modernizing-regulated-industries-with-cloud-and-agentic-ai/" target="_blank">Modernizing Regulated Industries with Cloud and Agentic AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Microsoft Industry Blog &middot; March 11, 2026
+      </div>
+      <div class="summary">An IDC study highlights agentic AI as a critical enabler for cloud modernization in regulated industries. AI agents automate discovery and dependency mapping, security assessments, 6R migration recommendations, and application refactoring across hybrid environments. Relevant to how Ansible automation intersects with enterprise cloud migration strategies.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1638</span>
+        <span>ANSTRAT-934</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://openai.com/index/rakuten" target="_blank">Rakuten Fixes Issues Twice as Fast with Codex</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; OpenAI &middot; March 11, 2026
+      </div>
+      <div class="summary">Rakuten reports a 50% reduction in mean time to resolution (MTTR) using OpenAI's Codex for software delivery. The company automates CI/CD reviews and delivers full-stack builds in weeks rather than months. A concrete enterprise case study demonstrating measurable ROI from AI-assisted development at scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/jetbrains-launches-air-and-junie-cli-to-blend-traditional-ide-with-ai-agents/" target="_blank">JetBrains Launches Air and Junie CLI to Blend Traditional IDE with AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; DevOps.com &middot; March 11, 2026
+      </div>
+      <div class="summary">JetBrains released Air, an agentic development environment supporting multiple concurrent agents, alongside Junie CLI, an LLM-agnostic coding agent. Both integrate with traditional IntelliJ-based IDEs while providing agent orchestration with support for models from OpenAI, Anthropic, Google, and Grok. A significant move from the dominant enterprise IDE vendor into the agentic coding space.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/ainews-replit-agent-4-the-knowledge" target="_blank">Replit Agent 4: The Knowledge Work Agent</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Latent Space &middot; March 12, 2026
+      </div>
+      <div class="summary">Replit's valuation jump to $9B reflects a broader industry trend where coding agents are expanding beyond code into general knowledge work tasks. AI platforms are moving "up the stack" to become integrated productivity suites, alongside Claude and others expanding beyond code into collaborative tools. Signals the evolution from AI coding assistants to AI work platforms.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/11/accelerated-expert-parallel-distributed-tuning-openshift-ai" target="_blank">Accelerated Expert-Parallel Distributed Tuning in Red Hat OpenShift AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Developer &middot; Karel Suta, Amita Sharma &middot; March 11, 2026
+      </div>
+      <div class="summary">Red Hat demonstrates using fms-hf-tuning for fine-tuning Mixture of Experts (MoE) models like Granite 4.0 on OpenShift AI. The tool provides MoE kernel optimizations and expert parallelism, achieving 590 tokens per GPU per second throughput. Supports both full fine-tuning and LoRA approaches for enterprise model customization on Red Hat's platform.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/zero-downtime-multicloud-migrations-for-observability-control-planes/" target="_blank">Zero Downtime Multicloud Migrations for Observability Control Planes</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; DevOps.com &middot; March 12, 2026
+      </div>
+      <div class="summary">Technical guidance on migrating observability control planes across clouds using dual-read strategies instead of traditional export-import. Emphasizes continuous synchronization, progressive cutover, and maintaining parity under live conditions to avoid silent drift -- practical patterns for enterprises managing multi-cloud observability infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/blogs/security/139508/ai-agents-are-the-perfect-insider/" target="_blank">AI Agents Are the Perfect Insider</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Techzine &middot; Berry Zwets &middot; March 12, 2026
+      </div>
+      <div class="summary">Palo Alto Networks CEO EMEA warns that agentic AI represents an unprecedented insider threat. Data breach timelines have compressed from 9 days to 1 day, with cases as fast as 72 minutes. Only 6% of global AI deployments have appropriate security measures. One human identity now equates to ~80 machine identities. A stark reminder that agent governance must scale with agent deployment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/privacy-compliance/139516/anthropic-launches-institute-for-ai-risks/" target="_blank">Anthropic Launches Institute for AI Risks</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 12, 2026
+      </div>
+      <div class="summary">Anthropic established a research organization examining societal implications of powerful AI systems. The institute aims to share insights and collaborate on understanding potential risks from advanced AI, signaling increased industry investment in AI safety governance as agent capabilities accelerate.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139487/databahn-and-microsoft-accelerate-siem-deployment-through-integration/" target="_blank">DataBahn and Microsoft Accelerate SIEM Deployment Through Integration</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Techzine &middot; March 11, 2026
+      </div>
+      <div class="summary">DataBahn and Microsoft integrated AI-driven connectors into Microsoft Sentinel SIEM, enabling rapid onboarding from 500+ telemetry sources while reducing ingestion costs by 60%. Demonstrates the trend of AI-powered integration reducing the complexity and cost of enterprise security tooling.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
