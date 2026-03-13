@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 13, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 13, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>17</span></div>
+    <div>High relevance: <span>11</span></div>
+    <div>Sources scanned: <span>37</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">8</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">2</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">4</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">6</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">2</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/enable-intelligent-insights-red-hat-satellite-mcp-server" target="_blank">Enable Intelligent Insights with Red Hat Satellite MCP Server</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · redhat.com · Matthew Yee · March 12, 2026
+      </div>
+      <div class="summary">Red Hat introduces an MCP server for Satellite, enabling systems administrators to manage RHEL infrastructure through natural language interfaces. The solution uses Goose CLI with Ollama for local LLM management, allowing conversational troubleshooting and system identification tasks — extending the Ansible MCP server pattern to the broader Red Hat management portfolio.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://blogs.cisco.com/developer/devnet-content-search-mcp-server" target="_blank">Cisco Launches DevNet Content Search MCP Server</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · blogs.cisco.com · Neelesh Pateriya · March 12, 2026
+      </div>
+      <div class="summary">Cisco releases an MCP server that brings semantic search of official Cisco API documentation directly into developer IDEs via one-click installation. Currently covering Meraki and Catalyst Center APIs, the tool enables AI coding assistants to generate more accurate integration code with live documentation context, with plans to expand to additional Cisco products.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://crunchtools.com/mcp-airlock-open-source-defense-prompt-injection-ai-agents/" target="_blank">MCP-Airlock: An Open Source Defense Against Prompt Injection in AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · crunchtools.com · fatherlinux · March 12, 2026
+      </div>
+      <div class="summary">MCP-Airlock implements a three-layer defense for AI agents fetching web content: deterministic HTML sanitization, Meta's Llama Prompt Guard 2 classifier for behavioral override detection, and a sandboxed LLM instance for social engineering analysis. The open-source tool runs in a separate container to enforce trust boundaries and is available via pip or container deployment with AGPL licensing.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://crunchtools.com/image-mode-gave-me-the-confidence-to-go-fully-agentic/" target="_blank">RHEL Image Mode Gave Me the Confidence to Go Fully Agentic</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · crunchtools.com · fatherlinux · March 12, 2026
+      </div>
+      <div class="summary">The author demonstrates running Claude Code with full agent permissions on RHEL 10 image mode (bootc), which provides transactional OS safety through containerized registry storage and instant rollback. Image mode transforms the operating system into something like a git repository — enabling confident experimentation with AI agents while maintaining a "layer of defense in depth" that bridges agent autonomy and operational safety.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/articles/oil-water-moment-ai-architecture/" target="_blank">The Oil and Water Moment in AI Architecture</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · infoq.com · Shweta Vohra · March 13, 2026
+      </div>
+      <div class="summary">Software architects face unprecedented challenges as deterministic systems must coexist with non-deterministic AI behavior. The article argues that traditional guardrails fail to constrain agentic systems that dynamically compose tools, proposing the "Architect's V-Impact Canvas" framework for establishing adaptive governance, architectural principles, and measurable impact metrics under non-determinism.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/analytics/139528/thoughtspot-launches-spotter-semantics-for-ai-agents/" target="_blank">ThoughtSpot Launches Spotter Semantics for AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Berry Zwets · March 12, 2026
+      </div>
+      <div class="summary">ThoughtSpot introduces a semantic layer enabling AI agents to access consistent, trustworthy data insights via patented search tokens rather than text-to-SQL. The platform integrates with MCP for direct agent connectivity and features a Metrics Catalog serving as a single source of truth for autonomous analytics workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/turbopuffer" target="_blank">Retrieval After RAG: Hybrid Search, Agents, and Database Design</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · latent.space · Alessio Pando &amp; Swyx · March 12, 2026
+      </div>
+      <div class="summary">Turbopuffer's founder discusses how agentic AI is transforming retrieval infrastructure from single upfront queries to massively parallel search patterns. The platform is reducing query pricing 5x to accommodate agents firing "enormous amounts of queries all at once," signaling a shift in how vector and hybrid search infrastructure must adapt to agentic workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139523/onyx-security-launches-40-million-investment-for-ai-control-plane/" target="_blank">Onyx Security Launches with $40M for AI Agent Control Plane</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Berry Zwets · March 12, 2026
+      </div>
+      <div class="summary">Onyx Security emerges with $40 million in funding to build real-time monitoring and governance for autonomous AI agents in enterprises. The platform enables organizations to block, correct, or escalate agent actions to human approval, serving security, governance, and infrastructure teams with unified oversight of AI agent operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/the-risk-profile-of-ai-driven-development/" target="_blank">The Risk Profile of AI-Driven Development</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · Ilkka Turunen · March 13, 2026
+      </div>
+      <div class="summary">AI code generation accelerates dependency decisions while expanding supply-chain risk. The article argues for shift-left governance, prompt-level controls, and automated SBOM/AIBOM visibility, positioning autonomous security measures as essential to match the pace of autonomous development in enterprise environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139547/developers-complain-about-google-antigravity-pricing-structure/" target="_blank">Developers Complain About Google Antigravity Pricing Structure</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Mels Dees · March 13, 2026
+      </div>
+      <div class="summary">Google's AI coding tool Antigravity faces developer backlash over pricing changes that shift to an "AI credits" model, with quota renewals extending from hours to weekly. Professional-tier access costs up to $250/month, highlighting the tension between AI coding tool adoption and sustainable pricing models across the competitive IDE assistant market.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/netflix-kernel-scaling-container/" target="_blank">Netflix Uncovers Kernel-Level Bottlenecks While Scaling Containers on Modern CPUs</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Craig Risi · March 13, 2026
+      </div>
+      <div class="summary">Netflix engineers discovered that container scaling limitations stem from kernel-level lock contention in global mount locks rather than orchestration software. Newer single-socket CPUs handled concurrent container loads better than dual-socket NUMA systems, and Netflix redesigned overlay filesystems to reduce mount operations from linear to constant complexity per container.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/ray-aks-ai-microsoft/" target="_blank">Running Ray at Scale on AKS: Microsoft and Anyscale Guidance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Claudio Masolo · March 12, 2026
+      </div>
+      <div class="summary">Microsoft and Anyscale release guidance for deploying Ray at scale on Azure Kubernetes Service, addressing GPU availability across regions, data movement between ML stages, and credential management. The solution uses multi-region AKS deployments, BlobFuse2 for unified storage, and Entra workload identity for automated short-lived token handling.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/how-ebpf-and-opentelemetry-have-simplified-the-observability-function/" target="_blank">How eBPF and OpenTelemetry Have Simplified the Observability Function</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · devops.com · Morgan McLean · March 13, 2026
+      </div>
+      <div class="summary">OpenTelemetry eBPF Instrumentation removes barriers to observability through zero-code, kernel-level telemetry for Kubernetes and Linux environments. The approach solves instrumentation challenges for legacy applications and compiled languages, providing deep visibility without application code changes.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/13/zero-trust-gitops-build-secure-secretless-gitops-pipeline" target="_blank">Zero Trust GitOps: Build a Secure, Secretless GitOps Pipeline</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · developers.redhat.com · Nick Png · March 13, 2026
+      </div>
+      <div class="summary">Demonstrates integrating OpenShift GitOps with the External Secrets Operator to eliminate long-lived credentials in favor of short-lived tokens with 60-minute lifespans. The approach enforces zero-trust principles — every workload gets its own identity and least-privilege access — while maintaining standard GitOps workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://blogs.cisco.com/ai/your-models-memory-has-been-compromised-adversarial-hubness-in-rag-systems" target="_blank">Your Model's Memory Has Been Compromised: Adversarial Hubness in RAG Systems</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · blogs.cisco.com · Amy Chang, Idan Habler, Vineeth Sai Narajala · March 12, 2026
+      </div>
+      <div class="summary">Attackers can manipulate vector embeddings to create "hubs" that dominate RAG search results — research showed a single crafted hub could dominate the top result for over 84% of test queries. Real-world incidents including the GeminiJack attack and Microsoft 365 Copilot poisoning are already exploiting this vector. Cisco released the open-source Adversarial Hubness Detector using four complementary detection methods.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139523/onyx-security-launches-40-million-investment-for-ai-control-plane/" target="_blank">Onyx Security Launches with $40M for AI Agent Control Plane</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Berry Zwets · March 12, 2026
+      </div>
+      <div class="summary">Onyx Security launches with $40 million to build governance infrastructure for monitoring autonomous AI agents. The platform provides real-time control capabilities, allowing organizations to block, correct, or escalate agent actions to human approval while demonstrating compliance and maintaining oversight of AI operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/the-risk-profile-of-ai-driven-development/" target="_blank">The Risk Profile of AI-Driven Development</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · Ilkka Turunen · March 13, 2026
+      </div>
+      <div class="summary">AI code generation accelerates dependency decisions while expanding supply-chain risk. The article calls for shift-left governance, prompt-level controls, and automated SBOM/AIBOM visibility as essential measures to match the pace of autonomous development, with implications for any platform enabling AI-generated automation content.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/13/zero-trust-gitops-build-secure-secretless-gitops-pipeline" target="_blank">Zero Trust GitOps: Build a Secure, Secretless GitOps Pipeline</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · developers.redhat.com · Nick Png · March 13, 2026
+      </div>
+      <div class="summary">Shows how to integrate OpenShift GitOps with the External Secrets Operator to replace long-lived credentials with automatically-rotated 60-minute tokens. Enforces zero-trust principles where every workload has its own identity and least-privilege access, reducing breach impact and attacker capabilities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139552/linux-security-layer-extremely-vulnerable-12-6-million-systems-affected/" target="_blank">CrackArmor: 12.6 Million Linux Systems Affected by AppArmor Vulnerabilities</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Berry Zwets · March 13, 2026
+      </div>
+      <div class="summary">Qualys discovered nine critical AppArmor vulnerabilities enabling privilege escalation and container escape across 12.6 million Linux instances. The "CrackArmor" flaws affect Ubuntu, Debian, and SUSE distributions across cloud, Kubernetes, IoT, and edge infrastructure, exploiting a "confused deputy" technique to manipulate privileged processes like Sudo. These bugs have persisted since kernel version 4.11 (2017).</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/articles/oil-water-moment-ai-architecture/" target="_blank">The Oil and Water Moment in AI Architecture</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Shweta Vohra · March 13, 2026
+      </div>
+      <div class="summary">Explores the architectural challenge of marrying deterministic enterprise systems with non-deterministic AI agents. Proposes the Architect's V-Impact Canvas framework for establishing adaptive governance under non-determinism, with implications for how automation platforms must evolve their guardrails for agentic workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/connect-postman-agent-mode-with-dynatrace/" target="_blank">Connect Postman's Agent Mode with Dynatrace via MCP Server</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · dynatrace.com · Milan Steskal · March 12, 2026
+      </div>
+      <div class="summary">Dynatrace and Postman expand their partnership by integrating the Dynatrace MCP Server into Postman's Agent Mode. Developers can now correlate API test failures with real-time production data — including service metrics, traces, and logs — grounding AI-assisted development in trusted telemetry rather than isolated API responses.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/developer/devnet-content-search-mcp-server" target="_blank">Cisco Launches DevNet Content Search MCP Server</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · blogs.cisco.com · Neelesh Pateriya · March 12, 2026
+      </div>
+      <div class="summary">Cisco's DevNet MCP server provides semantic search of official API documentation within developer IDEs, starting with Meraki and Catalyst Center APIs. The tool exemplifies the growing pattern of infrastructure vendors shipping MCP servers to bring validated content directly to AI coding assistants.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/ray-aks-ai-microsoft/" target="_blank">Running Ray at Scale on AKS: Microsoft and Anyscale Guidance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Claudio Masolo · March 12, 2026
+      </div>
+      <div class="summary">Microsoft and Anyscale provide guidance for multi-region Ray deployments on Azure Kubernetes Service, aggregating GPU capacity across regions for AI workloads. The solution addresses critical hybrid cloud challenges including data movement between ML pipeline stages and credential management through Entra workload identity.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

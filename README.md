@@ -6,6 +6,7 @@ Daily intelligence reports for Ansible Automation Platform strategy.
 
 | Date | Report | Highlights |
 |------|--------|------------|
+| March 13, 2026 | [market-radar-2026-03-13.html](reports/market-radar-2026-03-13.html) | 17 articles, 11 HIGH — Red Hat Satellite MCP server; MCP-Airlock prompt injection defense; CrackArmor 12.6M Linux systems exposed |
 | March 12, 2026 | [market-radar-2026-03-12.html](reports/market-radar-2026-03-12.html) | 16 articles, 7 HIGH — Cicaddy agentic CI pipelines; OpenAI prompt injection defense; Opus 4.6 context compaction |
 | March 11, 2026 | [market-radar-2026-03-11.html](reports/market-radar-2026-03-11.html) | 20 articles, 10 HIGH — AI bot exploits GitHub Actions; Amazon mandates senior approval for AI code; Azure Skills Plugin for agents |
 | March 10, 2026 | [market-radar-2026-03-10.html](reports/market-radar-2026-03-10.html) | MCP C# SDK v1.0; VS Code as agent control plane; OpenAI acquires Promptfoo |
