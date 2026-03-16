@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 16, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 16, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>16</span></div>
+    <div>High relevance: <span>9</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI & Agentic Orchestration <span class="count">9</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">3</span></a>
+    <a href="#edge-hybrid-cloud">Edge & Hybrid Cloud <span class="count">2</span></a>
+    <a href="#governance-compliance">Governance & Compliance <span class="count">6</span></a>
+    <a href="#product-led-growth">Product-Led Growth <span class="count">2</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI & Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/operationalizing-bring-your-own-agent-red-hat-ai-openclaw-edition" target="_blank">Operationalizing "Bring Your Own Agent" on Red Hat AI, the OpenClaw Edition</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · redhat.com · Adel Zaalouk · March 16, 2026
+      </div>
+      <div class="summary">Red Hat AI enables enterprises to deploy custom AI agents like OpenClaw with production-grade security controls, governance frameworks, and observability. The "Bring Your Own Agent" approach lets organizations maintain existing AI solutions while gaining enterprise-ready operational infrastructure, emphasizing that "freedom without guardrails stops being a feature and starts being a liability."</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/articles/evaluating-ai-agents-lessons-learned/" target="_blank">Evaluating AI Agents in Practice: Benchmarks, Frameworks, and Lessons Learned</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · infoq.com · Amit Kumar Padhy · March 16, 2026
+      </div>
+      <div class="summary">Proposes a five-pillar evaluation framework for AI agents covering intelligence, performance, reliability, responsibility, and user experience. The article addresses the gap between controlled benchmarks and real-world production performance, combining automated scoring with human judgment to ensure agents are "fast, stable, safe, and trusted."</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139633/okta-launches-platform-to-secure-ai-agents/" target="_blank">Okta Launches Platform to Secure AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Berry Zwets · March 16, 2026
+      </div>
+      <div class="summary">Okta is launching a platform (April 30, 2026) to manage AI agents as distinct non-human identities, addressing the fact that 88% of organizations have dealt with AI agent security incidents. The platform discovers and registers agents, manages access via a central gateway, and can immediately revoke credentials when agents deviate from intended behavior.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139571/nanoclaw-integrates-with-docker-to-bring-trust-to-ai-agents/" target="_blank">NanoClaw Integrates with Docker to Bring Trust to AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Erik van Klinken · March 13, 2026
+      </div>
+      <div class="summary">NanoClaw has integrated with Docker to isolate each AI agent within its own container with dedicated environment and data, preventing cross-agent interference and limiting blast radius from compromised agents. With over 100,000 downloads and 20,000 GitHub stars, the platform addresses critical security vulnerabilities in competing frameworks like OpenClaw.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/gemini-cli-plan-mode-separates-thinking-from-doing-and-makes-read-only-the-default/" target="_blank">Gemini CLI Plan Mode Separates Thinking From Doing</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · devops.com · March 16, 2026
+      </div>
+      <div class="summary">Google's Gemini CLI introduces plan mode, enforcing a research-first workflow where AI explores codebases in read-only mode before proposing changes. The feature uses higher-reasoning models for strategy and includes an ask_user tool for clarification, positioning governance as foundational to agentic development.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/new-ai-stack-choice-control-and-production-ready-innovation" target="_blank">The New AI Stack: Choice, Control, and Production-Ready Innovation</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · redhat.com · Ashesh Badani · March 13, 2026
+      </div>
+      <div class="summary">Red Hat presents an open source AI stack emphasizing flexibility and vendor independence, arguing that AI "cannot remain proprietary" for enterprises to fully benefit. The company highlights its partnership with NVIDIA and commitment to supporting diverse models, accelerators, and cloud platforms for production-ready AI deployment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/ainews-context-drought" target="_blank">[AINews] Context Drought</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · latent.space · swyx · March 14, 2026
+      </div>
+      <div class="summary">Despite Anthropic's 1M context window release, progress on expanding model context has stalled due to hardware constraints (HBM and DRAM shortages). The article predicts context windows will remain capped at 1M for 5-10 years, potentially leading to "context rationing" with tiered access by subscription level, which has significant implications for agent architectures.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/doordash-llm-chatbot-simulator/" target="_blank">DoorDash Builds LLM Conversation Simulator to Test Customer Support Chatbots at Scale</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Leela Kumili · March 13, 2026
+      </div>
+      <div class="summary">DoorDash built a simulation framework generating hundreds of synthetic multi-turn conversations to validate LLM agents before deployment. Context engineering improvements achieved roughly 90% reduction in hallucination rates, demonstrating practical approaches to agent testing and quality assurance at enterprise scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/blogs/applications/139579/rocketlane-ceo-ai-requires-a-structural-reset-of-professional-saas/" target="_blank">Rocketlane CEO: AI Requires a Structural Reset of Professional SaaS</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Adrian Bridgwater · March 16, 2026
+      </div>
+      <div class="summary">AI is fundamentally transforming SaaS professional services, enabling teams to move "from concept to functional prototype in hours rather than weeks." The shift requires new hybrid roles like agent builders and customer engineers, and demands pricing models based on delivered value rather than billable hours.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/when-code-becomes-cheap-engineering-becomes-governance/" target="_blank">When Code Becomes Cheap, Engineering Becomes Governance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · March 16, 2026
+      </div>
+      <div class="summary">As AI accelerates code generation, the engineering bottleneck shifts from production to oversight. When software creation becomes industrialized, the critical skill becomes managing complexity rather than writing syntax. The article explores how this transformation affects team structure, junior developer training, and organizational priorities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/gemini-cli-plan-mode-separates-thinking-from-doing-and-makes-read-only-the-default/" target="_blank">Gemini CLI Plan Mode Separates Thinking From Doing</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · March 16, 2026
+      </div>
+      <div class="summary">Google's Gemini CLI introduces plan mode that enforces a research-first workflow, using higher-reasoning models for strategy before making changes. This governance-first approach to AI coding represents an emerging pattern where AI development tools build guardrails into the developer experience from the ground up.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/survey-ai-coding-exacerbates-existing-devops-workflow-issues/" target="_blank">Survey: AI Coding Exacerbates Existing DevOps Workflow Issues</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · March 13, 2026
+      </div>
+      <div class="summary">A survey of 700 engineering teams reveals that while AI tools enable faster deployments, they amplify longstanding bottlenecks. Over half (51%) noted AI-generated code leads to deployment problems at least half the time, suggesting governance gaps widen as development velocity increases. This underscores the need for integrated quality controls in AI-assisted automation workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/10-things-i-learned-writing-49000-words-about-vibe-coding/" target="_blank">10 Things I Learned Writing 49,000 Words About Vibe Coding</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · dynatrace.com · Jeff Blankenburg · March 13, 2026
+      </div>
+      <div class="summary">An extensive documentation of building production software with AI reveals that developers should function as architects directing AI assistants, not replacing human judgment. The most effective AI-assisted development relies on detailed specifications, phased feature implementation, and rigorous observability. While AI accelerates boilerplate generation, it doesn't meaningfully increase overall shipping velocity without disciplined planning.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/new-ai-stack-choice-control-and-production-ready-innovation" target="_blank">The New AI Stack: Choice, Control, and Production-Ready Innovation</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · redhat.com · Ashesh Badani · March 13, 2026
+      </div>
+      <div class="summary">Red Hat positions its open source AI stack as the enterprise alternative to proprietary AI platforms, emphasizing multi-vendor support across models, accelerators, and cloud providers. The partnership with NVIDIA and commitment to production readiness signals a platform strategy where AI capabilities become first-class infrastructure services.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/operationalizing-bring-your-own-agent-red-hat-ai-openclaw-edition" target="_blank">Operationalizing "Bring Your Own Agent" on Red Hat AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · redhat.com · Adel Zaalouk · March 16, 2026
+      </div>
+      <div class="summary">The BYOA approach demonstrates Red Hat's platform extensibility strategy, providing production-grade infrastructure for custom AI agents with security controls, governance, and lifecycle management. This pattern of offering operational foundations for diverse workloads is directly relevant to automation platform modernization.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/13/manage-openshift-ai-dependencies-kustomize-argo-cd" target="_blank">How to Manage Red Hat OpenShift AI Dependencies with Kustomize and Argo CD</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · developers.redhat.com · Davide Bianchi, Andrea Tarocchi · March 13, 2026
+      </div>
+      <div class="summary">The odh-gitops repository enables declarative management of OpenShift AI dependencies using Kustomize manifests and Argo CD automation. Every operator dependency is expressed as code, allowing simplified deployment via single commands and demonstrating GitOps-driven platform management practices applicable to automation infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge & Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139627/zscaler-offers-a-local-control-plane-for-data-sovereignty/" target="_blank">Zscaler Offers a Local Control Plane for Data Sovereignty</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Berry Zwets · March 16, 2026
+      </div>
+      <div class="summary">Zscaler has expanded its data sovereignty capabilities through decentralized architecture with separate control, data, and logging planes ensuring sensitive information stays within required jurisdictions. The "Collect Once, Certify All" framework maps security controls to GDPR and NIS2, relevant to enterprises managing automation across regulated hybrid environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/subscription-watch-managing-your-hybrid-cloud-estate" target="_blank">Subscription Watch: Managing Your Hybrid Cloud Estate</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · redhat.com · Gagan Kumar, Arianna Gallagher · March 13, 2026
+      </div>
+      <div class="summary">Subscription Watch is a SaaS tool in Red Hat's Hybrid Cloud Console that delivers a unified view of subscription usage and capacity across distributed environments. The platform helps organizations monitor and optimize Red Hat subscriptions across on-premises and cloud deployments, addressing subscription sprawl in hybrid estates.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance & Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139633/okta-launches-platform-to-secure-ai-agents/" target="_blank">Okta Launches Platform to Secure AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Berry Zwets · March 16, 2026
+      </div>
+      <div class="summary">With 88% of organizations reporting AI agent security incidents, Okta's new platform manages AI agents as non-human identities with discovery, access management via a central gateway, and instant credential revocation. This represents the emerging enterprise requirement for agent governance infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139571/nanoclaw-integrates-with-docker-to-bring-trust-to-ai-agents/" target="_blank">NanoClaw Integrates with Docker to Bring Trust to AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · techzine.eu · Erik van Klinken · March 13, 2026
+      </div>
+      <div class="summary">NanoClaw's Docker integration isolates each AI agent in its own container, preventing cross-agent interference and limiting damage from compromised agents. The platform's rapid adoption (100K+ downloads, 20K GitHub stars) signals growing enterprise demand for container-based agent governance and trust frameworks.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://devops.com/when-code-becomes-cheap-engineering-becomes-governance/" target="_blank">When Code Becomes Cheap, Engineering Becomes Governance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · devops.com · March 16, 2026
+      </div>
+      <div class="summary">As AI industrializes code production, the critical engineering skill shifts from writing code to governing its quality, security, and organizational impact. This reframing directly impacts how automation platforms must evolve their governance capabilities to match the velocity of AI-generated content.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/articles/evaluating-ai-agents-lessons-learned/" target="_blank">Evaluating AI Agents in Practice</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · infoq.com · Amit Kumar Padhy · March 16, 2026
+      </div>
+      <div class="summary">Presents a practical evaluation framework for ensuring AI agents meet reliability and responsibility standards in production. The responsibility pillar specifically addresses compliance, bias detection, and safety boundaries — key governance requirements for enterprise agent deployments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/survey-ai-coding-exacerbates-existing-devops-workflow-issues/" target="_blank">Survey: AI Coding Exacerbates Existing DevOps Workflow Issues</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · devops.com · March 13, 2026
+      </div>
+      <div class="summary">With 51% of teams reporting AI-generated code leads to deployment problems, the survey highlights widening governance gaps as development velocity increases. The findings underscore the need for automated compliance and quality gates in CI/CD pipelines that incorporate AI-generated automation content.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139627/zscaler-offers-a-local-control-plane-for-data-sovereignty/" target="_blank">Zscaler Offers a Local Control Plane for Data Sovereignty</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Berry Zwets · March 16, 2026
+      </div>
+      <div class="summary">Zscaler's decentralized control plane architecture with HSM integration and "Collect Once, Certify All" compliance mapping demonstrates the infrastructure requirements for meeting GDPR and NIS2 in automated environments. Relevant to organizations running automation across jurisdictional boundaries.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="product-led-growth">
+    <div class="theme-header">
+      <h2>Product-Led Growth</h2>
+      <span class="outcomes">ANSTRAT-1063, ANSTRAT-896</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/blogs/applications/139579/rocketlane-ceo-ai-requires-a-structural-reset-of-professional-saas/" target="_blank">Rocketlane CEO: AI Requires a Structural Reset of Professional SaaS</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · techzine.eu · Adrian Bridgwater · March 16, 2026
+      </div>
+      <div class="summary">AI is enabling teams to move from concept to functional prototype in hours, fundamentally disrupting SaaS delivery models and creating new roles like agent builders and customer engineers. The shift toward value-based pricing over seat licenses signals how automation products must rethink go-to-market strategies.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1063</span>
+        <span>ANSTRAT-896</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://devops.com/low-codes-new-frontier-tailored-solutions-for-each-industry/" target="_blank">Low-Code's New Frontier: Tailored Solutions for Each Industry</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · devops.com · March 13, 2026
+      </div>
+      <div class="summary">Low-code platforms are evolving beyond generic efficiency tools toward industry-specific solutions for healthcare, finance, and government. These sectors require specialized implementations supporting compliance, data privacy, and on-premises deployment, highlighting opportunities for automation platforms to serve citizen developer personas in regulated industries.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1063</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
