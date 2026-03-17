@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 17, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 17, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>11</span></div>
+    <div>High relevance: <span>7</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">2</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">3</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">1</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">1</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/red-hat-and-nvidia-collaborate-more-secure-foundation-agent-ready-workforce" target="_blank">Red Hat and NVIDIA Collaborate for a More Secure Foundation for the Agent-Ready Workforce</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; redhat.com &middot; Joe Fernandes &middot; March 16, 2026
+      </div>
+      <div class="summary">Red Hat and NVIDIA are partnering to establish secure infrastructure for autonomous agent deployment in production environments, leveraging agent sandboxing, deny-by-default policy, and privacy-preserving routing. The collaboration integrates Red Hat's AgentOps strategy with NVIDIA's OpenShell and AI-Q 2.0 Blueprint, enabling enterprises to safely operationalize autonomous agents while maintaining robust security controls.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.latent.space/p/ainews-nvidia-gtc-jensen-goes-hard" target="_blank">NVIDIA GTC: Jensen Goes Hard on OpenClaw, Vera CPU, and Announces $1T Sales Backlog</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; latent.space &middot; Latent Space &middot; March 17, 2026
+      </div>
+      <div class="summary">At NVIDIA's GTC 2026, Jensen Huang emphasized inference as the dominant workload and showcased NemoClaw, a security-hardened alternative to OpenClaw, highlighting vulnerabilities in the open-source agent framework. The broader ecosystem revealed significant maturation in agentic infrastructure, with tools like Ollama integrating with OpenClaw while competing frameworks gain adoption for enterprise deployment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/infrastructure/139653/nvidias-groq-3-lpu-targets-agentic-ai-inference-at-gtc-2026/" target="_blank">Nvidia's Groq 3 LPU Targets Agentic AI Inference at GTC 2026</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; techzine.eu &middot; Erik van Klinken &middot; March 17, 2026
+      </div>
+      <div class="summary">NVIDIA unveiled the Groq 3 LPU at GTC 2026, the first chip from its $20 billion partnership with Groq, designed specifically for AI inference at up to 1,500 tokens per second. The processor targets agentic AI systems where agents communicate continuously, paired with NVIDIA's Vera Rubin GPU to optimize trillion-parameter models and million-token context windows for data center operators.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/applications/139615/nutanix-introduces-platform-for-large-scale-deployment-of-agentic-ai/" target="_blank">Nutanix Introduces Platform for Large-Scale Deployment of Agentic AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; techzine.eu &middot; Mels Dees &middot; March 16, 2026
+      </div>
+      <div class="summary">Nutanix has unveiled an Agentic AI software platform enabling enterprises to deploy AI agents at scale beyond traditional chatbots, integrating with Nvidia technology and Kubernetes. The solution supports thousands of AI services and concurrent users while managing complex, multi-step business processes with minimal human involvement, addressing the infrastructure demands of autonomous AI systems.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/spotify-portal-studio/" target="_blank">QCon London 2026: From Prompt to Production &mdash; How Spotify Builds Internal Tools in Days with AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; infoq.com &middot; Daniel Dominguez &middot; March 17, 2026
+      </div>
+      <div class="summary">Spotify demonstrated how its Portal platform, built on the open-source Backstage framework, combined with Claude AI assistance dramatically accelerates internal tool development. Engineers generate plugin scaffolding and code through natural language prompts, then validate in Portal Studio before deploying, enabling teams to move from idea to working internal tooling in days rather than weeks.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+        <span>ANSTRAT-1244</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/17/advanced-cluster-management-216-right-sizing-recommendation-ga" target="_blank">Advanced Cluster Management 2.16 Right-Sizing Recommendation GA</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; developers.redhat.com &middot; Darshan Vandra, Raj Zalavadia &middot; March 17, 2026
+      </div>
+      <div class="summary">Red Hat Advanced Cluster Management 2.16 introduces GA right-sizing recommendations, enabling resource optimization across containerized workloads and virtual machines in multicluster environments. The feature leverages historical CPU and memory usage data to identify over-provisioned and under-provisioned resources, helping reduce infrastructure costs while improving performance stability across hybrid cloud operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/form3-triple-active-multicloud/" target="_blank">QCon London 2026: How to Run on Three Clouds at Once, and When Not To</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; infoq.com &middot; Steef-Jan Wiggers &middot; March 16, 2026
+      </div>
+      <div class="summary">Form3, a UK payments platform, operates simultaneously across AWS, Google Cloud, and Azure using Kubernetes clusters connected via private networks with NATS JetStream and CockroachDB maintaining single logical clusters spanning all three environments. This case study illustrates both the technical complexity and practical trade-offs of active-active-active multi-cloud deployments, driven by regulatory cloud concentration risk concerns.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/building-hybrid-ai-factory-future-red-hat-achieves-ai-cloud-ready-status-nvidia-cloud-partner-ncp-program" target="_blank">Building the Hybrid AI Factory of the Future: Red Hat Achieves AI Cloud Ready Status for NVIDIA NCP</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; redhat.com &middot; Ryan King &middot; March 16, 2026
+      </div>
+      <div class="summary">Red Hat has earned AI Cloud Ready status within NVIDIA's Cloud Partner program, positioning the organization to help enterprises scale distributed inference and streamline model-to-data workflows. This certification enables Red Hat to support organizations in transitioning AI initiatives from pilot to production across hybrid environments with reliable day-to-day operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/blogs/infrastructure/139561/the-european-data-center-market-is-a-puzzle-with-an-increasing-number-of-pieces/" target="_blank">The European Data Center Market Is a Puzzle with an Increasing Number of Pieces</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; techzine.eu &middot; Sander Almekinders &middot; March 17, 2026
+      </div>
+      <div class="summary">Europe's data center landscape is shifting dramatically toward Scandinavia and the Iberian Peninsula, driven by renewable energy availability and AI workload demands. Data sovereignty concerns add complexity as individual European nations define security requirements differently, while AI training relocates to remote areas and inference operations require proximity to users.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139655/openclaw-bypasses-security-layers-and-reveals-new-attack-vectors/" target="_blank">OpenClaw Bypasses Security Layers and Reveals New Attack Vectors</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; techzine.eu &middot; Mels Dees &middot; March 17, 2026
+      </div>
+      <div class="summary">OpenClaw AI agents exploit traditional security systems by executing manipulated instructions through legitimate API calls that evade detection by EDR, DLP, and IAM tools. The platform's design flaws enable semantic data theft, instruction embedding across agent chains, and weak identity verification between delegated tasks, demonstrating that existing security layers are insufficient to counter agentic attack vectors.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/blogs/infrastructure/139649/cisco-and-nvidia-lower-the-barrier-to-secure-full-stack-ai-infrastructure/" target="_blank">Cisco and Nvidia Lower the Barrier to Secure, Full-Stack AI Infrastructure</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; techzine.eu &middot; Sander Almekinders &middot; March 16, 2026
+      </div>
+      <div class="summary">Cisco and Nvidia announced a major expansion of their Secure AI Factory partnership, extending AI infrastructure support from data center cores to edge environments and telecom networks. The collaboration delivers an integrated, security-focused stack with validated designs, new Nvidia Blackwell GPUs, and centralized security management via Cisco's Nexus One platform, reducing complexity for enterprise AI adoption.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>

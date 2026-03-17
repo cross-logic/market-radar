@@ -6,6 +6,7 @@ Daily intelligence reports for Ansible Automation Platform strategy.
 
 | Date | Report | Highlights |
 |------|--------|------------|
+| March 17, 2026 | [market-radar-2026-03-17.html](reports/market-radar-2026-03-17.html) | 11 articles, 7 HIGH — NVIDIA GTC OpenClaw & Groq 3 LPU; Red Hat + NVIDIA agent security; Spotify Backstage + AI |
 | March 16, 2026 | [market-radar-2026-03-16.html](reports/market-radar-2026-03-16.html) | 16 articles, 9 HIGH — Red Hat BYOA for AI agents; Okta agent identity platform; AI coding governance shift |
 | March 13, 2026 | [market-radar-2026-03-13.html](reports/market-radar-2026-03-13.html) | 17 articles, 11 HIGH — Red Hat Satellite MCP server; MCP-Airlock prompt injection defense; CrackArmor 12.6M Linux systems exposed |
 | March 12, 2026 | [market-radar-2026-03-12.html](reports/market-radar-2026-03-12.html) | 16 articles, 7 HIGH — Cicaddy agentic CI pipelines; OpenAI prompt injection defense; Opus 4.6 context compaction |
