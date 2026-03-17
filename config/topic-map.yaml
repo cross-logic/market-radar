@@ -20,6 +20,12 @@ themes:
       - autonomous agent
       - multi-agent system
       - agent workflow
+      - MCP client
+      - nexus service
+      - workflow designer
+      - human-in-the-loop
+      - drag-and-drop workflow
+      - multi-model orchestration
 
   ai-devex-lightspeed:
     label: "AI DevEx / Lightspeed"
@@ -37,6 +43,10 @@ themes:
       - intelligent code completion
       - natural language to code
       - AI playbook generation
+      - conversational installer
+      - appliance installer
+      - wizard-driven
+      - VS Code chatbot
 
   platform-modernization:
     label: "Platform Modernization"
@@ -54,6 +64,11 @@ themes:
       - microservices automation
       - cloud-native platform
       - automation mesh
+      - database extensibility
+      - vendor neutrality
+      - observability integration
+      - LDAP alternative
+      - external database
 
   content-ecosystem:
     label: "Content & Ecosystem"
@@ -71,6 +86,12 @@ themes:
       - content curation
       - community collection
       - execution environment
+      - ansible-creator
+      - molecule
+      - content lifecycle
+      - SCM integration
+      - semantic search
+      - content discovery
 
   event-driven-automation:
     label: "Event-Driven Automation"
@@ -87,6 +108,10 @@ themes:
       - rulebook
       - event filter
       - webhook automation
+      - mTLS
+      - external credentials
+      - EDA scalability
+      - EDA production
 
   edge-hybrid-cloud:
     label: "Edge & Hybrid Cloud"
@@ -139,6 +164,11 @@ themes:
       - infrastructure as code
       - API integration
       - CMDB
+      - PowerBI
+      - metrics service
+      - telemetry
+      - automation dashboard
+      - business intelligence
 
   competitive-migration:
     label: "Competitive Migration"
@@ -154,6 +184,9 @@ themes:
       - puppet to ansible
       - chef to ansible
       - legacy automation
+      - genAI migration
+      - Ansible Lightspeed migration
+      - consulting service
 
   product-led-growth:
     label: "Product-Led Growth"
@@ -171,3 +204,7 @@ themes:
       - low-code automation
       - citizen developer
       - no-code automation
+      - freemium
+      - Red Hat Developer Sandbox
+      - single-click provisioning
+      - lead nurturing
