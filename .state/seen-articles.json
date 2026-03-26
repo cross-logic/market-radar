@@ -548,5 +548,205 @@
     "title": "Low-Code's New Frontier: Tailored Solutions for Each Industry",
     "date_seen": "2026-03-16",
     "themes": ["product-led-growth"]
+  },
+  "https://www.redhat.com/en/blog/red-hat-and-nvidia-collaborate-more-secure-foundation-agent-ready-workforce": {
+    "title": "Red Hat and NVIDIA Collaborate for a More Secure Foundation for the Agent-Ready Workforce",
+    "date_seen": "2026-03-17",
+    "themes": ["ai-agentic-orchestration", "governance-compliance"]
+  },
+  "https://www.latent.space/p/ainews-nvidia-gtc-jensen-goes-hard": {
+    "title": "NVIDIA GTC: Jensen Goes Hard on OpenClaw, Vera CPU, and Announces $1T Sales Backlog",
+    "date_seen": "2026-03-17",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://www.techzine.eu/news/security/139655/openclaw-bypasses-security-layers-and-reveals-new-attack-vectors/": {
+    "title": "OpenClaw Bypasses Security Layers and Reveals New Attack Vectors",
+    "date_seen": "2026-03-17",
+    "themes": ["governance-compliance", "ai-agentic-orchestration"]
+  },
+  "https://www.techzine.eu/news/applications/139615/nutanix-introduces-platform-for-large-scale-deployment-of-agentic-ai/": {
+    "title": "Nutanix Introduces Platform for Large-Scale Deployment of Agentic AI",
+    "date_seen": "2026-03-17",
+    "themes": ["ai-agentic-orchestration", "platform-modernization"]
+  },
+  "https://www.techzine.eu/blogs/infrastructure/139649/cisco-and-nvidia-lower-the-barrier-to-secure-full-stack-ai-infrastructure/": {
+    "title": "Cisco and Nvidia Lower the Barrier to Secure, Full-Stack AI Infrastructure",
+    "date_seen": "2026-03-17",
+    "themes": ["integrations-partnerships", "edge-hybrid-cloud"]
+  },
+  "https://www.techzine.eu/news/infrastructure/139653/nvidias-groq-3-lpu-targets-agentic-ai-inference-at-gtc-2026/": {
+    "title": "Nvidia's Groq 3 LPU Targets Agentic AI Inference at GTC 2026",
+    "date_seen": "2026-03-17",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://www.infoq.com/news/2026/03/spotify-portal-studio/": {
+    "title": "QCon London 2026: From Prompt to Production - How Spotify Builds Internal Tools in Days with AI",
+    "date_seen": "2026-03-17",
+    "themes": ["platform-modernization", "ai-devex-lightspeed"]
+  },
+  "https://www.redhat.com/en/blog/building-hybrid-ai-factory-future-red-hat-achieves-ai-cloud-ready-status-nvidia-cloud-partner-ncp-program": {
+    "title": "Building the Hybrid AI Factory of the Future: Red Hat Achieves AI Cloud Ready Status for NVIDIA NCP",
+    "date_seen": "2026-03-17",
+    "themes": ["edge-hybrid-cloud"]
+  },
+  "https://www.infoq.com/news/2026/03/form3-triple-active-multicloud/": {
+    "title": "QCon London 2026: How to Run on Three Clouds at Once, and When Not To",
+    "date_seen": "2026-03-17",
+    "themes": ["edge-hybrid-cloud"]
+  },
+  "https://developers.redhat.com/articles/2026/03/17/advanced-cluster-management-216-right-sizing-recommendation-ga": {
+    "title": "Advanced Cluster Management 2.16 Right-Sizing Recommendation GA",
+    "date_seen": "2026-03-17",
+    "themes": ["platform-modernization"]
+  },
+  "https://www.techzine.eu/blogs/infrastructure/139561/the-european-data-center-market-is-a-puzzle-with-an-increasing-number-of-pieces/": {
+    "title": "The European Data Center Market Is a Puzzle with an Increasing Number of Pieces",
+    "date_seen": "2026-03-17",
+    "themes": ["edge-hybrid-cloud"]
+  },
+  "https://www.dynatrace.com/news/blog/five-real-world-lessons-for-building-developer-workflows-in-the-agentic-era/": {
+    "title": "Five Real-World Lessons for Building Developer Workflows in the Agentic Era",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization", "integrations-partnerships"]
+  },
+  "https://www.infoq.com/podcasts/agentic-systems-without-chaos/": {
+    "title": "Agentic Systems Without Chaos: Early Operating Models for Autonomous Agents",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization", "governance-compliance"]
+  },
+  "https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps": {
+    "title": "Agentic Runtime Security: Solving Agentic AI Identity and Access Gaps",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "governance-compliance", "integrations-partnerships"]
+  },
+  "https://thenewstack.io/openclaw-is-a-security-mess-jentic-wants-to-fix-it/": {
+    "title": "OpenClaw's Biggest Security Flaw Is Why Jentic Mini Exists",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "governance-compliance"]
+  },
+  "https://blogs.cisco.com/ai/secure-langchain-agent-cisco-ai-defense": {
+    "title": "A Developer's First 10 Minutes: Secure a LangChain Agent with Cisco AI Defense",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "governance-compliance", "integrations-partnerships"]
+  },
+  "https://www.redhat.com/en/blog/why-were-contributing-llm-d-cncf-standardizing-future-ai": {
+    "title": "Why We're Contributing llm-d to the CNCF: Standardizing the Future of AI",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization"]
+  },
+  "https://developers.redhat.com/articles/2026/03/24/run-model-service-multiple-llms-openshift": {
+    "title": "Run Model-as-a-Service for Multiple LLMs on OpenShift",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization"]
+  },
+  "https://www.techzine.eu/news/devops/139964/stack-overflow-is-dead-long-live-cq/": {
+    "title": "Stack Overflow Is Dead, Long Live cq",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "ai-devex-lightspeed"]
+  },
+  "https://www.infoq.com/news/2026/03/revenium-ai-tooling-costs/": {
+    "title": "Revenium Unveils Tool Registry to Expose the True Cost of AI Agents",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "governance-compliance"]
+  },
+  "https://thenewstack.io/hpe-agentic-ai-ops-burnout/": {
+    "title": "HPE's AI Agents Cut Root Cause Analysis Time in Half",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization"]
+  },
+  "https://www.infoq.com/news/2026/03/agoda-ai-code-bottleneck/": {
+    "title": "AI Coding Assistants Haven't Sped Up Delivery Because Coding Was Never the Bottleneck",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-devex-lightspeed"]
+  },
+  "https://developers.redhat.com/articles/2026/03/25/dynamic-resource-allocation-goes-ga-red-hat-openshift-421-smarter-gpu": {
+    "title": "Dynamic Resource Allocation Goes GA in Red Hat OpenShift 4.21",
+    "date_seen": "2026-03-26",
+    "themes": ["platform-modernization"]
+  },
+  "https://developers.redhat.com/articles/2026/03/26/reproducible-builds-project-hummingbird": {
+    "title": "Reproducible Builds in Project Hummingbird",
+    "date_seen": "2026-03-26",
+    "themes": ["governance-compliance", "platform-modernization"]
+  },
+  "https://www.infoq.com/news/2026/03/uber-ai-design/": {
+    "title": "Uber Automates Design Documentation with Agentic Systems",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "ai-devex-lightspeed"]
+  },
+  "https://www.latent.space/p/ainews-the-biggest-claude-launch": {
+    "title": "The Biggest Claude Launch of All Time",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "ai-devex-lightspeed"]
+  },
+  "https://thenewstack.io/claude-computer-use/": {
+    "title": "Claude Can Now Open Apps, Click Buttons, and Complete Tasks on Your Mac",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "ai-devex-lightspeed"]
+  },
+  "https://www.techzine.eu/news/devops/139947/claude-code-gets-auto-mode-to-reduce-interruptions/": {
+    "title": "Claude Code Gets Auto Mode to Reduce Interruptions",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-devex-lightspeed", "ai-agentic-orchestration"]
+  },
+  "https://developers.redhat.com/articles/2026/03/25/getting-started-vllm-semantic-router-athena-release": {
+    "title": "Getting Started with vLLM Semantic Router's Athena Release",
+    "date_seen": "2026-03-26",
+    "themes": ["platform-modernization", "ai-agentic-orchestration"]
+  },
+  "https://developers.redhat.com/articles/2026/03/26/scale-llm-fine-tuning-training-hub-and-openshift-ai": {
+    "title": "Scale LLM Fine-Tuning with Training Hub and OpenShift AI",
+    "date_seen": "2026-03-26",
+    "themes": ["platform-modernization"]
+  },
+  "https://www.redhat.com/en/blog/stop-searching-start-operating-scale-hybrid-clusters-red-hat-advanced-cluster-management-kubernetes-216": {
+    "title": "Stop Searching, Start Operating: Scale Hybrid Clusters with ACM 2.16",
+    "date_seen": "2026-03-26",
+    "themes": ["platform-modernization", "edge-hybrid-cloud"]
+  },
+  "https://blogs.cisco.com/industries/responsible-ai-in-healthcare-starts-with-a-unified-edge-ecosystem": {
+    "title": "Responsible AI in Healthcare Starts with a Unified Edge Ecosystem",
+    "date_seen": "2026-03-26",
+    "themes": ["edge-hybrid-cloud", "governance-compliance"]
+  },
+  "https://www.infoq.com/news/2026/03/qcon-ai-at-the-edge/": {
+    "title": "QCon London: Running AI at the Edge — Real Workloads Directly in the Browser",
+    "date_seen": "2026-03-26",
+    "themes": ["edge-hybrid-cloud", "ai-devex-lightspeed"]
+  },
+  "https://www.techzine.eu/news/security/139969/google-aims-to-complete-quantum-safe-encryption-migration-by-2029/": {
+    "title": "Google Aims to Complete Quantum-Safe Encryption Migration by 2029",
+    "date_seen": "2026-03-26",
+    "themes": ["governance-compliance"]
+  },
+  "https://thenewstack.io/ai2-launches-molmoweb-an-open-source-web-agent/": {
+    "title": "Ai2 Launches MolmoWeb, an Open-Source Web Agent",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://siliconangle.com/2026/03/23/ai-infrastructure-must-evolve-agentic-computing-nvidiagtcai/": {
+    "title": "AI Infrastructure Must Evolve for Agentic Computing",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "platform-modernization"]
+  },
+  "https://www.redhat.com/en/blog/red-hat-enterprise-linux-ready-aws-m9g-instances-powered-graviton5": {
+    "title": "RHEL Is Ready for AWS M9g Instances, Powered by Graviton5",
+    "date_seen": "2026-03-26",
+    "themes": ["edge-hybrid-cloud", "platform-modernization"]
+  },
+  "https://www.dynatrace.com/news/blog/how-lookup-tables-turn-observability-data-into-business-insight/": {
+    "title": "How Lookup Tables Turn Observability Data into Business Insight",
+    "date_seen": "2026-03-26",
+    "themes": ["platform-modernization", "integrations-partnerships"]
+  },
+  "https://blogs.cisco.com/ai/fine-tuning-embedding-models-for-enterprise-retrieval-a-practical-guide-with-nvidia-nemotron-recipe": {
+    "title": "Fine-Tuning Embedding Models for Enterprise Retrieval",
+    "date_seen": "2026-03-26",
+    "themes": ["ai-agentic-orchestration", "integrations-partnerships"]
+  },
+  "https://www.techzine.eu/news/devops/139945/attackers-exploit-open-source-to-spread-malware/": {
+    "title": "Attackers Exploit Open Source to Spread Malware",
+    "date_seen": "2026-03-26",
+    "themes": ["governance-compliance"]
   }
 }

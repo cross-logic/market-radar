@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — March 26, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">March 26, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>29</span></div>
+    <div>High relevance: <span>13</span></div>
+    <div>Sources scanned: <span>38</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">18</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">7</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">13</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">4</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">9</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">5</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/five-real-world-lessons-for-building-developer-workflows-in-the-agentic-era/" target="_blank">Five Real-World Lessons for Building Developer Workflows in the Agentic Era</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Dynatrace · Klint Finley · March 25, 2026
+      </div>
+      <div class="summary">Drawing from Perform 2026, this article distills five patterns for operationalizing AI agents: give agents real-time telemetry via MCP, meet developers in their IDEs, standardize and enrich telemetry with domain context (Lockheed Martin raised success from 60% to 95%), observe the AI stack itself, and close the loop from insight to action. TELUS, Autodesk, and Macquarie Group provide enterprise case studies.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/podcasts/agentic-systems-without-chaos/" target="_blank">Agentic Systems Without Chaos: Early Operating Models for Autonomous Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Joseph Stein · March 25, 2026
+      </div>
+      <div class="summary">This podcast explores how agentic systems differ from traditional automation, advocating a centralized platform approach for enterprises. Key recommendations: unified AI infrastructure providing model access, RAG services, and governance; integration with existing systems like ServiceNow CMDB; layered tooling from foundational services upward; and human-in-the-loop workflows calibrated by use-case risk.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps" target="_blank">Agentic Runtime Security: Solving Agentic AI Identity and Access Gaps</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · HashiCorp · Andre Faria, Tyler Lynch · March 20, 2026
+      </div>
+      <div class="summary">Identifies four critical risk areas in AI agent deployments: excessive permissions without oversight, absence of real-time enforcement, invisible delegation and impersonation, and accountability vacuum. Proposes five imperatives: unique cryptographic identities per agent (mTLS/SPIFFE), just-in-time dynamic credentials, intent-tied actions, point-of-use policy enforcement, and comprehensive audit trails via HashiCorp Vault.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/openclaw-is-a-security-mess-jentic-wants-to-fix-it/" target="_blank">OpenClaw's Biggest Security Flaw Is Why Jentic Mini Exists</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">Jentic launched a free permission firewall addressing OpenClaw's credential exposure vulnerability. The tool sits between AI agents and APIs, holding credentials centrally so agents never see them directly. This addresses a fundamental MCP security gap where agents could access and exfiltrate API keys during tool execution.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://blogs.cisco.com/ai/secure-langchain-agent-cisco-ai-defense" target="_blank">A Developer's First 10 Minutes: Secure a LangChain Agent with Cisco AI Defense</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Cisco · Siddhant Dash, Barry Yuan · March 24, 2026
+      </div>
+      <div class="summary">Demonstrates how Cisco AI Defense integrates runtime protection for LangChain agents via middleware, supporting LLM mode, MCP mode, and middleware mode. Provides consistent allow/block decisions, risk classifications for prompt injection, sensitive data, and exfiltration patterns. Monitor mode offers visibility while enforce mode blocks policy violations with auditable explanations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/why-were-contributing-llm-d-cncf-standardizing-future-ai" target="_blank">Why We're Contributing llm-d to the CNCF: Standardizing the Future of AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat · Brian Stevens · March 24, 2026
+      </div>
+      <div class="summary">Red Hat contributes llm-d to CNCF as a Sandbox project, partnering with CoreWeave, IBM, Google, and NVIDIA. llm-d is a data-plane orchestration layer for distributed AI inference serving that maximizes infrastructure efficiency. The move aims to establish the open standard for cloud-native distributed inference, bridging experimental AI and production deployments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/24/run-model-service-multiple-llms-openshift" target="_blank">Run Model-as-a-Service for Multiple LLMs on OpenShift</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Developer · Vladimir Belousov · March 24, 2026
+      </div>
+      <div class="summary">Demonstrates deploying multiple LLMs behind a unified API endpoint on OpenShift using llm-d, Gateway API Inference Extension, and agentgateway. Features body-based routing via CEL expressions, intelligent load balancing using KV cache utilization and queue depth metrics, and a single unified endpoint for all model requests. Directly enables agentic AI infrastructure at enterprise scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139964/stack-overflow-is-dead-long-live-cq/" target="_blank">Stack Overflow Is Dead, Long Live cq</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Techzine · Erik van Klinken · March 26, 2026
+      </div>
+      <div class="summary">Mozilla AI released cq (colloquy), an open-source knowledge-sharing MCP server for AI coding agents. Agents query a shared knowledge commons before tackling unfamiliar tasks, and solutions verified by multiple agents across codebases carry more weight. Ships as an MCP server with plugins for Claude Code, human-in-the-loop review, and containerized deployment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/revenium-ai-tooling-costs/" target="_blank">Revenium Unveils Tool Registry to Expose the True Cost of AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Craig Risi · March 24, 2026
+      </div>
+      <div class="summary">Revenium's Tool Registry provides comprehensive AI agent cost visibility beyond token tracking. In a loan origination workflow, tokens represent less than 1% of total costs while external services (credit bureaus, identity verification) cost $50-85 per transaction. The registry maps each invocation to the originating agent, transaction trace, and customer, including human-in-the-loop cost tracking.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/hpe-agentic-ai-ops-burnout/" target="_blank">HPE's AI Agents Cut Root Cause Analysis Time in Half</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">HPE released an agentic operations system using skills-based AI agents that halves root cause analysis time for early adopters. Human operators remain in control of remediation decisions while the agents handle investigation and diagnosis. Demonstrates the practical value of agentic AI in IT operations management.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/uber-ai-design/" target="_blank">Uber Automates Design Documentation with Agentic Systems</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Patrick Farry · March 25, 2026
+      </div>
+      <div class="summary">Uber's uSpec system uses an AI agent in Cursor IDE connected to Figma Desktop via WebSocket to automate component design specs, reducing documentation time from weeks to minutes. Intelligence is embedded in Agent Skills (structured Markdown files encoding Uber's internal expertise). All processing occurs locally for privacy, with PII redaction via their GenAI Gateway.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/ainews-the-biggest-claude-launch" target="_blank">The Biggest Claude Launch of All Time</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Latent Space · swyx · March 26, 2026
+      </div>
+      <div class="summary">Anthropic launched Claude Cowork Dispatch Computer Use, building on the Vercept acquisition. The feature enables desktop control capabilities for autonomous task execution. Social media engagement metrics show this is Claude's biggest launch ever, signaling the mainstreaming of computer-use agents.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/claude-computer-use/" target="_blank">Claude Can Now Open Apps, Click Buttons, and Complete Tasks on Your Mac</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">Anthropic released computer-use capabilities for Claude on macOS, enabling autonomous desktop task execution. The company acknowledges risks and recommends closing sensitive files before enabling the feature. Represents a significant expansion of what agentic AI systems can do beyond text-based interactions.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139947/claude-code-gets-auto-mode-to-reduce-interruptions/" target="_blank">Claude Code Gets Auto Mode to Reduce Interruptions</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · March 25, 2026
+      </div>
+      <div class="summary">Anthropic introduced auto mode for Claude Code, utilizing a classifier to assess action safety before execution. Now available in preview for Team subscribers. Reduces the friction of permission prompts during agentic coding sessions while maintaining safety guardrails.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/25/getting-started-vllm-semantic-router-athena-release" target="_blank">Getting Started with vLLM Semantic Router's Athena Release</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Christopher Nuland · March 25, 2026
+      </div>
+      <div class="summary">Athena 0.2 enables intelligent request routing between local and cloud LLM backends using semantic classification. Routes simple queries to cost-free local instances while delegating complex reasoning to premium services. A demonstrated configuration achieved 86% of requests staying local, significantly reducing API costs for agentic workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/ai2-launches-molmoweb-an-open-source-web-agent/" target="_blank">Ai2 Launches MolmoWeb, an Open-Source Web Agent</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · March 24, 2026
+      </div>
+      <div class="summary">Allen Institute for AI released MolmoWeb, an open-source visual web agent in 4B and 8B parameter sizes. The agent navigates websites and completes tasks through visual understanding rather than distillation from proprietary models, advancing the open-source agentic AI ecosystem.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://siliconangle.com/2026/03/23/ai-infrastructure-must-evolve-agentic-computing-nvidiagtcai/" target="_blank">AI Infrastructure Must Evolve for Agentic Computing</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · SiliconAngle · Tristan Foster · March 23, 2026
+      </div>
+      <div class="summary">Lambda Inc. VP Sam Khosroshahi argues organizations must invest in forward-looking infrastructure for agentic computing, including co-packaged optical/photonics networking to replace copper, gigawatt-scale campuses for instantaneous processing, and applied AI teams to help customers navigate the transformation. Traditional data center approaches prove insufficient.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/ai/fine-tuning-embedding-models-for-enterprise-retrieval-a-practical-guide-with-nvidia-nemotron-recipe" target="_blank">Fine-Tuning Embedding Models for Enterprise Retrieval</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · Md Rahman · March 25, 2026
+      </div>
+      <div class="summary">Cisco IT evaluated embedding model fine-tuning using NVIDIA Nemotron RAG technology, demonstrating measurable accuracy improvements for domain-specific enterprise data retrieval. Shows how enterprises can customize retrieval models to improve agentic AI responses for internal knowledge bases.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/agoda-ai-code-bottleneck/" target="_blank">AI Coding Assistants Haven't Sped Up Delivery Because Coding Was Never the Bottleneck</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Eran Stiller · March 24, 2026
+      </div>
+      <div class="summary">Research from Faros AI analyzing 10,000+ developers reveals a paradox: teams with high AI adoption completed 21% more tasks and merged 98% more PRs, but PR review time increased by 91%. Agoda's Leonardo Stern frames this as validating Brooks' "No Silver Bullet" — the bottleneck has shifted upstream to specification and verification, which require human judgment.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139964/stack-overflow-is-dead-long-live-cq/" target="_blank">Stack Overflow Is Dead, Long Live cq</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Techzine · Erik van Klinken · March 26, 2026
+      </div>
+      <div class="summary">Mozilla AI's cq (colloquy) is an open-source MCP server enabling AI coding agents to share learned solutions. When one agent solves a problem, that solution becomes available to others. Knowledge confirmed by multiple agents across codebases carries more weight, creating a collective intelligence layer for AI-assisted development.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/uber-ai-design/" target="_blank">Uber Automates Design Documentation with Agentic Systems</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Patrick Farry · March 25, 2026
+      </div>
+      <div class="summary">Uber's uSpec agent compiles Figma designs into technical specs in minutes instead of weeks. Uses Agent Skills (structured Markdown files) to encode domain expertise for platform-specific accessibility and density logic. Integrates with Uber's Michelangelo AI platform with privacy-first local processing.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/ainews-the-biggest-claude-launch" target="_blank">The Biggest Claude Launch of All Time</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Latent Space · swyx · March 26, 2026
+      </div>
+      <div class="summary">Claude Cowork Dispatch Computer Use represents Anthropic's biggest release, enabling desktop control and autonomous task execution. Builds on the Vercept acquisition to blur the line between AI coding assistant and general-purpose desktop agent, with implications for developer workflow automation.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/claude-computer-use/" target="_blank">Claude Can Now Open Apps, Click Buttons, and Complete Tasks on Your Mac</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">Anthropic's computer-use capability lets Claude autonomously execute desktop tasks on macOS — opening applications, clicking buttons, and completing multi-step workflows. Significant implications for developer experience as AI assistants move beyond code generation to full desktop automation.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139947/claude-code-gets-auto-mode-to-reduce-interruptions/" target="_blank">Claude Code Gets Auto Mode to Reduce Interruptions</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · March 25, 2026
+      </div>
+      <div class="summary">Claude Code's new auto mode uses a safety classifier to pre-assess actions, reducing permission prompt interruptions during agentic coding sessions. Available in preview for Team subscribers. Reflects the trend toward more autonomous AI coding assistants with built-in safety guarantees.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/qcon-ai-at-the-edge/" target="_blank">QCon London: Running AI at the Edge — Real Workloads Directly in the Browser</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Daniel Curtis · March 23, 2026
+      </div>
+      <div class="summary">James Hall demonstrated running AI inference directly in browsers using Transformers.js, WebLLM, WebGPU, and Chrome's Prompt API with Gemini Nano. Local processing offers enhanced privacy, reduced latency, and cost predictability. Practical applications include local speech-to-text with Whisper and in-browser analytics combining DuckDB with local LLMs.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/why-were-contributing-llm-d-cncf-standardizing-future-ai" target="_blank">Why We're Contributing llm-d to the CNCF: Standardizing the Future of AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat · Brian Stevens · March 24, 2026
+      </div>
+      <div class="summary">Red Hat's llm-d contribution to CNCF establishes a cloud-native standard for distributed AI inference orchestration. Partnering with CoreWeave, IBM, Google, and NVIDIA, this data-plane layer maximizes infrastructure efficiency and bridges the gap between experimental and production-grade AI serving on Kubernetes.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/24/run-model-service-multiple-llms-openshift" target="_blank">Run Model-as-a-Service for Multiple LLMs on OpenShift</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Developer · Vladimir Belousov · March 24, 2026
+      </div>
+      <div class="summary">Demonstrates unified multi-LLM serving on OpenShift using llm-d and Gateway API Inference Extension. AgentgatewayPolicy parses request bodies via CEL to route to correct InferencePools. Endpoint Picker optimizes pod selection based on KV cache utilization and queue depth, enabling enterprise-grade model-as-a-service for AI platform teams.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/25/dynamic-resource-allocation-goes-ga-red-hat-openshift-421-smarter-gpu" target="_blank">Dynamic Resource Allocation Goes GA in Red Hat OpenShift 4.21</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Developer · Harshal Patil · March 25, 2026
+      </div>
+      <div class="summary">OpenShift 4.21 graduates DRA to GA, replacing device plug-in limitations with attribute-driven GPU scheduling. Workloads can request specific device characteristics (model, memory, compute capability) via CEL expressions. Enables multi-container device sharing, prioritized allocation alternatives, and namespace-controlled admin access for monitoring — critical for AI workload scheduling.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/five-real-world-lessons-for-building-developer-workflows-in-the-agentic-era/" target="_blank">Five Real-World Lessons for Building Developer Workflows in the Agentic Era</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Dynatrace · Klint Finley · March 25, 2026
+      </div>
+      <div class="summary">Enterprises like Autodesk consolidated 20+ observability tools using OpenTelemetry and built hosted, governed MCP platforms. Treating agents as production services with usage, effectiveness, cost, and dependency health dashboards reflects the platform engineering approach needed for AI workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/podcasts/agentic-systems-without-chaos/" target="_blank">Agentic Systems Without Chaos: Early Operating Models</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Joseph Stein · March 25, 2026
+      </div>
+      <div class="summary">Advocates a centralized AI platform providing model access, RAG services, governance, and observability. The layered tooling approach — building from foundational services (chat completions, embeddings, RAG) before enabling agent orchestration — mirrors platform engineering principles for AI infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/hpe-agentic-ai-ops-burnout/" target="_blank">HPE's AI Agents Cut Root Cause Analysis Time in Half</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">HPE's agentic operations system uses skills-based AI agents to halve root cause analysis time, while keeping human operators in control of remediation. Demonstrates how AI-enhanced observability platforms modernize IT operations management.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/25/getting-started-vllm-semantic-router-athena-release" target="_blank">Getting Started with vLLM Semantic Router's Athena Release</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Christopher Nuland · March 25, 2026
+      </div>
+      <div class="summary">Athena 0.2 provides semantic classification routing between local and cloud LLM backends. Keyword-based signal detection achieved 86% of requests staying local, dramatically reducing API costs. Complements the llm-d and Model-as-a-Service architecture for cost-optimized AI inference platforms.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/26/scale-llm-fine-tuning-training-hub-and-openshift-ai" target="_blank">Scale LLM Fine-Tuning with Training Hub and OpenShift AI</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Brian Gallagher · March 26, 2026
+      </div>
+      <div class="summary">Presents a four-step progression for scaling LLM fine-tuning: local experimentation with Training Hub, OpenShift AI interactive notebooks, distributed fine-tuning with Kubeflow Trainer, and production operationalization with AI pipelines and Model Registry. Core Training Hub code remains consistent across all stages.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/stop-searching-start-operating-scale-hybrid-clusters-red-hat-advanced-cluster-management-kubernetes-216" target="_blank">Stop Searching, Start Operating: Scale Hybrid Clusters with ACM 2.16</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat · March 25, 2026
+      </div>
+      <div class="summary">ACM 2.16 advances multicluster management beyond visibility into intelligent, self-service operations. Emphasizes operational improvements for growing infrastructure environments, shifting from search-based to operations-first hybrid cluster management.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://siliconangle.com/2026/03/23/ai-infrastructure-must-evolve-agentic-computing-nvidiagtcai/" target="_blank">AI Infrastructure Must Evolve for Agentic Computing</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · SiliconAngle · Tristan Foster · March 23, 2026
+      </div>
+      <div class="summary">Lambda Inc. argues that agentic computing demands infrastructure paradigm shifts: co-packaged optical/photonics networking replacing copper, gigawatt-scale data center campuses, and dedicated applied AI teams to help customers optimize systems for autonomous agent workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/red-hat-enterprise-linux-ready-aws-m9g-instances-powered-graviton5" target="_blank">RHEL Is Ready for AWS M9g Instances, Powered by Graviton5</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat · March 25, 2026
+      </div>
+      <div class="summary">RHEL gains validation on AWS Graviton5-based M9g instances during public preview, enabling early testing of workloads including databases and web-scale applications. Extends Red Hat's multi-architecture platform support for cloud-native deployments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/how-lookup-tables-turn-observability-data-into-business-insight/" target="_blank">How Lookup Tables Turn Observability Data into Business Insight</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Dynatrace · Michael Krall · March 25, 2026
+      </div>
+      <div class="summary">Dynatrace's lookup tables enrich observability data with business context at query time. FreedomPay transformed cryptic identifiers into customer names, significantly reducing incident response time. GA in version 1.334 — demonstrates the integration of business intelligence with platform observability.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/26/reproducible-builds-project-hummingbird" target="_blank">Reproducible Builds in Project Hummingbird</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Jonathan Lebon · March 26, 2026
+      </div>
+      <div class="summary">Project Hummingbird creates hardened minimal container images with reproducible builds using SLSA provenance, Konflux, and Buildah 1.41+. Users rebuild and verify bit-for-bit identity with published artifacts, advancing supply chain security as a core platform capability.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge & Hybrid Cloud -->
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/stop-searching-start-operating-scale-hybrid-clusters-red-hat-advanced-cluster-management-kubernetes-216" target="_blank">Stop Searching, Start Operating: Scale Hybrid Clusters with ACM 2.16</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat · March 25, 2026
+      </div>
+      <div class="summary">ACM 2.16 shifts multicluster management beyond visibility into intelligent, self-service operations for hybrid cloud environments. Key for managing distributed Kubernetes clusters across data centers, clouds, and edge locations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/industries/responsible-ai-in-healthcare-starts-with-a-unified-edge-ecosystem" target="_blank">Responsible AI in Healthcare Starts with a Unified Edge Ecosystem</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · James Leach · March 25, 2026
+      </div>
+      <div class="summary">Edge-based AI inference keeps sensitive patient data within hospital systems while enabling faster diagnoses. Cisco's AI4CMR cardiac MRI platform reduces interpretation from 1 hour to 10 minutes. When data cannot leave hospitals, "the edge becomes the norm — not the exception," requiring robust edge automation infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/qcon-ai-at-the-edge/" target="_blank">QCon London: Running AI at the Edge — Real Workloads Directly in the Browser</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Daniel Curtis · March 23, 2026
+      </div>
+      <div class="summary">Demonstrates running AI models in browsers using WebGPU and Transformers.js for privacy, low latency, and cost predictability. Chrome's Prompt API with Gemini Nano provides built-in inference. WebNN API offers access to specialized NPUs on mobile devices, extending edge AI capabilities to consumer hardware.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/red-hat-enterprise-linux-ready-aws-m9g-instances-powered-graviton5" target="_blank">RHEL Is Ready for AWS M9g Instances, Powered by Graviton5</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat · March 25, 2026
+      </div>
+      <div class="summary">RHEL validation on AWS Graviton5-based M9g instances enables early adoption of next-generation ARM-based cloud compute. Important for hybrid cloud strategies where organizations run RHEL workloads across on-premises and multiple cloud providers.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps" target="_blank">Agentic Runtime Security: Solving Agentic AI Identity and Access Gaps</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · HashiCorp · Andre Faria, Tyler Lynch · March 20, 2026
+      </div>
+      <div class="summary">Defines four critical governance gaps for AI agents: excessive permissions, absent runtime enforcement, invisible delegation, and accountability vacuum. Proposes cryptographic agent identities, JIT dynamic credentials, intent-tied actions, point-of-use policy enforcement, and comprehensive audit trails. HashiCorp Vault serves as the foundation for managing agent identity governance.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/openclaw-is-a-security-mess-jentic-wants-to-fix-it/" target="_blank">OpenClaw's Biggest Security Flaw Is Why Jentic Mini Exists</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · March 25, 2026
+      </div>
+      <div class="summary">Jentic's free permission firewall addresses OpenClaw's fundamental credential exposure vulnerability by holding credentials centrally and preventing agents from ever seeing API keys directly. Critical governance tool for MCP-based agent architectures where tool invocations can expose sensitive authentication data.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://blogs.cisco.com/ai/secure-langchain-agent-cisco-ai-defense" target="_blank">A Developer's First 10 Minutes: Secure a LangChain Agent with Cisco AI Defense</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Cisco · Siddhant Dash, Barry Yuan · March 24, 2026
+      </div>
+      <div class="summary">Runtime protection for LangChain agents via middleware with prompt injection detection, sensitive data classification, and exfiltration pattern recognition. Enforce mode blocks violations with auditable explanations; monitor mode provides visibility without disruption. Applicable to any agent framework needing compliance guardrails.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/03/26/reproducible-builds-project-hummingbird" target="_blank">Reproducible Builds in Project Hummingbird</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Developer · Jonathan Lebon · March 26, 2026
+      </div>
+      <div class="summary">Project Hummingbird enables bit-for-bit reproducible container image builds with SLSA provenance attestations and cosign verification. Addresses the supply chain risk that "nothing prevents a builder from reporting an innocuous SBOM while injecting malware." Uses Konflux, Buildah 1.41+, and SOURCE_DATE_EPOCH for deterministic outputs.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/podcasts/agentic-systems-without-chaos/" target="_blank">Agentic Systems Without Chaos: Early Operating Models</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Joseph Stein · March 25, 2026
+      </div>
+      <div class="summary">Highlights emerging governance risks including prompt injection, agent hijacking, token-based DoS attacks, supply chain vulnerabilities from LLM-generated code, and tool chain escalation. Recommends human-in-the-loop workflows calibrated by risk profile and centralized governance via a center of excellence.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/03/revenium-ai-tooling-costs/" target="_blank">Revenium Unveils Tool Registry to Expose the True Cost of AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Craig Risi · March 24, 2026
+      </div>
+      <div class="summary">Cost governance for AI agents: tracks the full expense stack beyond tokens, including external API services and human-in-the-loop costs. Unified attribution maps each invocation to originating agent, trace, and customer — essential for financial governance of autonomous systems.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/industries/responsible-ai-in-healthcare-starts-with-a-unified-edge-ecosystem" target="_blank">Responsible AI in Healthcare Starts with a Unified Edge Ecosystem</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · James Leach · March 25, 2026
+      </div>
+      <div class="summary">Healthcare data sovereignty requirements drive edge AI deployment: patient data cannot leave hospitals, making centralized governance with local processing essential. Edge-based inference maintains regulatory compliance while enabling AI-powered clinical workflow acceleration.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/139969/google-aims-to-complete-quantum-safe-encryption-migration-by-2029/" target="_blank">Google Aims to Complete Quantum-Safe Encryption Migration by 2029</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · March 26, 2026
+      </div>
+      <div class="summary">Google accelerates its post-quantum cryptography transition with a 2029 target, citing increasing threats from quantum computing. Signals an industry-wide compliance shift as organizations prepare for post-quantum security requirements across infrastructure and automation platforms.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/devops/139945/attackers-exploit-open-source-to-spread-malware/" target="_blank">Attackers Exploit Open Source to Spread Malware</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · March 25, 2026
+      </div>
+      <div class="summary">TeamPCP identified as an emerging threat exploiting the software supply chain through open-source repositories and cloud platforms. Reinforces the need for supply chain security controls (like Project Hummingbird's reproducible builds) and automated compliance scanning in CI/CD pipelines.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations & Partnerships -->
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/five-real-world-lessons-for-building-developer-workflows-in-the-agentic-era/" target="_blank">Five Real-World Lessons for Building Developer Workflows in the Agentic Era</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Dynatrace · Klint Finley · March 25, 2026
+      </div>
+      <div class="summary">Enterprise integration patterns for agentic workflows: TELUS replaced manual log-pasting with MCP for live telemetry access; Autodesk built a hosted, governed MCP platform integrated into developer assistants; Lockheed Martin created customized MCP servers incorporating internal knowledge bases.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.hashicorp.com/blog/agentic-runtime-security-solving-agentic-ai-identity-and-access-gaps" target="_blank">Agentic Runtime Security: Solving Agentic AI Identity and Access Gaps</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · HashiCorp · Andre Faria, Tyler Lynch · March 20, 2026
+      </div>
+      <div class="summary">HashiCorp Vault as the foundation for managing AI agent identities across enterprise systems. Unique cryptographic identities (mTLS, SPIFFE), just-in-time credentials, and comprehensive audit trails integrate agent security with existing enterprise IAM and secrets management infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/ai/secure-langchain-agent-cisco-ai-defense" target="_blank">A Developer's First 10 Minutes: Secure a LangChain Agent with Cisco AI Defense</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · Siddhant Dash, Barry Yuan · March 24, 2026
+      </div>
+      <div class="summary">Cisco AI Defense middleware integrates with LangChain's standard framework for seamless AI agent security adoption. Supports LLM mode, MCP mode, and middleware mode for protecting different integration points in agent architectures.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/how-lookup-tables-turn-observability-data-into-business-insight/" target="_blank">How Lookup Tables Turn Observability Data into Business Insight</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Dynatrace · Michael Krall · March 25, 2026
+      </div>
+      <div class="summary">Dynatrace lookup tables enrich operational telemetry with business metadata via DQL joins at query time. FreedomPay's implementation transformed cryptic identifiers into customer names, reducing incident response time. GA in Dynatrace SaaS v1.334 for all platform subscribers.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/ai/fine-tuning-embedding-models-for-enterprise-retrieval-a-practical-guide-with-nvidia-nemotron-recipe" target="_blank">Fine-Tuning Embedding Models for Enterprise Retrieval</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · Md Rahman · March 25, 2026
+      </div>
+      <div class="summary">Cisco IT's practical evaluation of embedding model fine-tuning using NVIDIA Nemotron RAG technology demonstrates measurable accuracy improvements for domain-specific enterprise retrieval. Shows the integration path between Cisco and NVIDIA AI tooling for enterprise knowledge management.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
