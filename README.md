@@ -6,6 +6,7 @@ Daily intelligence reports for Ansible Automation Platform strategy.
 
 | Date | Report | Highlights |
 |------|--------|------------|
+| April 15, 2026 | [market-radar-2026-04-15.html](reports/market-radar-2026-04-15.html) | 16 articles, 13 HIGH — Red Hat AI agent deployment via OpenClaw; Notion MCP vs CLI debate; Futuriom/Itential on governed agentic infra ops; EU AI Act prep |
 | March 26, 2026 | [market-radar-2026-03-26.html](reports/market-radar-2026-03-26.html) | 29 articles, 13 HIGH — Red Hat llm-d to CNCF; Dynatrace agentic workflow lessons; HashiCorp agent runtime security; Mozilla cq MCP knowledge server |
 | March 17, 2026 | [market-radar-2026-03-17.html](reports/market-radar-2026-03-17.html) | 11 articles, 7 HIGH — NVIDIA GTC OpenClaw & Groq 3 LPU; Red Hat + NVIDIA agent security; Spotify Backstage + AI |
 | March 16, 2026 | [market-radar-2026-03-16.html](reports/market-radar-2026-03-16.html) | 16 articles, 9 HIGH — Red Hat BYOA for AI agents; Okta agent identity platform; AI coding governance shift |
