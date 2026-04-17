@@ -6,6 +6,7 @@ Daily intelligence reports for Ansible Automation Platform strategy.
 
 | Date | Report | Highlights |
 |------|--------|------------|
+| April 17, 2026 | [market-radar-2026-04-17-v2.html](reports/market-radar-2026-04-17-v2.html) | 6 articles, 5 HIGH — Claude Code Routines; Opus 4.7 launch; MCP Dev Summit (1,200 attendees, 110M SDK downloads); SkillsMP hits 425K skills; Anthropic Skills taxonomy |
 | April 17, 2026 | [market-radar-2026-04-17.html](reports/market-radar-2026-04-17.html) | 13 articles, 8 HIGH — AWS doubles down on MCP; Salesforce vs ServiceNow ITSM agent war; GitHub AI agents leak API keys via prompt injection; Spotify agentic-first platform |
 | April 15, 2026 | [market-radar-2026-04-15.html](reports/market-radar-2026-04-15.html) | 16 articles, 13 HIGH — Red Hat AI agent deployment via OpenClaw; Notion MCP vs CLI debate; Futuriom/Itential on governed agentic infra ops; EU AI Act prep |
 | March 26, 2026 | [market-radar-2026-03-26.html](reports/market-radar-2026-03-26.html) | 29 articles, 13 HIGH — Red Hat llm-d to CNCF; Dynatrace agentic workflow lessons; HashiCorp agent runtime security; Mozilla cq MCP knowledge server |

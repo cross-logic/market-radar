@@ -26,6 +26,13 @@ themes:
       - human-in-the-loop
       - drag-and-drop workflow
       - multi-model orchestration
+      - Claude Code
+      - Anthropic
+      - AAIF
+      - Agentic AI Foundation
+      - Claude skills
+      - agent plugin
+      - agent registry
 
   ai-devex-lightspeed:
     label: "AI DevEx / Lightspeed"
@@ -73,6 +80,7 @@ themes:
   content-ecosystem:
     label: "Content & Ecosystem"
     outcomes:
+      - ANSTRAT-1670
       - ANSTRAT-1923
       - ANSTRAT-1686
       - ANSTRAT-119
@@ -92,6 +100,28 @@ themes:
       - SCM integration
       - semantic search
       - content discovery
+      - AI skill
+      - agent skill
+      - skill marketplace
+      - skill catalog
+      - SkillsMP
+      - MCP Market
+      - ClawHub
+      - OpenClaw
+      - SKILL.md
+      - skill registry
+      - content type
+      - workflow template
+      - workflow generator
+      - Lightforge
+      - ecosystem catalog
+      - agent definition
+      - agent composition
+      - agent marketplace
+      - trust tier
+      - certified skill
+      - validated content
+      - design-time workflow
 
   event-driven-automation:
     label: "Event-Driven Automation"

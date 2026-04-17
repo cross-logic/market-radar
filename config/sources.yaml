@@ -108,6 +108,20 @@ search_queries:
   - query: "low-code no-code automation citizen developer"
     themes: [product-led-growth]
 
+  # Anthropic & Claude Code
+  - query: "Anthropic Claude Code announcement 2026"
+    themes: [ai-agentic-orchestration, ai-devex-lightspeed]
+  - query: "Claude skills SKILL.md MCP agent"
+    themes: [ai-agentic-orchestration, content-ecosystem]
+  - query: "Agentic AI Foundation AAIF Linux Foundation MCP"
+    themes: [ai-agentic-orchestration]
+
+  # AI Skills & Agent Marketplaces
+  - query: "AI agent skill marketplace SkillsMP MCP Market 2026"
+    themes: [content-ecosystem, ai-agentic-orchestration]
+  - query: "AI skill catalog workflow template automation agent"
+    themes: [content-ecosystem, ai-agentic-orchestration]
+
   # Cross-cutting (AI disruption & enterprise strategy)
   - query: "AI agent autonomous operations enterprise"
     themes: [ai-agentic-orchestration, platform-modernization]
