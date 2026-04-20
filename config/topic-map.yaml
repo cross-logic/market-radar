@@ -33,6 +33,18 @@ themes:
       - Claude skills
       - agent plugin
       - agent registry
+      - Dario Amodei
+      - Daniela Amodei
+      - Jack Clark
+      - Import AI
+      - Amanda Askell
+      - Chris Olah
+      - Jan Leike
+      - Alex Albert
+      - responsible scaling
+      - Anthropic research
+      - Claude model
+      - interpretability
 
   ai-devex-lightspeed:
     label: "AI DevEx / Lightspeed"

@@ -66,7 +66,8 @@ For each fetched article, using the topic-map.yaml themes:
    - **LOW**: Article has tangential relevance only
 3. An article can map to multiple themes with different relevance levels
 4. Drop articles that only match LOW across all themes — they add noise
-5. For kept articles, record: title, url, author, date, source, summary, and a list of `{theme_id, relevance, outcomes}` mappings
+5. **Anthropic Watch**: Articles sourced from Anthropic-related feeds (Import AI, Anthropic Google News, Dario Amodei Google News) or Anthropic-related search queries that would otherwise be dropped (no theme match at MEDIUM or above) should be kept in a separate "anthropic-watch" list. These are Anthropic team publications, interviews, or news that don't map to a specific ANSTRAT Outcome but are worth tracking.
+6. For kept articles, record: title, url, author, date, source, summary, and a list of `{theme_id, relevance, outcomes}` mappings (empty for anthropic-watch articles)
 
 ### Step 7: Generate HTML Report
 
@@ -102,6 +103,24 @@ Read the template from `templates/report.html` and populate it:
      </div>
    </section>
    ```
+
+7. **Anthropic Watch section**: If there are articles in the anthropic-watch list, render them after all theme sections:
+   ```html
+   <section class="theme-section anthropic-watch" id="anthropic-watch">
+     <div class="theme-header">
+       <h2>Anthropic Watch</h2>
+       <span class="outcomes">Latest from Anthropic team — not mapped to ANSTRAT Outcomes</span>
+     </div>
+     <!-- Articles sorted by date, newest first -->
+     <div class="article-card">
+       <div class="title"><a href="URL" target="_blank">Article Title</a></div>
+       <div class="meta">Source · Author · Date</div>
+       <div class="summary">2-3 sentence summary.</div>
+     </div>
+   </section>
+   ```
+   Also add a nav link: `<a href="#anthropic-watch">Anthropic Watch <span class="count">N</span></a>`
+   Include anthropic-watch articles in the {{TOTAL_ARTICLES}} count.
 
 Write the completed HTML to `reports/market-radar-YYYY-MM-DD.html` (using today's date).
 

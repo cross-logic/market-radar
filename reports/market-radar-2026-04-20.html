@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — April 20, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  /* Anthropic Watch Section */
+  .anthropic-watch .theme-header {
+    border-bottom-color: #6c5ce7;
+  }
+
+  .anthropic-watch .article-card {
+    border-left-color: #6c5ce7;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">April 20, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>21</span></div>
+    <div>High relevance: <span>8</span></div>
+    <div>Sources scanned: <span>45</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">5</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">2</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">3</span></a>
+    <a href="#content-ecosystem">Content &amp; Ecosystem <span class="count">1</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">2</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">5</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">1</span></a>
+    <a href="#anthropic-watch">Anthropic Watch <span class="count">3</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/ai-agent-harness-pricing-split/" target="_blank">Anthropic, OpenAI, Google, and Microsoft Disagree on Agent Harness Pricing</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; The New Stack &middot; April 18, 2026
+      </div>
+      <div class="summary">Major AI labs agree the harness layer is now a key product but diverge sharply on pricing. Anthropic charges $0.08/session hour for Managed Agents; OpenAI offers open-source SDKs with no first-party runtime fee; Google and Microsoft bundle pricing differently across components. This pricing divergence signals the agent harness as a critical new revenue battleground with direct implications for enterprise automation cost models.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally" target="_blank">[AINews] Anthropic Claude Opus 4.7 &mdash; Literally One Step Better Than 4.6 in Every Dimension</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Latent Space &middot; April 17, 2026
+      </div>
+      <div class="summary">Claude Opus 4.7 launched as the new state-of-the-art model, scoring 87.6% on SWE-bench Verified and beating Opus 4.6, ChatGPT 5.4, and Gemini 3.1 Pro across key benchmarks. Notable improvements include a new tokenizer, 3x image resolution (2,576px), and enhanced agentic task handling. Anthropic publicly conceded that Opus 4.7 trails their unreleased Mythos model.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/google-and-openai-are-making-a-run-at-claudes-desktop-moat-and-anthropic-is-making-it-easy/" target="_blank">Google and OpenAI Challenge Claude&rsquo;s Desktop Dominance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; The New Stack &middot; April 18, 2026
+      </div>
+      <div class="summary">Google launched Gemini for Mac and consolidated Chrome AI features, while OpenAI unveiled a superapp merging ChatGPT, Codex, and Atlas. Meanwhile, Anthropic faced mixed reviews for Opus 4.7 and introduced new identity verification requirements. The desktop AI race is intensifying as all three major labs compete for developer mindshare in the local-first AI agent space.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.nextgov.com/artificial-intelligence/2026/04/world-needs-get-ready-more-powerful-ai-anthropic-co-founder-says/412812/" target="_blank">World Needs to &lsquo;Get Ready&rsquo; for More Powerful AI, Anthropic Co-founder Says</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Nextgov/FCW &middot; Alexandra Kelley &middot; April 13, 2026
+      </div>
+      <div class="summary">Anthropic co-founder Jack Clark warned at the Semafor World Economy conference that Mythos-class AI systems will emerge from competitors within months and as open-weight models from China within 18 months. Clark emphasized that organizations globally must prepare for AI systems with cybersecurity capabilities built into the foundation of the model rather than added later.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://alignment.anthropic.com/2026/automated-w2s-researcher/" target="_blank">Automated Weak-to-Strong Researcher</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Anthropic Alignment Science &middot; Jan Leike et al. &middot; April 2026
+      </div>
+      <div class="summary">Anthropic researchers built autonomous AI agents that propose ideas, run experiments, and iterate on weak-to-strong supervision &mdash; training strong models using only weaker model supervision. The agents achieved a performance gap recovery of 0.97 in 5 days, substantially outperforming human researchers who reached 0.23 after 7 days, demonstrating that automating alignment research is already practical for well-defined problems.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.macrumors.com/2026/04/15/anthropic-rebuilds-claude-code-desktop-app/" target="_blank">Anthropic Rebuilds Claude Code Desktop App Around Parallel Sessions</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; MacRumors &middot; Tim Hardwick &middot; April 15, 2026
+      </div>
+      <div class="summary">Anthropic redesigned the Claude Code desktop experience with a new sidebar for managing multiple parallel sessions, drag-and-drop workspace layout, integrated terminal, in-app file editor, rebuilt diff viewer, and expanded preview pane. The update also introduces &ldquo;Routines&rdquo; &mdash; automations that bundle a prompt, repo, and connectors for scheduled or event-triggered execution without an active session.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/" target="_blank">Anthropic Launches Claude Design, a New Product for Creating Quick Visuals</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; TechCrunch &middot; Aisha Malik &middot; April 17, 2026
+      </div>
+      <div class="summary">Anthropic launched Claude Design, powered by Opus 4.7, as a research preview for Pro, Max, Team, and Enterprise subscribers. The tool targets non-designers like founders and PMs who need to create prototypes, slides, and one-pagers through conversational prompts, with exports to PDF, PPTX, or direct Canva integration. Signals Anthropic&rsquo;s expansion beyond developer tooling into broader enterprise productivity.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/smartbear-swagger-ai-api-management/" target="_blank">SmartBear&rsquo;s Swagger Update Targets API Drift Problem</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; The New Stack &middot; April 19, 2026
+      </div>
+      <div class="summary">SmartBear announced new Swagger toolset capabilities designed to manage APIs as AI coding tools accelerate development. The update includes a revamped Swagger Catalog for centralized API portfolio visibility and contract testing with drift detection that verifies API behavior matches OpenAPI specifications &mdash; increasingly critical as AI-generated code proliferates.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/04/20/deploy-hosted-control-planes-openshift-virtualization" target="_blank">Deploy Hosted Control Planes with OpenShift Virtualization</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Developer &middot; Prakash Rajendran &middot; April 20, 2026
+      </div>
+      <div class="summary">First in a three-part series examining enterprise architectures for hosted control planes paired with OpenShift Virtualization. Part 1 covers the all-in-one topology where a single cluster serves as hub, hosting provider, and management layer, including prerequisites, LVM storage setup, and MetalLB configuration.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/04/17/integrate-red-hat-enterprise-linux-vms-openshift-service-mesh" target="_blank">Integrate Red Hat Enterprise Linux VMs into OpenShift Service Mesh</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Developer &middot; April 17, 2026
+      </div>
+      <div class="summary">Developer preview feature enabling external VM workloads to join OpenShift Service Mesh 3.3. Demonstrates integrating an RHEL 9.6 VM running MySQL into the Bookinfo application using an east-west gateway for multi-network connectivity and zero-trust mTLS communication between containerized and VM-based workloads.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content & Ecosystem -->
+  <section class="theme-section" id="content-ecosystem">
+    <div class="theme-header">
+      <h2>Content &amp; Ecosystem</h2>
+      <span class="outcomes">ANSTRAT-1670, ANSTRAT-1923, ANSTRAT-1686, ANSTRAT-119</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.latent.space/p/ainews-the-two-sides-of-openclaw" target="_blank">[AINews] The Two Sides of OpenClaw</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Latent Space &middot; April 18, 2026
+      </div>
+      <div class="summary">Contrasts OpenClaw&rsquo;s inspiring public narrative (Peter Steinberger&rsquo;s TED talk) with engineering reality: 60x more security reports than curl, at least 20% of skill contributions are malicious, and severe scaling difficulties as the fastest-growing open source project in history. The tension between rapid ecosystem growth and operational sustainability has direct implications for any skill marketplace strategy.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1923</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge & Hybrid Cloud -->
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/proving-open-source-ready-industrial-edge" target="_blank">Proving Open Source Is Ready for the Industrial Edge</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Red Hat Blog &middot; April 20, 2026
+      </div>
+      <div class="summary">Red Hat and Intel testing demonstrates that open source can meet the deterministic performance requirements of mission-critical industrial machinery, directly challenging the assumption that factory control systems must remain proprietary. This validation opens new automation opportunities at the industrial edge where Ansible could serve as the configuration and orchestration layer.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/power-shift-why-future-electric-grid-will-be-software-defined" target="_blank">The Power Shift: Why the Future of the Electric Grid Will Be Software-Defined</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Blog &middot; April 20, 2026
+      </div>
+      <div class="summary">The electric grid is transforming into a sophisticated data engine with substation equipment becoming central to grid innovation. Computing capabilities deployed at substations will advance grid technology through software-defined infrastructure &mdash; a growing market for edge automation and management solutions.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rTWNaaDlVRVRKRF9fRnZIX2FaLU1SZ2NLRDNDdzBVdUQwZ29uNlgzVDBDc29SbU4zMDFPc1R4NXc2dTRRdGF3RlNWZ05aNWphaFpUaEFUSm9zdw?oc=5" target="_blank">White House and Anthropic Hold &lsquo;Productive&rsquo; Meeting Amid Fears Over Mythos Model</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; BBC &middot; April 18, 2026
+      </div>
+      <div class="summary">Government officials and Anthropic leadership convened for discussions regarding the Mythos AI model&rsquo;s cybersecurity capabilities. Jack Clark confirmed the briefing and warned that &ldquo;there will be other systems just like this in a few months from other companies.&rdquo; The meeting signals growing government engagement with frontier AI governance &mdash; directly relevant to Anthropic&rsquo;s RSP v3.0 and enterprise trust positioning.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5UUW9jYXVFV0RVZ2EzSk5IMjZ4b09JeHQ0THZRbnpLQ1FULUlENUk0YTkwSGhKRmkwaGdQaS11R29NSUszVDVZTlV3MUZ2cHI5U0lZNmlXT2UzWlRiSkUyZDJFSU9pRUtjTC1SaVdHTQ?oc=5" target="_blank">Scoop: NSA Using Anthropic&rsquo;s Mythos Despite Defense Department Blacklist</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        &middot; Axios &middot; April 18, 2026
+      </div>
+      <div class="summary">Intelligence agencies are reportedly deploying Anthropic&rsquo;s Mythos model despite Pentagon restrictions on its use, revealing a contradiction between the Defense Department&rsquo;s supply-chain risk label for Anthropic and active NSA deployment. This highlights the tension between AI capability demand in national security and Anthropic&rsquo;s refusal to remove contractual prohibitions on surveillance and autonomous weapons use.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNZjFpNFhsTE9fZVpFZE42eGdjbFBfeUZwcjBOOElOMXdNdUUtUUk1Uld1NVdfV3ZHdEdkRm1YdThsSmlaSmhNNThsVlhSY2RHdTFQOGUxSG52TXFJVjBpeFdvb2FXeVdHVEpvTWlXdDZMX1JUcnV2dS02RmlKU2dxZElOZzBUSHVZdkIyRjdTNGJaUVdQMHZOeEFnNk9SNlJrZXBoVGR3?oc=5" target="_blank">Regulators Monitor Anthropic&rsquo;s Mythos for Banking Risks</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Reuters &middot; April 20, 2026
+      </div>
+      <div class="summary">Financial regulators are assessing potential dangers posed by the Mythos model to banking sector operations, adding a regulatory dimension beyond the national security debate. Asian financial bodies have separately sounded alerts on the AI hacking model&rsquo;s potential to compromise financial infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation" target="_blank">Advancing Secret Sync with Workload Identity Federation</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; HashiCorp Blog &middot; April 17, 2026
+      </div>
+      <div class="summary">Vault Enterprise 2.0 introduces workload identity federation for secret sync, replacing long-lived static cloud credentials with short-lived federated tokens across hybrid and multi-cloud environments. Explicitly supports non-human identities and agentic AI workflows, reducing credential sprawl and aligning with zero-trust security principles.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/confidential-containers-workshop-microsoft-azure-red-hat-openshift-learn-interactively" target="_blank">Confidential Containers Workshop on Microsoft Azure Red Hat OpenShift</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; Red Hat Blog &middot; April 17, 2026
+      </div>
+      <div class="summary">Addresses confidential computing &mdash; protecting data in use by verifying environment integrity and enabling zero-trust security principles. Details how confidential containers bring this technology to Kubernetes deployments on Azure, with an interactive workshop format for hands-on learning.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations & Partnerships -->
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation" target="_blank">Advancing Secret Sync with Workload Identity Federation</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        &middot; HashiCorp Blog &middot; April 17, 2026
+      </div>
+      <div class="summary">Vault Enterprise 2.0&rsquo;s workload identity federation deepens the Terraform/Vault/Ansible integration story under the IBM umbrella. The pattern of replacing static credentials with federated tokens is directly applicable to AAP execution environments and strengthens the case for the Red Hat + HashiCorp joint automation platform vision.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anthropic Watch -->
+  <section class="theme-section anthropic-watch" id="anthropic-watch">
+    <div class="theme-header">
+      <h2>Anthropic Watch</h2>
+      <span class="outcomes">Latest from Anthropic team &mdash; not mapped to ANSTRAT Outcomes</span>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQOGFqRHJWSTFQTm1Bd0VkSERBTXN1eDNncGdmUWtyc2JPemc4bGRtbkRoY3FVaXlDQXF6bDdHckFpYVJoeF91OHJMbmtTQjctUVhXUTcyRjg0VGpRanlaV0tXeXRzSFVrczZaRDZIZE1lTUNNckIwOVg2MzFWaC13eEY0X01PcFUxU3hpMXJheVFQbzQ5anRTaTdDdk4yRUdfbmtpa292RURsQ1pBb2F4bGlHSGkteFU3eW9BUQ?oc=5" target="_blank">Anthropic&rsquo;s Claude Shut Down Firm Without Explanation, Claims CTO and Issues Warning</a></div>
+      <div class="meta">NDTV &middot; April 19, 2026</div>
+      <div class="summary">A CTO reports that Anthropic abruptly terminated their firm&rsquo;s Claude access without explanation, raising concerns about operational transparency and enterprise reliability. The incident highlights the business risk of platform dependency and the importance of clear communication around service changes &mdash; a cautionary signal for enterprise adoption strategies.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNWk9Bc29LaU16VGVidS1CZDFPVUlyR2ZubWtieWllWl9mUHR2UWtlWFlfdXBzU2JBM184M0J6VzNhMTFPRUJLSjNsbGxXNkNCbWRoSVA1TWJYLTFEeFdkZnFra2pEYVZSTEd2WlozUi1mSlJlMjBlMl9iMzY3LXlybW9Ob05pblpBM2dSbjB4MHJHcUgyd3NpZDVBbWJtMF8zXzE1UnpJdWl0MXZZdHplR09DNXpDd3FJMUVyOVZB0gG-AUFVX3lxTE5vdWxXTFY1WDg5WHZ0UF9Cc3I4RDZYSjA3bXdpLWt3bW9Ga044T1hMR2JoZWZDQ3JNaGxoTW83bngweXQ0Z3lfZVo0MUw5QXFNQjVOLTZ0dEJCSnZqUjhIMkRROTVnVkUtOUxQczdqTU9oU243S0E0NnlHeklJQ1Nqd3puZWlIMktVSV9KZWRwVDhVcl9qT2I4WGtRMHFCTmFfUF9OMkFHN0xkSjlZWFZHUE1La1ZJLTlhNW03RkE?oc=5" target="_blank">Man vs Mythos: Asian Financial Bodies Sound Alert on AI Hacking Model</a></div>
+      <div class="meta">South China Morning Post &middot; April 20, 2026</div>
+      <div class="summary">Financial regulators across Asia are expressing concerns about the cybersecurity implications of Anthropic&rsquo;s Mythos model, particularly its ability to identify software vulnerabilities. The international regulatory response adds a geopolitical dimension to the Mythos debate, as concerns expand beyond the US government to global financial infrastructure.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOTV9EeWVMYlU2MVdNWTQ5Q2hkU1pHUWpGUGxRd3NOTzBYaGZEWWtxOVh3Sm5rem9iZ1N4cXRZZTc0X2JQdHRrT2hpOXpGNlB6RXhsNDJFZU94NGFWN3c0ZU1rUm0xUWxMVnBGNWhBTWx6WkwySnc4OEk2aE9ybGhLbTUxWkVuZHp0UXAwbTZiMzBkVXlxUG9vSF9sbkxGZm01NUt6QzNSX1h4NlY2dVJUNFZUWVg?oc=5" target="_blank">Putting the Calamity Makers in Charge: Anthropic and Claude Mythos Preview</a></div>
+      <div class="meta">CounterPunch &middot; April 20, 2026</div>
+      <div class="summary">Commentary questioning the decision-making surrounding deployment of powerful AI technology, specifically Anthropic&rsquo;s selective access program (Project Glasswing) for Mythos. Raises ethical questions about who gets to decide which organizations can access frontier AI capabilities with significant offensive potential.</div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

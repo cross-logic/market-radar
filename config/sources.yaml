@@ -21,6 +21,14 @@ feeds:
   - url: https://openai.com/blog/rss.xml
     label: OpenAI Blog
 
+  # Anthropic & Key People
+  - url: https://importai.substack.com/feed
+    label: "Import AI (Jack Clark)"
+  - url: https://news.google.com/rss/search?q=Anthropic+AI&hl=en-US&gl=US&ceid=US:en
+    label: "Anthropic (Google News)"
+  - url: https://news.google.com/rss/search?q=%22Dario+Amodei%22&hl=en-US&gl=US&ceid=US:en
+    label: "Dario Amodei (Google News)"
+
   # DevOps & Infrastructure
   - url: https://thenewstack.io/feed/
     label: The New Stack
@@ -108,13 +116,33 @@ search_queries:
   - query: "low-code no-code automation citizen developer"
     themes: [product-led-growth]
 
-  # Anthropic & Claude Code
+  # Anthropic — company & product
   - query: "Anthropic Claude Code announcement 2026"
     themes: [ai-agentic-orchestration, ai-devex-lightspeed]
   - query: "Claude skills SKILL.md MCP agent"
     themes: [ai-agentic-orchestration, content-ecosystem]
   - query: "Agentic AI Foundation AAIF Linux Foundation MCP"
     themes: [ai-agentic-orchestration]
+  - query: "Anthropic Claude model release update 2026"
+    themes: [ai-agentic-orchestration, ai-devex-lightspeed]
+  - query: "Anthropic safety policy responsible scaling"
+    themes: [governance-compliance, ai-agentic-orchestration]
+
+  # Anthropic — key people
+  - query: "Dario Amodei blog essay interview 2026"
+    themes: [ai-agentic-orchestration, governance-compliance]
+  - query: "Daniela Amodei Anthropic interview announcement"
+    themes: [ai-agentic-orchestration, product-led-growth]
+  - query: "Jack Clark Import AI Anthropic policy"
+    themes: [ai-agentic-orchestration, governance-compliance]
+  - query: "Amanda Askell Anthropic Claude alignment"
+    themes: [ai-agentic-orchestration, ai-devex-lightspeed]
+  - query: "Chris Olah interpretability Anthropic research"
+    themes: [ai-agentic-orchestration]
+  - query: "Jan Leike alignment Anthropic safety"
+    themes: [ai-agentic-orchestration, governance-compliance]
+  - query: "Alex Albert Claude developer relations Anthropic"
+    themes: [ai-devex-lightspeed, content-ecosystem]
 
   # AI Skills & Agent Marketplaces
   - query: "AI agent skill marketplace SkillsMP MCP Market 2026"

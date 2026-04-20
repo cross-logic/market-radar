@@ -1256,5 +1256,298 @@
       "governance-compliance",
       "platform-modernization"
     ]
+  },
+  "https://thenewstack.io/amazon-aws-mcp-agentic/": {
+    "title": "As agentic AI explodes, Amazon doubles down on MCP",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/blogs/infrastructure/140555/salesforce-wants-to-be-the-leader-in-itsm/": {
+    "title": "Salesforce wants to be the leader in ITSM",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "integrations-partnerships",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://saasintelligence.substack.com/p/servicenow-just-made-ai-free-and": {
+    "title": "ServiceNow Just Made AI Free and the Pricing War Is Live",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "integrations-partnerships",
+      "product-led-growth"
+    ]
+  },
+  "https://www.theregister.com/2026/04/11/salesforce_vs_servicenow_itsm_battle/": {
+    "title": "How Salesforce and ServiceNow are squaring off in the battle for the helpdesk",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "integrations-partnerships",
+      "governance-compliance"
+    ]
+  },
+  "https://www.techzine.eu/news/security/140524/ai-agents-on-github-leak-api-keys-via-prompt-injection/": {
+    "title": "AI agents on GitHub leak API keys via prompt injection",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "governance-compliance",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/news/infrastructure/140526/solarwinds-introduces-sw1-to-further-automate-it-management-with-ai/": {
+    "title": "SolarWinds introduces SW1 to further automate IT management with AI",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "competitive-migration",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/dogfooding-and-platforms-spotifys-agentic-first-development/": {
+    "title": "Dogfooding and platforms: Spotify's agentic-first development",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "platform-modernization",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/is-your-internal-platform-ready-to-keep-up-with-ai-accelerated-development/": {
+    "title": "Is your internal platform ready to keep up with AI-accelerated development?",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.latent.space/p/ainews-rip-pull-requests-2005-2026": {
+    "title": "[AINews] RIP Pull Requests (2005-2026)",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.redhat.com/en/blog/ai-optimization-7-powerful-techniques-you-can-use-today": {
+    "title": "AI optimization: 7 powerful techniques you can use today",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/blogs/infrastructure/140536/scale-sets-edge-platforms-software-ever-more-free-from-hardware-constraints/": {
+    "title": "Scale Computing sets edge platform's software ever more free from hardware constraints",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://www.redhat.com/en/blog/connect-collaborate-and-grow-your-guide-ecosystem-success-day-red-hat-summit-2026": {
+    "title": "Connect, collaborate, and grow: Your guide to Ecosystem Success Day at Red Hat Summit 2026",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "content-ecosystem"
+    ]
+  },
+  "https://www.redhat.com/en/blog/announcing-red-hat-openshift-pipelines-121-faster-builds-smarter-caching-and-improved-troubleshooting": {
+    "title": "Announcing Red Hat OpenShift Pipelines 1.21: Faster builds, smarter caching",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://9to5mac.com/2026/04/14/anthropic-adds-repeatable-routines-feature-to-claude-code-heres-how-it-works/": {
+    "title": "Claude Code Routines: Repeatable automations that run without your machine",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-agentic-orchestration",
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://siliconangle.com/2026/04/16/anthropic-launches-claude-opus-4-7-coding-visual-reasoning-improvements/": {
+    "title": "Anthropic launches Claude Opus 4.7 with coding and visual reasoning improvements",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://aaif.io/blog/mcp-is-now-enterprise-infrastructure-everything-that-happened-at-mcp-dev-summit-north-america-2026/": {
+    "title": "MCP Is Now Enterprise Infrastructure: Everything That Happened at MCP Dev Summit 2026",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-agentic-orchestration",
+      "content-ecosystem"
+    ]
+  },
+  "https://claude.com/blog/skills-explained": {
+    "title": "Skills explained: How Skills compares to prompts, Projects, MCP, and subagents",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "content-ecosystem",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://aaif.io/press/agentic-ai-foundation-announces-global-2026-events-program-anchored-by-agntcon-mcpcon-north-america-and-europe/": {
+    "title": "AAIF Announces Global 2026 Events: AGNTCon + MCPCon across 8 cities",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "ai-agentic-orchestration",
+      "content-ecosystem"
+    ]
+  },
+  "https://smartscope.blog/en/blog/skillsmp-marketplace-guide/": {
+    "title": "SkillsMP reaches 425,000+ AI agent skills as marketplace ecosystem explodes",
+    "date_seen": "2026-04-17",
+    "themes": [
+      "content-ecosystem",
+      "governance-compliance"
+    ]
+  },
+  "https://thenewstack.io/ai-agent-harness-pricing-split/": {
+    "title": "Anthropic, OpenAI, Google, and Microsoft Disagree on Agent Harness Pricing",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally": {
+    "title": "Anthropic Claude Opus 4.7 — Literally One Step Better Than 4.6",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/google-and-openai-are-making-a-run-at-claudes-desktop-moat-and-anthropic-is-making-it-easy/": {
+    "title": "Google and OpenAI Challenge Claude's Desktop Dominance",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.nextgov.com/artificial-intelligence/2026/04/world-needs-get-ready-more-powerful-ai-anthropic-co-founder-says/412812/": {
+    "title": "World Needs to Get Ready for More Powerful AI — Jack Clark",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://alignment.anthropic.com/2026/automated-w2s-researcher/": {
+    "title": "Automated Weak-to-Strong Researcher",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.macrumors.com/2026/04/15/anthropic-rebuilds-claude-code-desktop-app/": {
+    "title": "Anthropic Rebuilds Claude Code Desktop App Around Parallel Sessions",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/": {
+    "title": "Anthropic Launches Claude Design",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/smartbear-swagger-ai-api-management/": {
+    "title": "SmartBear's Swagger Update Targets API Drift Problem",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/20/deploy-hosted-control-planes-openshift-virtualization": {
+    "title": "Deploy Hosted Control Planes with OpenShift Virtualization",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/17/integrate-red-hat-enterprise-linux-vms-openshift-service-mesh": {
+    "title": "Integrate RHEL VMs into OpenShift Service Mesh",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.latent.space/p/ainews-the-two-sides-of-openclaw": {
+    "title": "The Two Sides of OpenClaw",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "content-ecosystem"
+    ]
+  },
+  "https://www.redhat.com/en/blog/proving-open-source-ready-industrial-edge": {
+    "title": "Proving Open Source Is Ready for the Industrial Edge",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://www.redhat.com/en/blog/power-shift-why-future-electric-grid-will-be-software-defined": {
+    "title": "The Power Shift: Software-Defined Electric Grid",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://www.redhat.com/en/blog/confidential-containers-workshop-microsoft-azure-red-hat-openshift-learn-interactively": {
+    "title": "Confidential Containers Workshop on Azure Red Hat OpenShift",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.hashicorp.com/blog/advancing-secret-sync-with-workload-identity-federation": {
+    "title": "Advancing Secret Sync with Workload Identity Federation",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "governance-compliance",
+      "integrations-partnerships"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rTWNaaDlVRVRKRF9fRnZIX2FaLU1SZ2NLRDNDdzBVdUQwZ29uNlgzVDBDc29SbU4zMDFPc1R4NXc2dTRRdGF3RlNWZ05aNWphaFpUaEFUSm9zdw?oc=5": {
+    "title": "White House and Anthropic Hold Productive Meeting Amid Mythos Fears",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMib0FVX3lxTE5UUW9jYXVFV0RVZ2EzSk5IMjZ4b09JeHQ0THZRbnpLQ1FULUlENUk0YTkwSGhKRmkwaGdQaS11R29NSUszVDVZTlV3MUZ2cHI5U0lZNmlXT2UzWlRiSkUyZDJFSU9pRUtjTC1SaVdHTQ?oc=5": {
+    "title": "NSA Using Anthropic's Mythos Despite Defense Department Blacklist",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMipgFBVV95cUxNZjFpNFhsTE9fZVpFZE42eGdjbFBfeUZwcjBOOElOMXdNdUUtUUk1Uld1NVdfV3ZHdEdkRm1YdThsSmlaSmhNNThsVlhSY2RHdTFQOGUxSG52TXFJVjBpeFdvb2FXeVdHVEpvTWlXdDZMX1JUcnV2dS02RmlKU2dxZElOZzBUSHVZdkIyRjdTNGJaUVdQMHZOeEFnNk9SNlJrZXBoVGR3?oc=5": {
+    "title": "Regulators Monitor Anthropic's Mythos for Banking Risks",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMivAFBVV95cUxQOGFqRHJWSTFQTm1Bd0VkSERBTXN1eDNncGdmUWtyc2JPemc4bGRtbkRoY3FVaXlDQXF6bDdHckFpYVJoeF91OHJMbmtTQjctUVhXUTcyRjg0VGpRanlaV0tXeXRzSFVrczZaRDZIZE1lTUNNckIwOVg2MzFWaC13eEY0X01PcFUxU3hpMXJheVFQbzQ5anRTaTdDdk4yRUdfbmtpa292RURsQ1pBb2F4bGlHSGkteFU3eW9BUQ?oc=5": {
+    "title": "Anthropic's Claude Shut Down Firm Without Explanation",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWk9Bc29LaU16VGVidS1CZDFPVUlyR2ZubWtieWllWl9mUHR2UWtlWFlfdXBzU2JBM184M0J6VzNhMTFPRUJLSjNsbGxXNkNCbWRoSVA1TWJYLTFEeFdkZnFra2pEYVZSTEd2WlozUi1mSlJlMjBlMl9iMzY3LXlybW9Ob05pblpBM2dSbjB4MHJHcUgyd3NpZDVBbWJtMF8zXzE1UnpJdWl0MXZZdHplR09DNXpDd3FJMUVyOVZB0gG-AUFVX3lxTE5vdWxXTFY1WDg5WHZ0UF9Cc3I4RDZYSjA3bXdpLWt3bW9Ga044T1hMR2JoZWZDQ3JNaGxoTW83bngweXQ0Z3lfZVo0MUw5QXFNQjVOLTZ0dEJCSnZqUjhIMkRROTVnVkUtOUxQczdqTU9oU243S0E0NnlHeklJQ1Nqd3puZWlIMktVSV9KZWRwVDhVcl9qT2I4WGtRMHFCTmFfUF9OMkFHN0xkSjlZWFZHUE1La1ZJLTlhNW03RkE?oc=5": {
+    "title": "Man vs Mythos: Asian Financial Bodies Sound Alert on AI Hacking Model",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMitAFBVV95cUxOTV9EeWVMYlU2MVdNWTQ5Q2hkU1pHUWpGUGxRd3NOTzBYaGZEWWtxOVh3Sm5rem9iZ1N4cXRZZTc0X2JQdHRrT2hpOXpGNlB6RXhsNDJFZU94NGFWN3c0ZU1rUm0xUWxMVnBGNWhBTWx6WkwySnc4OEk2aE9ybGhLbTUxWkVuZHp0UXAwbTZiMzBkVXlxUG9vSF9sbkxGZm01NUt6QzNSX1h4NlY2dVJUNFZUWVg?oc=5": {
+    "title": "Putting the Calamity Makers in Charge: Anthropic and Claude Mythos Preview",
+    "date_seen": "2026-04-20",
+    "themes": [
+      "anthropic-watch"
+    ]
   }
 }
