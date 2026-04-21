@@ -1549,5 +1549,100 @@
     "themes": [
       "anthropic-watch"
     ]
+  },
+  "https://www.infoq.com/news/2026/04/cloudflare-project-think/": {
+    "title": "Cloudflare Introduces Project Think: A Durable Runtime for AI Agents",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds": {
+    "title": "Moonshot Kimi K2.6: Open-Source 1T MoE",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://www.redhat.com/en/blog/rag-agentic-ai-when-models-stop-answering-and-start-acting": {
+    "title": "From RAG to Agentic AI: When Models Stop Answering and Start Acting",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://www.infoq.com/news/2026/04/linkedin-cognitive-memory-agent/": {
+    "title": "LinkedIn Cognitive Memory Agent",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-agentic-orchestration"]
+  },
+  "https://importai.substack.com/p/import-ai-454-automating-alignment": {
+    "title": "Import AI 454: Automating Alignment Research",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-agentic-orchestration", "governance-compliance"]
+  },
+  "https://www.techzine.eu/news/applications/140651/ai-pressure-forces-github-to-make-changes-to-copilot-offering/": {
+    "title": "AI Pressure Forces GitHub to Make Changes to Copilot Offering",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-devex-lightspeed"]
+  },
+  "https://developers.redhat.com/articles/2026/04/21/ai-powered-documentation-updates-code-diff-docs-pr-one-comment": {
+    "title": "AI-Powered Documentation Updates: Code-to-Docs",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-devex-lightspeed"]
+  },
+  "https://www.redhat.com/en/blog/integrating-red-hat-lightspeed-crowdstrike": {
+    "title": "Integrating Red Hat Lightspeed with CrowdStrike",
+    "date_seen": "2026-04-21",
+    "themes": ["ai-devex-lightspeed"]
+  },
+  "https://developers.redhat.com/articles/2026/04/21/kserve-llm-d-optimized-gen-ai-inference": {
+    "title": "KServe and llm-d for Optimized Generative AI Inference",
+    "date_seen": "2026-04-21",
+    "themes": ["platform-modernization"]
+  },
+  "https://thenewstack.io/suse-nvidia-ai-factory/": {
+    "title": "SUSE and Nvidia Reveal Turnkey AI Factory",
+    "date_seen": "2026-04-21",
+    "themes": ["edge-hybrid-cloud"]
+  },
+  "https://www.redhat.com/en/blog/red-hat-confirmed-sovereign-support": {
+    "title": "Red Hat Confirmed Sovereign Support",
+    "date_seen": "2026-04-21",
+    "themes": ["edge-hybrid-cloud", "governance-compliance"]
+  },
+  "https://blogs.cisco.com/news/from-automation-to-autonomy-cisco-and-rockwell-power-a-new-era-for-manufacturing": {
+    "title": "Cisco and Rockwell: From Automation to Autonomy in Manufacturing",
+    "date_seen": "2026-04-21",
+    "themes": ["edge-hybrid-cloud"]
+  },
+  "https://www.redhat.com/en/blog/open-source-transparency-defines-future-sovereign-ai-europe": {
+    "title": "Open Source Transparency Defines Future of Sovereign AI in Europe",
+    "date_seen": "2026-04-21",
+    "themes": ["governance-compliance"]
+  },
+  "https://foreignpolicy.com/2026/04/20/claude-mythos-preview-anthropic-project-glasswing-cybersecurity-ai-hacking-danger/": {
+    "title": "Claude Mythos Preview Changes the Cyber Calculus",
+    "date_seen": "2026-04-21",
+    "themes": ["governance-compliance"]
+  },
+  "https://developers.redhat.com/articles/2026/04/21/3-lessons-building-reliable-servicenow-ai-integrations": {
+    "title": "3 Lessons for Building Reliable ServiceNow AI Integrations",
+    "date_seen": "2026-04-21",
+    "themes": ["integrations-partnerships"]
+  },
+  "https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html": {
+    "title": "Amazon to Invest Up to $25 Billion in Anthropic",
+    "date_seen": "2026-04-21",
+    "themes": ["anthropic-watch"]
+  },
+  "https://www.washingtonpost.com/technology/2026/04/11/anthropic-christians-claude-morals/": {
+    "title": "Anthropic Wants Claude to Be Moral — Is Religion the Answer?",
+    "date_seen": "2026-04-21",
+    "themes": ["anthropic-watch"]
+  },
+  "https://www.bloomberg.com/news/features/2026-04-16/how-anthropic-discovered-mythos-ai-was-too-dangerous-for-release": {
+    "title": "How Anthropic Discovered Mythos Was Too Dangerous for Release",
+    "date_seen": "2026-04-21",
+    "themes": ["anthropic-watch"]
+  },
+  "https://www.smh.com.au/technology/anthropic-mythos-regulate-ai": {
+    "title": "Anthropic's Mythos Shows World Needs to Regulate AI",
+    "date_seen": "2026-04-21",
+    "themes": ["anthropic-watch"]
   }
 }
