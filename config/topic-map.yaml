@@ -134,6 +134,16 @@ themes:
       - certified skill
       - validated content
       - design-time workflow
+      - skills authoring
+      - skill publishing
+      - skill pack
+      - governed distribution
+      - agent packaging
+      - content certification
+      - verified publisher
+      - Skills.sh
+      - SkillHub
+      - Agentic Skills Guild
 
   event-driven-automation:
     label: "Event-Driven Automation"

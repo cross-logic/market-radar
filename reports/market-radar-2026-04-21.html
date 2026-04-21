@@ -89,6 +89,38 @@
   }
   .anthropic-watch .theme-header { border-bottom-color: #6c5ce7; }
   .anthropic-watch .article-card { border-left-color: #6c5ce7; }
+
+  /* Outcome Update Callout */
+  .outcome-update {
+    background: #fef9e7;
+    border: 1px solid #f9e79f;
+    border-left: 4px solid #f39c12;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .outcome-update .update-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #7d6608;
+    margin-bottom: 8px;
+  }
+  .outcome-update .outcome-key {
+    display: inline-block;
+    background: #fdebd0;
+    color: #7d6608;
+    padding: 1px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .outcome-update ul {
+    margin: 8px 0 0 18px;
+    color: #555;
+  }
+  .outcome-update li { margin-bottom: 4px; }
   @media print {
     .sidebar { display: none; }
     .main { margin-left: 0; padding: 16px; max-width: 100%; }
@@ -124,6 +156,17 @@
 </aside>
 
 <main class="main">
+
+  <div class="outcome-update">
+    <div class="update-title">Outcome Update: <span class="outcome-key">ANSTRAT-1670</span> &mdash; Evolve Ansible Content in support of Agentic Orchestration</div>
+    This outcome was recently rewritten with significantly expanded scope. It now covers the full content evolution strategy across three initiatives:
+    <ul>
+      <li><strong>Ecosystem, Discovery &amp; Distribution:</strong> External marketplace presence (Tier 1 skills on 4+ platforms by Summit), Lightforge Ecosystem Catalog, internal Tier 2 marketplace in the Automation Orchestrator, MCP discovery endpoint, cross-platform publishing pipeline</li>
+      <li><strong>Technical Foundations:</strong> Content type extensibility framework (collections &rarr; EEs &rarr; skills &rarr; agents), skill marketplace backend (storage, versioning, trust tiers), platform context model for LLM-assisted instantiation, content management modernization</li>
+      <li><strong>Strategic Domain Content &amp; GTM:</strong> 22 Tier 1 public skills (8 shipped), 20 Tier 2 platform skills at Orchestrator launch, agent composition research. 86% of Tier 2 skills built on validated/certified content shipping today</li>
+    </ul>
+    Boundary with ANSTRAT-1646: This outcome owns <em>what content exists and how it reaches users</em>. ANSTRAT-1646 owns the <em>orchestration engine and workflow execution</em> that consumes it. Key market signals this cycle: OpenClaw security crisis (skill trust), Kimi K2.6 agent swarm (300 sub-agents), Cloudflare Project Think (agent runtime competition).
+  </div>
 
   <section class="theme-section" id="ai-agentic-orchestration">
     <div class="theme-header">

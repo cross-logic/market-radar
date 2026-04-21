@@ -1,0 +1,97 @@
+{
+  "ANSTRAT-1646": {
+    "summary": "Enhancing Automation through AI-Driven Orchestration",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1670": {
+    "summary": "Evolve Ansible Content in support of Agentic Orchestration — 3 initiatives: (1) Ecosystem, Discovery & Distribution (external marketplace presence, Lightforge catalog, internal Tier 2 marketplace, MCP discovery endpoint), (2) Technical Foundations (content type extensibility framework, skill marketplace backend, platform context model), (3) Strategic Domain Content & GTM (certified/validated collections, Tier 1+2 skills, agent composition research). Covers the full content lifecycle for collections, EEs, skills, and future content types.",
+    "status": "In Progress",
+    "last_refreshed": "2026-04-21"
+  },
+  "ANSTRAT-1244": {
+    "summary": "Improve Automation Creator workflows with Lightspeed FY25",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1542": {
+    "summary": "Post-2.6 Ansible Lightspeed intelligent assistant",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1648": {
+    "summary": "Improved AAP Installation Experience through AI and Conversational Experiences",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1127": {
+    "summary": "Platform Faster time to market and Improved Risk Management",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1818": {
+    "summary": "Platform Extensibility and Operational Excellence",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1923": {
+    "summary": "Strategic Partner Content - H1FY26",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1686": {
+    "summary": "Red Hat Content Go to Market Initiatives - H2FY26",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-119": {
+    "summary": "Deliver a Cohesive Toolchain for the Ansible Content Lifecycle",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-910": {
+    "summary": "Event Driven Ansible Maturity",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-934": {
+    "summary": "Integration of Edge Manager (formerly Flight Control) into Ansible Automation Platform",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1857": {
+    "summary": "Scaling The Ansible on Clouds Business in 2026",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1638": {
+    "summary": "Governance, Risk and Compliance (Policy as Code Initiative) - Phase 2",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1362": {
+    "summary": "Comprehensive Integration of AAP with HashiCorp Terraform and Vault",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1647": {
+    "summary": "Ansible Automation Platform Business Intelligence",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1243": {
+    "summary": "Drive revenue from Puppet/Chef/Salt customers using genAI",
+    "status": "Backlog",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-1063": {
+    "summary": "AAP available in Developer Sandbox for Red Hat OpenShift",
+    "status": "In Progress",
+    "last_refreshed": "2026-03-16"
+  },
+  "ANSTRAT-896": {
+    "summary": "Improve the product installation experience",
+    "status": "New",
+    "last_refreshed": "2026-03-16"
+  }
+}

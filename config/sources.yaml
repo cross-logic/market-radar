@@ -149,6 +149,10 @@ search_queries:
     themes: [content-ecosystem, ai-agentic-orchestration]
   - query: "AI skill catalog workflow template automation agent"
     themes: [content-ecosystem, ai-agentic-orchestration]
+  - query: "SKILL.md agent skill authoring publishing governance"
+    themes: [content-ecosystem]
+  - query: "AI agent packaging distribution trust certification 2026"
+    themes: [content-ecosystem, governance-compliance]
 
   # Cross-cutting (AI disruption & enterprise strategy)
   - query: "AI agent autonomous operations enterprise"
