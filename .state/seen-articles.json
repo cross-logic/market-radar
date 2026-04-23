@@ -1409,7 +1409,7 @@
     ]
   },
   "https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally": {
-    "title": "Anthropic Claude Opus 4.7 — Literally One Step Better Than 4.6",
+    "title": "Anthropic Claude Opus 4.7 \u2014 Literally One Step Better Than 4.6",
     "date_seen": "2026-04-20",
     "themes": [
       "ai-agentic-orchestration"
@@ -1423,7 +1423,7 @@
     ]
   },
   "https://www.nextgov.com/artificial-intelligence/2026/04/world-needs-get-ready-more-powerful-ai-anthropic-co-founder-says/412812/": {
-    "title": "World Needs to Get Ready for More Powerful AI — Jack Clark",
+    "title": "World Needs to Get Ready for More Powerful AI \u2014 Jack Clark",
     "date_seen": "2026-04-20",
     "themes": [
       "ai-agentic-orchestration",
@@ -1553,96 +1553,333 @@
   "https://www.infoq.com/news/2026/04/cloudflare-project-think/": {
     "title": "Cloudflare Introduces Project Think: A Durable Runtime for AI Agents",
     "date_seen": "2026-04-21",
-    "themes": ["ai-agentic-orchestration"]
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   },
   "https://www.latent.space/p/ainews-moonshot-kimi-k26-the-worlds": {
     "title": "Moonshot Kimi K2.6: Open-Source 1T MoE",
     "date_seen": "2026-04-21",
-    "themes": ["ai-agentic-orchestration"]
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   },
   "https://www.redhat.com/en/blog/rag-agentic-ai-when-models-stop-answering-and-start-acting": {
     "title": "From RAG to Agentic AI: When Models Stop Answering and Start Acting",
     "date_seen": "2026-04-21",
-    "themes": ["ai-agentic-orchestration"]
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   },
   "https://www.infoq.com/news/2026/04/linkedin-cognitive-memory-agent/": {
     "title": "LinkedIn Cognitive Memory Agent",
     "date_seen": "2026-04-21",
-    "themes": ["ai-agentic-orchestration"]
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   },
   "https://importai.substack.com/p/import-ai-454-automating-alignment": {
     "title": "Import AI 454: Automating Alignment Research",
     "date_seen": "2026-04-21",
-    "themes": ["ai-agentic-orchestration", "governance-compliance"]
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
   },
   "https://www.techzine.eu/news/applications/140651/ai-pressure-forces-github-to-make-changes-to-copilot-offering/": {
     "title": "AI Pressure Forces GitHub to Make Changes to Copilot Offering",
     "date_seen": "2026-04-21",
-    "themes": ["ai-devex-lightspeed"]
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
   },
   "https://developers.redhat.com/articles/2026/04/21/ai-powered-documentation-updates-code-diff-docs-pr-one-comment": {
     "title": "AI-Powered Documentation Updates: Code-to-Docs",
     "date_seen": "2026-04-21",
-    "themes": ["ai-devex-lightspeed"]
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
   },
   "https://www.redhat.com/en/blog/integrating-red-hat-lightspeed-crowdstrike": {
     "title": "Integrating Red Hat Lightspeed with CrowdStrike",
     "date_seen": "2026-04-21",
-    "themes": ["ai-devex-lightspeed"]
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
   },
   "https://developers.redhat.com/articles/2026/04/21/kserve-llm-d-optimized-gen-ai-inference": {
     "title": "KServe and llm-d for Optimized Generative AI Inference",
     "date_seen": "2026-04-21",
-    "themes": ["platform-modernization"]
+    "themes": [
+      "platform-modernization"
+    ]
   },
   "https://thenewstack.io/suse-nvidia-ai-factory/": {
     "title": "SUSE and Nvidia Reveal Turnkey AI Factory",
     "date_seen": "2026-04-21",
-    "themes": ["edge-hybrid-cloud"]
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
   },
   "https://www.redhat.com/en/blog/red-hat-confirmed-sovereign-support": {
     "title": "Red Hat Confirmed Sovereign Support",
     "date_seen": "2026-04-21",
-    "themes": ["edge-hybrid-cloud", "governance-compliance"]
+    "themes": [
+      "edge-hybrid-cloud",
+      "governance-compliance"
+    ]
   },
   "https://blogs.cisco.com/news/from-automation-to-autonomy-cisco-and-rockwell-power-a-new-era-for-manufacturing": {
     "title": "Cisco and Rockwell: From Automation to Autonomy in Manufacturing",
     "date_seen": "2026-04-21",
-    "themes": ["edge-hybrid-cloud"]
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
   },
   "https://www.redhat.com/en/blog/open-source-transparency-defines-future-sovereign-ai-europe": {
     "title": "Open Source Transparency Defines Future of Sovereign AI in Europe",
     "date_seen": "2026-04-21",
-    "themes": ["governance-compliance"]
+    "themes": [
+      "governance-compliance"
+    ]
   },
   "https://foreignpolicy.com/2026/04/20/claude-mythos-preview-anthropic-project-glasswing-cybersecurity-ai-hacking-danger/": {
     "title": "Claude Mythos Preview Changes the Cyber Calculus",
     "date_seen": "2026-04-21",
-    "themes": ["governance-compliance"]
+    "themes": [
+      "governance-compliance"
+    ]
   },
   "https://developers.redhat.com/articles/2026/04/21/3-lessons-building-reliable-servicenow-ai-integrations": {
     "title": "3 Lessons for Building Reliable ServiceNow AI Integrations",
     "date_seen": "2026-04-21",
-    "themes": ["integrations-partnerships"]
+    "themes": [
+      "integrations-partnerships"
+    ]
   },
   "https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html": {
     "title": "Amazon to Invest Up to $25 Billion in Anthropic",
     "date_seen": "2026-04-21",
-    "themes": ["anthropic-watch"]
+    "themes": [
+      "anthropic-watch"
+    ]
   },
   "https://www.washingtonpost.com/technology/2026/04/11/anthropic-christians-claude-morals/": {
-    "title": "Anthropic Wants Claude to Be Moral — Is Religion the Answer?",
+    "title": "Anthropic Wants Claude to Be Moral \u2014 Is Religion the Answer?",
     "date_seen": "2026-04-21",
-    "themes": ["anthropic-watch"]
+    "themes": [
+      "anthropic-watch"
+    ]
   },
   "https://www.bloomberg.com/news/features/2026-04-16/how-anthropic-discovered-mythos-ai-was-too-dangerous-for-release": {
     "title": "How Anthropic Discovered Mythos Was Too Dangerous for Release",
     "date_seen": "2026-04-21",
-    "themes": ["anthropic-watch"]
+    "themes": [
+      "anthropic-watch"
+    ]
   },
   "https://www.smh.com.au/technology/anthropic-mythos-regulate-ai": {
     "title": "Anthropic's Mythos Shows World Needs to Regulate AI",
     "date_seen": "2026-04-21",
-    "themes": ["anthropic-watch"]
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://siliconangle.com/2026/04/22/google-puts-gemini-enterprise-heart-new-agentic-taskforce-enterprise-automation/": {
+    "title": "Google Puts Gemini Enterprise at the Heart of a New Agentic Taskforce for Enterprise Automation",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/anthropic-managed-agents/": {
+    "title": "Anthropic Introduces Managed Agents to Simplify AI Agent Deployment",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://openai.com/index/introducing-workspace-agents-in-chatgpt": {
+    "title": "Introducing Workspace Agents in ChatGPT",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/news/infrastructure/140725/aws-bedrock-agentcore-gets-managed-harness-and-cli-for-ai-agents/": {
+    "title": "AWS Bedrock AgentCore Gets Managed Harness and CLI for AI Agents",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/23/deploy-openviking-openshift-ai-improve-ai-agent-memory": {
+    "title": "Deploy OpenViking on OpenShift AI to Improve AI Agent Memory",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/cloudflare-mcp/": {
+    "title": "Cloudflare Outlines MCP Architecture as Enterprises Confront Security and Governance Risks",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/mcp-summit-aws-bedrock/": {
+    "title": "How AWS Bedrock Is Shaping Model Context Protocol",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/cloudflare-sandboxes-ga/": {
+    "title": "Cloudflare Sandboxes Reach General Availability",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://openai.com/index/speeding-up-agentic-workflows-with-websockets": {
+    "title": "Speeding Up Agentic Workflows with WebSockets in the Responses API",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://blogs.cisco.com/ai/introducing-the-ai-agent-security-scanner-for-ides-verify-your-agents": {
+    "title": "Introducing the AI Agent Security Scanner for IDEs: Verify Your Agents",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://www.redhat.com/en/blog/unlock-enterprise-ready-secure-ai-red-hat-lightspeed-agent-google-cloud": {
+    "title": "Unlock Enterprise-Ready, Secure AI with Red Hat Lightspeed Agent for Google Cloud",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/github-copilot-signups-paused/": {
+    "title": "GitHub Pauses Copilot Sign-ups as AI Coding Drives Up Compute Demand",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/spacex-cursor-ai-deal/": {
+    "title": "The SpaceX-Cursor Deal Is a Gutsy Hail Mary That Could Work",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/roo-code-cloud-ides-ai-coding/": {
+    "title": "Roo Code Pivots to Cloud-Based Agent, Says IDEs Arent the Future of Coding",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.latent.space/p/shopify": {
+    "title": "Shopifys AI Phase Transition: Interview with Mikhail Parakhin, CTO",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.techzine.eu/news/analytics/140728/infosys-and-openai-join-forces-to-advance-ai-in-software-development/": {
+    "title": "Infosys and OpenAI Join Forces to Advance AI in Software Development",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.techzine.eu/news/infrastructure/140704/kubernetes-v1-36-enhances-security-and-ai-support/": {
+    "title": "Kubernetes v1.36 Enhances Security and AI Support",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://thenewstack.io/accenture-wavemaker-ai-modernization/": {
+    "title": "Why Accenture and WaveMaker Are Betting on Agentic AI to Close a $3 Billion Software Gap",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/22/how-we-rewrote-production-ui-without-stopping-it": {
+    "title": "How We Rewrote a Production UI Without Stopping It",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.hashicorp.com/blog/terraform-adds-pre-written-sentinel-policies-for-iso-27001": {
+    "title": "Terraform Adds Pre-Written Sentinel Policies for ISO 27001",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://blogs.cisco.com/ai/cisco-ai-defense-google-cloud": {
+    "title": "Securing Enterprise AI: Cisco AI Defense Expands to Google Cloud",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/23/zero-trust-observability-integrating-opentelemetry-workload-identity-manager": {
+    "title": "Zero Trust Observability: Integrating OpenTelemetry with Workload Identity Manager",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.dynatrace.com/news/blog/google-cloud-next-2026-a-look-into-the-autonomous-future-of-cloud-operations/": {
+    "title": "Google Cloud Next 2026: A Look into the Autonomous Future of Cloud Operations",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMimAFBVV95cUxNMXJFR0pxbmlKMnpKeTY1WldIWERxVmZsbDJxbnc0eUVXa21iZEZ6SG93a01CZWFlWFozVldMTUM0bjhPMlNlMDNSY1JmNHJub0M5ZWM5TmZKUEw0OE5WNk5xYlB4bFYzNUJndEpvZjhmdXpFNEVqb0xQcFMzZzBvS2c0ZTRSUmswd1h1bmhJdXdFR0FSV1RQWA?oc=5": {
+    "title": "Anthropic Has Surged to a Trillion-Dollar Valuation on Secondary Markets",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1fd1pST1VJOWtNWWF4aEppa3dJUmtJSGFtOFdlRVlLVGNpOHVnSmZZb0htU2dmS1VfOFJCdTItUWc2LW95MC03c3JNMzdOcXFBUzRPSWt4bTRrdDNo?oc=5": {
+    "title": "What 81,000 People Told Us About the Economics of AI",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVW5udXI4RlZBeUhVU1BZNjZwemQ1NWNDVVlJNkhDejFnUzZ4TUdXMmFVTDdwbTBKcXpralQyYV9haXVlVnhnZld2WEVXYXNYQnAxalhmQ2NySVB6NDY2ZWMzQlpxRXpQYTdUb1hic0FHa0xNSDVrMkhQeWdlOVd1QVJ4b0l6Mlk?oc=5": {
+    "title": "Anthropic: No Kill Switch for AI in Classified Settings",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMikAFBVV95cUxNU2xvY1hSYy1WNlFNYkVUakZueEk1a0RaN3E2b2lxV1J2QV9OaC1ES1ozLU9tZWNmQXpaeWxDeTJ6dW9panFrRkw0NmEwOFdJdnUwWFFFcU1yMlpOc3gzQ0NOTUFGc0I1dmg3T0N2TUZad3NRR01lcG5VVFd1SFdKNDJwZzhvY1loNUZRSGlIc3c?oc=5": {
+    "title": "Mozilla Used Anthropics Mythos to Find and Fix 271 Bugs in Firefox",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMia0FVX3lxTFBva0dObW5vejIwUmlXUmRvMUY3aWg0RXEzVm5aSHQtaW9UX1NkaVdyQmxYSktlZFp1OC15cjJTclliaVZENVg4UVBmU255dzFBODhRcEVYa3ItMzBGRDhENVRwckdXdjJLVkxV?oc=5": {
+    "title": "NEC Announces Strategic Collaboration with Anthropic Focused on Enterprise AI",
+    "date_seen": "2026-04-23",
+    "themes": [
+      "integrations-partnerships"
+    ]
   }
 }
