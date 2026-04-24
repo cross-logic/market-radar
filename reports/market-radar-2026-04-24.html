@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — April 24, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .sidebar .date { font-size: 13px; color: #95a5a6; margin-bottom: 24px; }
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+  .sidebar nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+  .main { margin-left: 260px; padding: 32px 40px; max-width: 960px; width: 100%; }
+  .theme-section { margin-bottom: 40px; }
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+  .theme-header h2 { font-size: 20px; font-weight: 700; }
+  .theme-header .outcomes { font-size: 12px; color: var(--color-muted); }
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+  .article-card .title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .article-card .title a { color: var(--color-text); text-decoration: none; }
+  .article-card .title a:hover { color: var(--color-link); text-decoration: underline; }
+  .article-card .meta { font-size: 12px; color: var(--color-muted); margin-bottom: 8px; }
+  .article-card .meta .relevance { font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+  .article-card .summary { font-size: 13px; color: #555; line-height: 1.5; }
+  .article-card .outcomes-list { margin-top: 8px; font-size: 11px; }
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+  .anthropic-watch .theme-header { border-bottom-color: #6c5ce7; }
+  .anthropic-watch .article-card { border-left-color: #6c5ce7; }
+  .empty-note { color: var(--color-muted); font-style: italic; font-size: 14px; padding: 20px; }
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">April 24, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>22</span></div>
+    <div>High relevance: <span>5</span></div>
+    <div>Sources scanned: <span>47</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">5</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">2</span></a>
+    <a href="#content-ecosystem">Content &amp; Ecosystem <span class="count">1</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">4</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">1</span></a>
+    <a href="#competitive-migration">Competitive Migration <span class="count">1</span></a>
+    <a href="#anthropic-watch">Anthropic Watch <span class="count">4</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://openai.com/index/introducing-gpt-5-5" target="_blank">Introducing GPT-5.5: OpenAI's Strongest Agentic Model</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · OpenAI · April 23, 2026
+      </div>
+      <div class="summary">OpenAI launched GPT-5.5, achieving 82.7% on Terminal-Bench 2.0 and 58.6% on SWE-Bench Pro, outperforming Opus 4.7 on most benchmarks. The model powers Codex workspace agents that run multi-step workflows autonomously across organizational tools including Slack, with scheduled execution and persistent memory. Running on NVIDIA GB200 NVL72 infrastructure, GPT-5.5 delivers 35x lower cost per million tokens — a direct challenge to Anthropic's managed agent and Claude Code positioning.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html" target="_blank">DeepSeek V4 Released: Open-Source 1.6T MoE with Best-in-Class Agentic Coding</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · CNBC · April 24, 2026
+      </div>
+      <div class="summary">DeepSeek released V4-Pro (1.6T parameters, 49B activated) and V4-Flash (284B, 13B activated), both with 1M token context and MIT licensing. The model achieves performance approaching Claude Opus 4.6 in agentic coding while requiring only 27% of inference FLOPs and 10% of KV cache compared to V3.2. Optimized for use with Claude Code and OpenClaw, V4 raises the open-source bar significantly and could pressure enterprise pricing for proprietary agent platforms.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNQWR2WU83TWpUQ3BReEpqRGYybUNsNTB0cHlZVUc5Q0E2YUpqb1BWSFRHV1BseEtHN1dURzlsdmItS1BhRU9mV0UzSXQ4R0k2eGYxa21zbS15VkNtUUNjMUdJeV9McGtQeUp0RlBJNHZ6YTlsS0NxNERCRjZqM0xJTW9VcERiU1FLNzg2X2IyYk9hdW1FZzRWSlVsbXlCWlRD" target="_blank">Claude Connects to Spotify, Uber, TurboTax and More via Third-Party Integrations</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The Verge · April 23, 2026
+      </div>
+      <div class="summary">Anthropic launched third-party app integrations for Claude, enabling direct connections to Spotify, Uber, Instacart, TurboTax, Booking.com, and more. Combined with persistent memory (available on all tiers including free), Claude can now maintain context across sessions and act on user preferences through connected services. Actions still require user approval — Anthropic maintains human-in-the-loop for transactions — but this marks a significant shift toward Claude as a consumer-facing agentic platform beyond developer tooling.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/04/grafana-loki-ai-agents/" target="_blank">Grafana Rearchitects Loki with Kafka and Ships CLI for AI Coding Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Claudio Masolo · April 23, 2026
+      </div>
+      <div class="summary">At GrafanaCON 2026, Grafana Labs launched GCX, a CLI tool that surfaces observability data directly within AI coding environments like Claude Code and Cursor, eliminating context-switching during incident response. Grafana 13 also features a Kafka-backed Loki architecture reducing storage from 2.3x to 1x replication and delivering 20x less data scanned. The GCX CLI demonstrates how observability platforms are adapting to agentic developer workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/unsupervised-learning-2026" target="_blank">AIE Europe Debrief: Harness Engineering and Context Engineering as 2026 Priorities</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Latent Space · April 23, 2026
+      </div>
+      <div class="summary">Crossover podcast from AIE Europe exploring current AI engineering priorities: "harness engineering" (building reliable agent execution layers) and "context engineering" (optimizing what information agents receive). Discussion covers infrastructure stability, coding market dynamics, agent-first product design, and memory/personalization systems — framing the strategic challenges AAP's orchestration layer must address.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.latent.space/p/ainews-gpt-55-and-openai-codex-superapp" target="_blank">GPT-5.5 and OpenAI Codex Superapp: The AI Coding Landscape Shifts Again</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Latent Space · April 24, 2026
+      </div>
+      <div class="summary">Analysis of GPT-5.5's impact on the AI coding market, including Codex's evolution into a browser-controlling, document-editing, agent-capable superapp. Covers competitive positioning against Anthropic's Opus 4.7 and DeepSeek V4's aggressive MIT-licensed pricing strategy. The three-way race between OpenAI, Anthropic, and open-source is reshaping the value proposition for enterprise AI coding tools like Lightspeed.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/claude-opus-47-flaky-performance/" target="_blank">AI Shrinkflation: Why Anthropic's Claude Opus 4.7 May Be Less Capable Than the Model It Replaced</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · Adrian Bridgwater · April 23, 2026
+      </div>
+      <div class="summary">Users report Claude Opus 4.7 exhibits self-contradicting outputs and degraded performance compared to earlier versions, sparking debate about whether this reflects safety improvements, resource constraints, or model regression. The "AI shrinkflation" pattern — where newer models ship with higher benchmark scores but worse real-world reliability — is a risk factor for any Lightspeed integration dependent on model consistency.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/04/24/200-lines-15-how-helion-rewriting-rules-gpu-programming" target="_blank">From 200 Lines to 15: How Helion Is Rewriting the Rules of GPU Programming</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Sumantro Mukherjee, Parshant Sharma · April 24, 2026
+      </div>
+      <div class="summary">Helion, a Python-based DSL, reduces GPU kernel code from 200+ lines (CUDA) to just 15 lines of PyTorch-like code with automatic autotuning across GPU architectures. Running on OpenShift AI, it dramatically lowers the barrier to GPU programming for AI inference workloads. Relevant to AAP's AI infrastructure story as it simplifies the GPU programming layer that enterprise AI automation depends on.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/solving-ai-productivity-gap/" target="_blank">Only 5% of Firms Are Seeing AI ROI — Research on the Productivity Gap</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · April 23, 2026
+      </div>
+      <div class="summary">Research shows only 5% of organizations report ROI from AI tools despite significant spending, with evidence that junior developers may over-rely on AI and hinder foundational skill development. The finding underscores the importance of Lightspeed's guided, context-aware approach versus generic AI coding assistants, and provides ammunition for Lightspeed's enterprise value proposition.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/kyverno-cncf-graduation-interview/" target="_blank">Kyverno Achieves CNCF Graduation: Policy Engine Expands to AI and MCP Gateways</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · April 23, 2026
+      </div>
+      <div class="summary">Kyverno, the Kubernetes-native policy engine with 3B+ downloads, achieved CNCF graduation — only the 35th project to reach this milestone. The roadmap includes extending policy enforcement to AI workloads and MCP gateways, directly aligning with AAP's need for policy-as-code governance across automation and agentic systems. Kyverno's YAML-based policies (no Rego required) complement AAP's declarative approach and could integrate with AAP's OpenShift-based deployment model.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/building-center-excellence-ansible" target="_blank">Building a Center of Excellence for Ansible</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat · Skye Larson · April 24, 2026
+      </div>
+      <div class="summary">Red Hat published guidance on establishing Ansible Centers of Excellence — governance bodies that define automation standards, maintain shared repositories, and build internal communities of practice. The CoE model includes automation architects, platform engineers, and security stakeholders using Ansible Lint, CI/CD pipelines, and shared content libraries to scale enterprise automation adoption.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content & Ecosystem -->
+  <section class="theme-section" id="content-ecosystem">
+    <div class="theme-header">
+      <h2>Content &amp; Ecosystem</h2>
+      <span class="outcomes">ANSTRAT-1670, ANSTRAT-1923, ANSTRAT-1686, ANSTRAT-119</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank">OpenAI Codex Plugins and Skills: A New Ecosystem for Agent Workflows</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · OpenAI · April 23, 2026
+      </div>
+      <div class="summary">OpenAI published guidance on Codex plugins and skills for connecting tools and building repeatable agent workflows. The Skills ecosystem enables codifying workflows into shareable, composable units — mirroring the Claude Skills and SkillsMP models. OpenAI's entry into the skills/plugin space adds a third major ecosystem alongside Anthropic's Claude Skills and Microsoft's Skills repo, further validating the content-type pattern AAP tracks under ANSTRAT-1670.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1923</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/04/vault-2-0-ibm-identity/" target="_blank">HashiCorp Vault 2.0 Marks Shift to IBM Lifecycle with Workload Identity Federation</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Mark Silvester · April 24, 2026
+      </div>
+      <div class="summary">Vault 2.0 — the first major version since 2018, now under IBM ownership — introduces Workload Identity Federation for secretless cloud authentication via OIDC tokens, SCIM 2.0 provisioning, enhanced PKI engine, and SPIFFE JWT-SVID support. This directly strengthens the AAP + Terraform + Vault integration story under IBM's unified automation portfolio, enabling zero-trust credential management across hybrid infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.hashicorp.com/blog/bridging-the-trust-gap-unified-public-ca-orchestration-with-ibm-vault" target="_blank">Bridging the Trust Gap: Unified Public CA Orchestration with IBM Vault</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · HashiCorp · David Mills · April 23, 2026
+      </div>
+      <div class="summary">Vault Enterprise now integrates with public certificate authorities like Let's Encrypt and DigiCert, enabling unified governance for both internal and public-facing certificates through a single platform. Eliminates manual certificate management and provides centralized PKI lifecycle control — complementing AAP's credential management and governance automation capabilities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/news/security/140747/" target="_blank">Microsoft Is Using Anthropic's Mythos to Detect Vulnerabilities</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · April 23, 2026
+      </div>
+      <div class="summary">Microsoft integrated Anthropic's restricted Mythos AI model into its Security Development Lifecycle for enhanced vulnerability detection across its codebase. The adoption by a major enterprise validates AI-powered security scanning at scale and establishes a benchmark for the kind of AI-driven compliance tooling AAP could integrate into its governance workflows.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/openai-privacy-filter-pii/" target="_blank">OpenAI's Privacy Filter Runs Locally So PII Never Hits the Cloud</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · April 23, 2026
+      </div>
+      <div class="summary">OpenAI released Privacy Filter, an open-weight PII detection model achieving 96% F1 score with 128K token context, designed to run entirely on local hardware. The model detects and redacts personally identifiable information before data leaves the organization. Relevant to AAP's data governance story and the broader compliance requirements around AI-processed automation data.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations & Partnerships -->
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/cisco-on-cisco/the-innovation-paradox-how-we-reduced-incidents-by-25-while-deploying-faster" target="_blank">The Innovation Paradox: How Cisco IT Reduced Incidents by 25% While Deploying Faster</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco · April 23, 2026
+      </div>
+      <div class="summary">Cisco IT demonstrates how observability technology and operational practices enabled teams to accelerate deployment frequency while reducing major incidents by 25%. The case study validates the observability-driven operations pattern where faster delivery and higher reliability are achieved simultaneously — a model relevant to AAP's metrics and telemetry integration roadmap.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitive Migration -->
+  <section class="theme-section" id="competitive-migration">
+    <div class="theme-header">
+      <h2>Competitive Migration</h2>
+      <span class="outcomes">ANSTRAT-1243</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.techzine.eu/blogs/analytics/140764/" target="_blank">DeepSeek V4: Open-Source Model Slashes Agentic AI Costs</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Techzine · April 24, 2026
+      </div>
+      <div class="summary">DeepSeek V4's MIT-licensed release with competitive performance at drastically lower cost pressures the entire enterprise AI pricing stack. V4-Flash's 13B activated parameters deliver production-grade agentic coding on modest hardware, potentially enabling organizations to self-host agent infrastructure rather than pay for proprietary platforms. This shifts the competitive migration calculus — customers evaluating AAP's AI capabilities will benchmark against open-source agent costs.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1243</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anthropic Watch -->
+  <section class="theme-section anthropic-watch" id="anthropic-watch">
+    <div class="theme-header">
+      <h2>Anthropic Watch</h2>
+      <span class="outcomes">Latest from Anthropic team — not mapped to ANSTRAT Outcomes</span>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9WTjFpN1NVTGhESFVlRUh3cFVoVXFIMjBrRnBLVjFYYjJFZXdYUmtYUmI4eUtLSjc4ekNmbnRGUUVtU1NTOTFzM0ljOUhSRXR3elAya2pDc0FTMFNHZHNDX0licGp4akx3bEE" target="_blank">Anthropic's Growing Pains Mount Ahead of OpenAI Showdown</a></div>
+      <div class="meta">Axios · April 23, 2026</div>
+      <div class="summary">Axios reports on Anthropic's operational challenges as it faces GPT-5.5's launch, including the Claude Code Pro plan pricing controversy, Opus 4.7 performance complaints, and the Mythos unauthorized access investigation — all converging as competitive pressure from OpenAI intensifies. The piece frames Anthropic's rapid scaling as creating tension between safety commitments and commercial velocity.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZVliV3J2S09YS1NoMGdRaU5mWm9nbmdkblBCazRVTE1RS3g1V3hwdW5sdUdBNnc3RGFZblpZeDN5VFpFVWNtZS14TllCMTB5eHZLVVlJdENPU2VFd21ZUEZFZ1JnR0UtRjBoeG5IaUVYRG9IZmh6MlVHZ0JhYUd0dlcwdjl0cUNUTUF2bjdYQV9OMVJwSTBSd3hYZ0lXRVdVSDFRUHp3UHktYkk2LWxmT2JraFdldlFIZjRDbHNYaE0" target="_blank">Trump Administration Rethinks Ban on Anthropic After Mythos Debut</a></div>
+      <div class="meta">Politico · April 23, 2026</div>
+      <div class="summary">The Trump administration is reconsidering its stance on Anthropic following the Mythos AI model's demonstrated cybersecurity capabilities, including finding 271 Firefox vulnerabilities. The shift suggests Mythos's national security value may outweigh earlier concerns about Anthropic's safety-first positioning conflicting with defense applications.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOakZ2SnowZHlBNjJQVnktOGhNOWpCRmZEYVNqQ21oeEgzLXlQUG5XWlNnVGVpZjRYR19PcUtHY1Rnb0Zqem1HNFEtY3ZSaFFHOE1UVlhHUFZvNndoX2EzRE1haTgxZ2tLVTQxZWVmU2VoN2pqd3FIREVwZU1faEFYbjJvNS0" target="_blank">Banks Charged Sharply Different Fees for Access to Anthropic Investment</a></div>
+      <div class="meta">Financial Times · April 24, 2026</div>
+      <div class="summary">The Financial Times reports on the scramble among banks to access Anthropic's latest funding round following its $1T+ valuation, with widely varying fees charged to investors. The piece highlights the unusual investor dynamics around Anthropic as the company's commercial trajectory attracts institutional capital at unprecedented scale for an AI company.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxPbG4xd01MWkFoV2lReHd3c0JEWmNjclhjWnBqcnRwNFpxX0JjNzVQakxUWWFIXzg1VG1aQjhVMVlxc19VSE1xSm8zRldGV3pQbmx0LVFuUDVBeWxOTjJLWGtxVkNkeGZnaEtwM1dDQ1JoZmZzUkhxNkdRc2xwT1RhdjBwMWZTNld6REloMTNHcm5Oc3BQT0pCSlVHUEtGSFl5Z1lGWERZdw" target="_blank">Japan Launches Financial Task Force to Counter Anthropic's Mythos AI Security Threat</a></div>
+      <div class="meta">AzerNews · April 24, 2026</div>
+      <div class="summary">Japan's financial regulators have established a dedicated task force to assess and counter cybersecurity risks posed by Anthropic's Mythos model after the unauthorized access incident. The response reflects growing international concern about advanced AI models' potential for cyber offense, with Japan becoming the second country (after Australia) to formally engage Anthropic on Mythos security implications.</div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

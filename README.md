@@ -6,6 +6,7 @@ Daily intelligence reports for Ansible Automation Platform strategy.
 
 | Date | Report | Highlights |
 |------|--------|------------|
+| April 24, 2026 | [market-radar-2026-04-24.html](reports/market-radar-2026-04-24.html) | 22 articles, 5 HIGH — GPT-5.5 launches as OpenAI's strongest agentic model; DeepSeek V4 open-source 1.6T MoE challenges enterprise pricing; Claude adds Spotify/Uber integrations + persistent memory; Vault 2.0 ships under IBM; Kyverno graduates CNCF with MCP gateway roadmap |
 | April 23, 2026 | [market-radar-2026-04-23.html](reports/market-radar-2026-04-23.html) | 28 articles, 11 HIGH — Agent platform wars: Google/Anthropic/OpenAI/AWS all ship managed harnesses in one week; Cloudflare MCP enterprise architecture; Red Hat Lightspeed Agent for Google Cloud; Anthropic $1T valuation; Mythos finds 271 Firefox bugs |
 | April 21, 2026 | [market-radar-2026-04-21.html](reports/market-radar-2026-04-21.html) | 19 articles, 6 HIGH — Amazon $25B Anthropic deal; Cloudflare Project Think agent runtime; Kimi K2.6 open-source 1T MoE; GitHub Copilot pauses signups; SUSE+Nvidia sovereign AI factory; EU AI Act countdown |
 | April 20, 2026 | [market-radar-2026-04-20.html](reports/market-radar-2026-04-20.html) | 21 articles, 8 HIGH — Agent harness pricing war; Opus 4.7 SOTA; Desktop AI race; OpenClaw security crisis; Mythos White House/NSA saga; new Anthropic Watch section |

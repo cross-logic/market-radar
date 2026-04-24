@@ -1881,5 +1881,164 @@
     "themes": [
       "integrations-partnerships"
     ]
+  },
+  "https://openai.com/index/introducing-gpt-5-5": {
+    "title": "Introducing GPT-5.5",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration",
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.cnbc.com/2026/04/24/deepseek-v4-llm-preview-open-source-ai-competition-china.html": {
+    "title": "DeepSeek V4 Released: Open-Source 1.6T MoE with Agentic Coding",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration",
+      "competitive-migration"
+    ]
+  },
+  "https://www.techzine.eu/blogs/analytics/140764/": {
+    "title": "DeepSeek V4: Open-Source Model Slashes Agentic AI Costs",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration",
+      "competitive-migration"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/grafana-loki-ai-agents/": {
+    "title": "Grafana Rearchitects Loki with Kafka and Ships CLI for AI Agents",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration",
+      "integrations-partnerships"
+    ]
+  },
+  "https://www.latent.space/p/unsupervised-learning-2026": {
+    "title": "AIE Europe Debrief: Harness Engineering and Context Engineering",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.latent.space/p/ainews-gpt-55-and-openai-codex-superapp": {
+    "title": "GPT-5.5 and OpenAI Codex Superapp",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/claude-opus-47-flaky-performance/": {
+    "title": "AI Shrinkflation: Claude Opus 4.7 Performance Concerns",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/24/200-lines-15-how-helion-rewriting-rules-gpu-programming": {
+    "title": "From 200 Lines to 15: Helion Rewrites GPU Programming",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/solving-ai-productivity-gap/": {
+    "title": "Only 5% of Firms Are Seeing AI ROI",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/kyverno-cncf-graduation-interview/": {
+    "title": "Kyverno Achieves CNCF Graduation",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "platform-modernization",
+      "governance-compliance"
+    ]
+  },
+  "https://www.redhat.com/en/blog/building-center-excellence-ansible": {
+    "title": "Building a Center of Excellence for Ansible",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://openai.com/academy/codex-plugins-and-skills": {
+    "title": "OpenAI Codex Plugins and Skills",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "content-ecosystem"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/vault-2-0-ibm-identity/": {
+    "title": "Vault 2.0 with Workload Identity Federation",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.hashicorp.com/blog/bridging-the-trust-gap-unified-public-ca-orchestration-with-ibm-vault": {
+    "title": "Unified Public CA Orchestration with IBM Vault",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.techzine.eu/news/security/140747/": {
+    "title": "Microsoft Using Mythos to Detect Vulnerabilities",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://thenewstack.io/openai-privacy-filter-pii/": {
+    "title": "OpenAI Privacy Filter for PII Detection",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://blogs.cisco.com/cisco-on-cisco/the-innovation-paradox-how-we-reduced-incidents-by-25-while-deploying-faster": {
+    "title": "Cisco Reduced Incidents 25% While Deploying Faster",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiakFVX3lxTE9WTjFpN1NVTGhESFVlRUh3cFVoVXFIMjBrRnBLVjFYYjJFZXdYUmtYUmI4eUtLSjc4ekNmbnRGUUVtU1NTOTFzM0ljOUhSRXR3elAya2pDc0FTMFNHZHNDX0licGp4akx3bEE": {
+    "title": "Anthropic Growing Pains Mount Ahead of OpenAI Showdown",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZVliV3J2S09YS1NoMGdRaU5mWm9nbmdkblBCazRVTE1RS3g1V3hwdW5sdUdBNnc3RGFZblpZeDN5VFpFVWNtZS14TllCMTB5eHZLVVlJdENPU2VFd21ZUEZFZ1JnR0UtRjBoeG5IaUVYRG9IZmh6MlVHZ0JhYUd0dlcwdjl0cUNUTUF2bjdYQV9OMVJwSTBSd3hYZ0lXRVdVSDFRUHp3UHktYkk2LWxmT2JraFdldlFIZjRDbHNYaE0": {
+    "title": "Trump Admin Rethinks Ban on Anthropic After Mythos",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMihAFBVV95cUxOakZ2SnowZHlBNjJQVnktOGhNOWpCRmZEYVNqQ21oeEgzLXlQUG5XWlNnVGVpZjRYR19PcUtHY1Rnb0Zqem1HNFEtY3ZSaFFHOE1UVlhHUFZvNndoX2EzRE1haTgxZ2tLVTQxZWVmU2VoN2pqd3FIREVwZU1faEFYbjJvNS0": {
+    "title": "Banks Charged Different Fees for Anthropic Investment",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbG4xd01MWkFoV2lReHd3c0JEWmNjclhjWnBqcnRwNFpxX0JjNzVQakxUWWFIXzg1VG1aQjhVMVlxc19VSE1xSm8zRldGV3pQbmx0LVFuUDVBeWxOTjJLWGtxVkNkeGZnaEtwM1dDQ1JoZmZzUkhxNkdRc2xwT1RhdjBwMWZTNld6REloMTNHcm5Oc3BQT0pCSlVHUEtGSFl5Z1lGWERZdw": {
+    "title": "Japan Launches Financial Task Force for Mythos",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMioAFBVV95cUxNQWR2WU83TWpUQ3BReEpqRGYybUNsNTB0cHlZVUc5Q0E2YUpqb1BWSFRHV1BseEtHN1dURzlsdmItS1BhRU9mV0UzSXQ4R0k2eGYxa21zbS15VkNtUUNjMUdJeV9McGtQeUp0RlBJNHZ6YTlsS0NxNERCRjZqM0xJTW9VcERiU1FLNzg2X2IyYk9hdW1FZzRWSlVsbXlCWlRD": {
+    "title": "Claude Connects to Spotify, Uber, TurboTax via Third-Party Integrations",
+    "date_seen": "2026-04-24",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   }
 }
