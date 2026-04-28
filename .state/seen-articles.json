@@ -2040,5 +2040,168 @@
     "themes": [
       "ai-agentic-orchestration"
     ]
+  },
+  "https://www.redhat.com/en/blog/building-hardened-image-based-foundation-ai-agents": {
+    "title": "Building a Hardened, Image-Based Foundation for AI Agents",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/openai-microsoft-partnership-restructured/": {
+    "title": "Microsoft-OpenAI Rewrite Opens Door for Anthropic and Google",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/news/devops/140836/anthropic-adds-memory-to-claude-managed-agents/": {
+    "title": "Anthropic Adds Memory to Claude Managed Agents",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.techzine.eu/news/applications/140846/netsuite-adopts-open-standard-for-erp-customization-with-ai-agents/": {
+    "title": "NetSuite Adopts agentskills.io Open Standard",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration",
+      "content-ecosystem"
+    ]
+  },
+  "https://www.tomshardware.com/tech-industry/artificial-intelligence/claude-powered-ai-coding-agent-deletes-entire-company-database-in-9-seconds-backups-zapped-after-cursor-tool-powered-by-anthropics-claude-goes-rogue": {
+    "title": "Claude Agent Deletes PocketOS Database in 9 Seconds",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://www.infoq.com/articles/mcp-java-architectural-strategy-llm-integrations/": {
+    "title": "MCP in the Java World: Architectural Strategy for LLM Integrations",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/thoughtworks-radar-agentic-ai/": {
+    "title": "Thoughtworks Radar: 40%+ Agentic AI Projects Fail",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/lovelace-ai-context-engine-elemental-andrew-moore/": {
+    "title": "Lovelace AI Context Engine from Ex-Google AI Head",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/github-copilot-usage-billing/": {
+    "title": "GitHub Copilot Moves to Usage-Based Billing",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/junior-developer-pipeline-crisis/": {
+    "title": "AI Hollowing Out Junior Developer Pipeline",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/vibe-coding-ceos-executives-ai-agents/": {
+    "title": "Executives Vibe-Coding Their Own Tools",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/gitlab-flatrate-view-ai-access/": {
+    "title": "GitLab Adds Free-Tier AI Access and Spending Caps",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/openchoreo-10/": {
+    "title": "OpenChoreo 1.0 CNCF Sandbox for K8s Platforms",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://thenewstack.io/terraform-state-infrastructure-drift/": {
+    "title": "Terraform State Drift Dangers",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://thenewstack.io/open-source-digital-autonomy/": {
+    "title": "55% Cite Vendor Lock-in Avoidance in Open Source",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.redhat.com/en/blog/redefining-security-data-red-hats-new-vex-experience-heading-red-hat-summit-2026": {
+    "title": "Red Hat VEX Overhaul for Summit 2026",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/github-ebpf-deployment/": {
+    "title": "GitHub Uses eBPF for Deployment Safety",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.techzine.eu/news/security/140826/malicious-python-package-poses-new-supply-chain-threat/": {
+    "title": "Malicious Python Package Supply Chain Attack",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.redhat.com/en/blog/innovating-tactical-edge-red-hat-exercise-heimdall": {
+    "title": "Red Hat at NATO Exercise HEIMDALL",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://blogs.cisco.com/security/latest-innovations-in-cisco-sd-wan": {
+    "title": "Cisco SD-WAN AI-Ready Innovations",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html": {
+    "title": "Google Plans $40B Anthropic Investment",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://www.reuters.com/anthropic-regulators-mythos-2026": {
+    "title": "Global Regulators Trail Banks on Mythos Oversight",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://www.thestreet.com/anthropic-pentagon-users-2026": {
+    "title": "DoD Users Stayed Course During Anthropic Rift",
+    "date_seen": "2026-04-28",
+    "themes": [
+      "anthropic-watch"
+    ]
   }
 }
