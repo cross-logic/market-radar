@@ -2203,5 +2203,133 @@
     "themes": [
       "anthropic-watch"
     ]
+  },
+  "https://thenewstack.io/sas-viya-mcp-governance/": {
+    "title": "SAS Viya MCP Server for Governed Analytics",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/slack-agent-context-management/": {
+    "title": "Slack Manages Context in Multi-Agent Systems",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.infoq.com/news/2026/04/agents-cli-google-cloud/": {
+    "title": "Google Cloud Agents CLI",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/sentrys-seer-agent-debug/": {
+    "title": "Sentry Seer Agent for Natural Language Debugging",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.infoq.com/articles/ai-code-guardian/": {
+    "title": "CodeGuardian MCP Server for Code Security",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://www.techzine.eu/news/applications/140862/ai-delivers-productivity-but-value-remains-elusive/": {
+    "title": "AI Delivers Productivity But Value Remains Elusive",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://thenewstack.io/json-schema-ai-reliability/": {
+    "title": "JSON Schema Critical for AI Output Reliability",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.redhat.com/en/blog/sovereignty-mandate-why-open-hybrid-cloud-boardrooms-new-risk-frontier": {
+    "title": "Sovereignty Mandate: Boardroom Risk Frontier",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://thenewstack.io/broadcom-vcf-kubernetes-platform/": {
+    "title": "Broadcom Bets on Private Cloud Comeback",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.redhat.com/en/blog/scaling-financial-services-strategic-automation-foundation": {
+    "title": "VyStar Scaling Financial Services with AAP",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.techzine.eu/news/data-management/140815/sas-launches-ai-navigator-for-ai-governance-and-compliance/": {
+    "title": "SAS AI Navigator for Governance",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/04/28/openshift-ai-observability-summarizer-transform-metrics-meaning": {
+    "title": "OpenShift AI Observability Summarizer",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://thenewstack.io/netbox-labs-network-intent/": {
+    "title": "NetBox Labs Network Intent System of Control",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://www.techzine.eu/blogs/applications/140850/appian-brings-serious-ai-to-the-workplace/": {
+    "title": "Appian AI Agents + Snowflake Partnership",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://www.bloomberg.com/news/articles/2026-04-29/goldman-staff-in-hong-kong-lose-access-to-anthropic-s-claude": {
+    "title": "Goldman Sachs Blocks Claude in Hong Kong",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/": {
+    "title": "Google Expands Pentagon Gemini After Anthropic Refusal",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://thenewstack.io/google-doesnt-care/": {
+    "title": "Google Developer Loyalty at Zero - Platform Agnosticism",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.redhat.com/en/blog/announcing-fedora-44": {
+    "title": "Announcing Fedora 44",
+    "date_seen": "2026-04-29",
+    "themes": [
+      "platform-modernization"
+    ]
   }
 }
