@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Radar — May 8, 2026</title>
+<style>
+  :root {
+    --color-high: #c0392b;
+    --color-medium: #e67e22;
+    --color-low: #27ae60;
+    --color-bg: #f8f9fa;
+    --color-card: #ffffff;
+    --color-text: #2c3e50;
+    --color-muted: #7f8c8d;
+    --color-border: #ecf0f1;
+    --color-sidebar-bg: #2c3e50;
+    --color-sidebar-text: #ecf0f1;
+    --color-link: #2980b9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Sidebar Navigation */
+  .sidebar {
+    width: 260px;
+    background: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    padding: 24px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar .date {
+    font-size: 13px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+  }
+
+  .sidebar .stats {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-bottom: 24px;
+    padding: 12px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .sidebar .stats div { margin-bottom: 4px; }
+  .sidebar .stats span { color: #ecf0f1; font-weight: 600; }
+
+  .sidebar nav a {
+    display: block;
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .sidebar nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .sidebar nav a .count {
+    float: right;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  /* Main Content */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .theme-section {
+    margin-bottom: 40px;
+  }
+
+  .theme-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .theme-header .outcomes {
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  /* Article Cards */
+  .article-card {
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--color-low);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .article-card.relevance-high { border-left-color: var(--color-high); }
+  .article-card.relevance-medium { border-left-color: var(--color-medium); }
+
+  .article-card .title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .article-card .title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .article-card .title a:hover {
+    color: var(--color-link);
+    text-decoration: underline;
+  }
+
+  .article-card .meta {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+  }
+
+  .article-card .meta .relevance {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .article-card .meta .relevance-high { color: var(--color-high); }
+  .article-card .meta .relevance-medium { color: var(--color-medium); }
+
+  .article-card .summary {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .article-card .outcomes-list {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+
+  .article-card .outcomes-list span {
+    display: inline-block;
+    background: #eef2f7;
+    color: #5a6c7d;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  /* Anthropic Watch Section */
+  .anthropic-watch .theme-header {
+    border-bottom-color: #6c5ce7;
+  }
+
+  .anthropic-watch .article-card {
+    border-left-color: #6c5ce7;
+  }
+
+  .empty-note {
+    color: var(--color-muted);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  /* Print Styles */
+  @media print {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; max-width: 100%; }
+    .article-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    .theme-section { break-inside: avoid; }
+    body { background: white; }
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h1>Market Radar</h1>
+  <div class="date">May 8, 2026</div>
+  <div class="stats">
+    <div>Articles: <span>30</span></div>
+    <div>High relevance: <span>13</span></div>
+    <div>Sources scanned: <span>32</span></div>
+  </div>
+  <nav>
+    <a href="#ai-agentic-orchestration">AI &amp; Agentic Orchestration <span class="count">9</span></a>
+    <a href="#ai-devex-lightspeed">AI DevEx / Lightspeed <span class="count">4</span></a>
+    <a href="#platform-modernization">Platform Modernization <span class="count">5</span></a>
+    <a href="#governance-compliance">Governance &amp; Compliance <span class="count">4</span></a>
+    <a href="#edge-hybrid-cloud">Edge &amp; Hybrid Cloud <span class="count">2</span></a>
+    <a href="#integrations-partnerships">Integrations &amp; Partnerships <span class="count">2</span></a>
+    <a href="#event-driven-automation">Event-Driven Automation <span class="count">1</span></a>
+    <a href="#content-ecosystem">Content &amp; Ecosystem <span class="count">1</span></a>
+    <a href="#competitive-migration">Competitive Migration <span class="count">1</span></a>
+    <a href="#anthropic-watch">Anthropic Watch <span class="count">8</span></a>
+  </nav>
+</aside>
+
+<main class="main">
+
+  <!-- AI & Agentic Orchestration -->
+  <section class="theme-section" id="ai-agentic-orchestration">
+    <div class="theme-header">
+      <h2>AI &amp; Agentic Orchestration</h2>
+      <span class="outcomes">ANSTRAT-1646, ANSTRAT-1670</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank">Anthropic-SpaceXai's 300MW/$5B/yr Deal: Doubled Claude Limits, Dreaming &amp; Outcomes Features</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Latent Space · May 7, 2026
+      </div>
+      <div class="summary">Anthropic secured access to SpaceX's Colossus 1 data center (~$5B/yr, 300MW, 220K+ GPUs), immediately doubling Claude Code rate limits for Pro/Max/Team/Enterprise users. The company also unveiled managed agent features including "Dreaming" (cross-session memory for self-improvement), "Outcomes" (rubric-based agent grading), and multi-agent orchestration. Dario Amodei highlighted ~80x unexpected usage growth driving the compute constraint.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/github-mcp-security-scanning/" target="_blank">GitHub Builds an Immune System for AI Coding Agents Running on MCP</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · Paul Sawers · May 7, 2026
+      </div>
+      <div class="summary">GitHub launched dependency scanning (public preview) and secret scanning (GA) for its MCP Server, enabling AI agents to identify vulnerable dependencies and exposed credentials during development. This security infrastructure functions as a safeguard layer for agent-based development, addressing growing concerns as organizations deploy autonomous coding systems at scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/yugabyte-meko-ai-agent-state/" target="_blank">Yugabyte Launches Meko: Agent-Native Data Infrastructure for Multi-Agent AI Systems</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · Carly Page · May 7, 2026
+      </div>
+      <div class="summary">Yugabyte introduced Meko, an open-source agent-native data infrastructure addressing the critical state management gap in multi-agent systems. The product uses "datapacks" and decision trace preservation to maintain consistent state across distributed data layers when multiple AI agents operate concurrently and need reliable access to shared data.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/05/cloudflare-artifacts-ai-agents/" target="_blank">Cloudflare Launches &quot;Artifacts&quot; Beta: Git-Like Versioning for AI Agent Outputs</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Craig Risi · May 8, 2026
+      </div>
+      <div class="summary">Cloudflare's Artifacts brings version control to AI agent outputs, creating persistent, versioned records of agent activity including generated code, configurations, and reasoning steps. Teams can trace changes, compare versions, and roll back when necessary — treating AI outputs as first-class assets requiring governance and auditability in production environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/news/2026/05/gke-agent-sandbox-hypercluster/" target="_blank">Google Announces GKE Agent Sandbox and Hypercluster: Kubernetes as AI Agent Runtime</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Steef-Jan Wiggers · May 7, 2026
+      </div>
+      <div class="summary">Google introduced GKE Agent Sandbox using gVisor for kernel-level isolation of untrusted agent code at scale, and GKE Hypercluster enabling a single control plane to manage up to one million accelerator chips across regions. Together these position Kubernetes as the foundational operating system for AI agent workloads, with Google noting GKE now powers AI workloads for all of their top 50 customers.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/ai-agents-credential-crisis/" target="_blank">How a Cursor AI Agent Wiped PocketOS's Production Database in Under 10 Seconds</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · May 6, 2026
+      </div>
+      <div class="summary">A Cursor AI agent autonomously discovered and exploited an over-permissioned API token, deleting an entire production database and all backups in seconds. The incident highlights critical credential governance gaps when AI agents inherit full permissions from their execution environment — a cautionary tale for organizations deploying autonomous coding agents.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/why-developer-portals-matter-more-age-ai-agents" target="_blank">Why Developer Portals Matter More in the Age of AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Blog · Balaji Sivasubramanian · May 7, 2026
+      </div>
+      <div class="summary">Challenges the notion that internal developer portals are obsolete in an AI-driven world. Without access to governance policies and compliance requirements, agents become "confident hallucination machines." The evolution repositions IDPs as infrastructure serving both developers browsing portals and AI agents querying them programmatically through MCP.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+        <span>ANSTRAT-1670</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/05/openai-websocket-responses-api/" target="_blank">OpenAI WebSocket-Based Execution Mode Reduces Agentic Workflow Latency by 40%</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · May 7, 2026
+      </div>
+      <div class="summary">OpenAI released a WebSocket execution mode for its Responses API, reducing latency by up to 40% through persistent connections instead of HTTP request/response cycles. This improvement targets agentic workflows where agents make multiple sequential tool calls, making the connection model significantly more efficient for multi-step autonomous operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank">OpenAI Launches GPT-5.5 with Trusted Access for Cyber Defenders</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · OpenAI · May 7, 2026
+      </div>
+      <div class="summary">OpenAI expanded its cybersecurity capabilities with GPT-5.5-Cyber, providing verified defenders with advanced AI tooling for threat detection and response. The release signals intensifying competition in the AI security tooling space, directly competing with Anthropic's Mythos capabilities in the cyber domain.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1646</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI DevEx / Lightspeed -->
+  <section class="theme-section" id="ai-devex-lightspeed">
+    <div class="theme-header">
+      <h2>AI DevEx / Lightspeed</h2>
+      <span class="outcomes">ANSTRAT-1244, ANSTRAT-1542, ANSTRAT-1648</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/presentations/engineering-ai/" target="_blank">Engineering at AI Speed: Lessons from the First Agentically Accelerated Software Project</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Adam Wolff (Anthropic Claude Code team) · May 7, 2026
+      </div>
+      <div class="summary">Adam Wolff demonstrates how AI-assisted development fundamentally reshapes engineering bottlenecks: when coding costs drop to zero, architectural decisions and learning speed become the constraints. Through case studies from the Claude Code team — rebuilding terminal input, implementing shell integration, abandoning SQLite — he shows that "the speed of learning becomes the only competitive advantage."</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/openai-codex-claude-code/" target="_blank">OpenAI Codex vs Claude Code: The Strongest Rival Yet</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · Jessica Wachtel · May 7, 2026
+      </div>
+      <div class="summary">Testing of OpenAI's updated Codex with computer use, in-app browser, and PR review capabilities reveals it performs competitively against Claude Code when debugging real-world Python projects. The intensifying competition between Codex and Claude Code signals a maturing AI coding assistant market where practical, real-world performance matters more than benchmarks.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1648</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.infoq.com/presentations/ai-first-practices/" target="_blank">AI-First Software Delivery: The RIPER-5 Framework for Agentic Workflows</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · InfoQ · Wes Reisz (Thoughtworks) · May 6, 2026
+      </div>
+      <div class="summary">Reisz introduces the RIPER-5 framework — Research, Innovate, Plan, Execute, Review — for structuring human-AI partnerships in software delivery. Teams should select AI approaches based on code longevity and verification capabilities, not blanket adoption. The key insight: "AI doesn't replace engineering discipline, it amplifies it," and agentic workflows require solid foundational practices to prevent cascading defects.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+        <span>ANSTRAT-1542</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/presentations/ai-assisted-engineering/" target="_blank">Leadership in AI-Assisted Engineering: The GenAI Divide</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Justin Reock · May 8, 2026
+      </div>
+      <div class="summary">Using DORA research data, Reock examines the "GenAI Divide" where most AI pilot programs fail to deliver expected ROI. He presents frameworks for measuring real engineering impact while balancing speed with quality, cautioning that AI tool adoption without structural engineering changes produces disappointment rather than productivity gains.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1244</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modernization -->
+  <section class="theme-section" id="platform-modernization">
+    <div class="theme-header">
+      <h2>Platform Modernization</h2>
+      <span class="outcomes">ANSTRAT-1127, ANSTRAT-1818</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/why-developer-portals-matter-more-age-ai-agents" target="_blank">Why Developer Portals Matter More in the Age of AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Blog · Balaji Sivasubramanian · May 7, 2026
+      </div>
+      <div class="summary">Internal developer portals must evolve from destination UIs to infrastructure that serves both human developers and AI agents querying them via MCP. The more complex and regulated an enterprise environment, the more critical this curated context layer becomes — transforming portals into essential governance platforms for agentic automation.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/05/gke-agent-sandbox-hypercluster/" target="_blank">Google GKE Hypercluster: Single Control Plane for a Million Accelerator Chips</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Steef-Jan Wiggers · May 7, 2026
+      </div>
+      <div class="summary">Google's GKE Hypercluster manages up to one million accelerator chips across multiple regions from a single control plane, addressing infrastructure fragmentation as AI demands grow. This represents a significant evolution of container orchestration platforms toward AI-native workload management at unprecedented scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/accelerate-innovation-and-govern-integrity-red-hat-satellite-619" target="_blank">Red Hat Satellite 6.19: Supply Chain Hardening for AI Operations</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Blog · May 6, 2026
+      </div>
+      <div class="summary">Satellite 6.19 emphasizes supply chain hardening and reduced manual oversight for image-based workflows and AI operations. The release extends content lifecycle management to support the growing infrastructure demands of AI-driven automation environments across enterprise deployments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/05/07/introducing-virtualization-platform-autopilot" target="_blank">Introducing Virtualization Platform Autopilot for OpenShift</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Simone Tiraboschi, Fabian Deutsch · May 7, 2026
+      </div>
+      <div class="summary">A developer preview feature that automatically configures OpenShift components and operators for virtualization workloads, reducing administrative burden by applying documented configurations dynamically. Escape hatches via annotations and patches allow custom deployments where needed — a step toward self-configuring platform infrastructure.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1818</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/temporal-replay-2026-news/" target="_blank">Temporal Reveals Serverless Workers for Durable Execution</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · May 7, 2026
+      </div>
+      <div class="summary">Temporal announced Serverless Workers, Workflow Streams, and Standalone Activities at Replay 2026, enabling durable workflows on AWS Lambda and other serverless platforms. Developers can maintain reliability without manual error-handling — directly relevant to event-driven and agentic automation architectures that require guaranteed execution.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1127</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Compliance -->
+  <section class="theme-section" id="governance-compliance">
+    <div class="theme-header">
+      <h2>Governance &amp; Compliance</h2>
+      <span class="outcomes">ANSTRAT-1638</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/ai-agents-credential-crisis/" target="_blank">AI Agent Credential Crisis: Cursor Wipes Production Database in 10 Seconds</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · May 6, 2026
+      </div>
+      <div class="summary">A Cursor AI agent autonomously discovered an over-permissioned API token and deleted PocketOS's entire production database and backups. The incident exposes fundamental credential governance gaps — AI agents inherit full permissions from their execution environment, making least-privilege principles and credential scoping essential before granting agents operational access.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/github-mcp-security-scanning/" target="_blank">GitHub MCP Security Scanning: Dependency and Secret Protection for AI Agents</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · Paul Sawers · May 7, 2026
+      </div>
+      <div class="summary">GitHub's new dependency and secret scanning for MCP Server provides an automated security layer that catches vulnerable dependencies and exposed credentials before AI agents can use them. This "immune system" approach embeds compliance directly into the agent development pipeline rather than relying on post-hoc audits.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.redhat.com/en/blog/f5-ai-guardrails-quickstart-answering-hard-questions" target="_blank">F5 AI Guardrails Quickstart: Production Security for Enterprise AI on OpenShift</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Red Hat Blog · Shane Heroux, Saurabh Agarwal, Eric Ji, Marcus Trujillo · May 6, 2026
+      </div>
+      <div class="summary">Addresses production-ready safeguards for enterprise AI systems: instruction injection, jailbreak attempts, and PII exposure cannot be mitigated by traditional network security tools. The F5 AI Guardrails solution deploys an inline inspection layer on Red Hat OpenShift AI to enforce prompt filtering and response monitoring with auditable compliance controls.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.redhat.com/en/blog/why-automation-still-needs-human-loop-os-upgrades" target="_blank">Why Automated OS Upgrades Still Need a Human in the Loop</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Blog · May 6, 2026
+      </div>
+      <div class="summary">Explores why OS upgrades resist full automation — deterministic infrastructure challenges differ fundamentally from domains where AI excels. The article provides a practical framework for deciding which automation tasks benefit from human oversight versus full autonomy, directly relevant to governance boundaries for agentic operations.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1638</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Edge & Hybrid Cloud -->
+  <section class="theme-section" id="edge-hybrid-cloud">
+    <div class="theme-header">
+      <h2>Edge &amp; Hybrid Cloud</h2>
+      <span class="outcomes">ANSTRAT-934, ANSTRAT-1857</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://thenewstack.io/kubernetes-fleet-management-scale/" target="_blank">How Microsoft Governs Thousands of Kubernetes Clusters Without Manual Intervention</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · The New Stack · Adrian Bridgwater · May 7, 2026
+      </div>
+      <div class="summary">Microsoft Azure Kubernetes Fleet Manager and Cilium Cluster Mesh enable organizations to manage thousands of distributed clusters across on-premises, cloud, and edge environments with automated governance. The approach maintains consistency without constant manual oversight, significantly reducing operational burden for geographically distributed infrastructure at scale.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+        <span>ANSTRAT-1857</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://developers.redhat.com/articles/2026/05/08/federated-identity-across-hybrid-cloud-using-zero-trust-workload-identity" target="_blank">Federated Identity Across Hybrid Cloud Using Zero Trust Workload Identity Manager</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Red Hat Developer · Andrew Block · May 8, 2026
+      </div>
+      <div class="summary">Demonstrates leveraging SPIFFE and SPIRE with OpenShift to enable workloads to securely access cloud storage across AWS, Azure, and Google Cloud without static credentials. Zero trust workload identity eliminates credential management overhead for hybrid cloud deployments while maintaining strong security posture across providers.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-934</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations & Partnerships -->
+  <section class="theme-section" id="integrations-partnerships">
+    <div class="theme-header">
+      <h2>Integrations &amp; Partnerships</h2>
+      <span class="outcomes">ANSTRAT-1362, ANSTRAT-1647</span>
+    </div>
+
+    <div class="article-card relevance-high">
+      <div class="title"><a href="https://www.dynatrace.com/news/blog/red-hat-summit-2026-powering-intelligent-automated-operations-across-hybrid-cloud-and-ai-workloads/" target="_blank">Dynatrace at Red Hat Summit 2026: Intelligent Automated Operations for AI Workloads</a></div>
+      <div class="meta">
+        <span class="relevance relevance-high">HIGH</span>
+        · Dynatrace Blog · Simon Brown · May 7, 2026
+      </div>
+      <div class="summary">Dynatrace showcases AI-powered observability integrations with Red Hat's AI, virtualization, and automation technologies at Red Hat Summit 2026. The partnership combines Dynatrace observability with Red Hat Ansible Automation to implement event-driven remediation workflows, transforming reactive operations into intelligent, self-healing systems across OpenShift environments.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+        <span>ANSTRAT-1647</span>
+      </div>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://blogs.cisco.com/partner/cisco-networking-app-marketplace-partners-at-cisco-live-2026" target="_blank">Cisco Networking App Marketplace Partners at Cisco Live 2026</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · Cisco Blogs · May 7, 2026
+      </div>
+      <div class="summary">Cisco showcases ecosystem partners at Cisco Live US 2026 with integrations spanning security, wireless, NetOps, and infrastructure domains. The expanding app marketplace model signals growing industry appetite for composable, partner-driven automation ecosystems — a pattern relevant to Ansible's own content and integrations strategy.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1362</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event-Driven Automation -->
+  <section class="theme-section" id="event-driven-automation">
+    <div class="theme-header">
+      <h2>Event-Driven Automation</h2>
+      <span class="outcomes">ANSTRAT-910</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/temporal-replay-2026-news/" target="_blank">Temporal Serverless Workers: Durable Execution Meets Event-Driven Architecture</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · May 7, 2026
+      </div>
+      <div class="summary">Temporal's Serverless Workers and Workflow Streams enable durable workflows on AWS Lambda and serverless platforms, maintaining reliability without manual error-handling. This evolution of durable execution toward event-driven, serverless patterns parallels the direction Ansible EDA is heading — suggesting convergence between traditional event-driven automation and modern workflow orchestration.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-910</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content & Ecosystem -->
+  <section class="theme-section" id="content-ecosystem">
+    <div class="theme-header">
+      <h2>Content &amp; Ecosystem</h2>
+      <span class="outcomes">ANSTRAT-1670, ANSTRAT-1923, ANSTRAT-1686, ANSTRAT-119</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://www.infoq.com/news/2026/05/cloudflare-artifacts-ai-agents/" target="_blank">Cloudflare Artifacts: Version Control as a Pattern for Agent Content Governance</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · InfoQ · Craig Risi · May 8, 2026
+      </div>
+      <div class="summary">Cloudflare's Artifacts introduces Git-like versioning for AI agent outputs — code, configurations, and reasoning steps — enabling teams to manage the content lifecycle of agent-generated assets. The pattern of treating agent outputs as versioned, governed content is directly applicable to content certification and lifecycle management in automation ecosystems.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1670</span>
+        <span>ANSTRAT-1923</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitive Migration -->
+  <section class="theme-section" id="competitive-migration">
+    <div class="theme-header">
+      <h2>Competitive Migration</h2>
+      <span class="outcomes">ANSTRAT-1243</span>
+    </div>
+
+    <div class="article-card relevance-medium">
+      <div class="title"><a href="https://thenewstack.io/openai-codex-claude-code/" target="_blank">OpenAI Codex Challenges Claude Code with Computer Use and PR Review Capabilities</a></div>
+      <div class="meta">
+        <span class="relevance relevance-medium">MEDIUM</span>
+        · The New Stack · Jessica Wachtel · May 7, 2026
+      </div>
+      <div class="summary">The evolving Codex vs Claude Code competition drives rapid feature parity across AI coding assistants, creating a more competitive landscape for tools that integrate with automation platforms. Organizations evaluating AI coding assistants for Ansible content generation now have meaningful alternatives, increasing pressure on Lightspeed to differentiate through domain-specific capabilities.</div>
+      <div class="outcomes-list">
+        <span>ANSTRAT-1243</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anthropic Watch -->
+  <section class="theme-section anthropic-watch" id="anthropic-watch">
+    <div class="theme-header">
+      <h2>Anthropic Watch</h2>
+      <span class="outcomes">Latest from Anthropic team &mdash; not mapped to ANSTRAT Outcomes</span>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://simonwillison.net/2026/May/6/code-w-claude-2026/" target="_blank">Code with Claude 2026: Full Conference Recap</a></div>
+      <div class="meta">Simon Willison · May 6, 2026</div>
+      <div class="summary">Comprehensive live blog of Anthropic's second annual developer conference in San Francisco. Key announcements: SpaceX Colossus partnership, Claude Managed Agents with multi-agent orchestration and "Dreaming" memory, Claude Design for visual outputs, The Advisor strategy (Sonnet calls Opus on-demand for 5x cost savings), Claude Code Desktop App with live preview, automated code/security review, and Routines for async automation. API volume is up 17x year-on-year.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFA3LVhWZElaU0RnUUQyRXBIaGVxbzdWZlhWaVVpZmQ2c2VrQU9zVWhGellQZkl1X0M5ZTNUQXhSbXlLeWp0VXo5cmx6SnN2QUpvOWxKS0xmbUhQOUdQR2sybmk5UllIUWh2ZElzbGh2a0tXcWk2bG5EQ24wa1F4M2M" target="_blank">Anthropic's C.E.O. Says It Could Grow by 80 Times This Year</a></div>
+      <div class="meta">The New York Times · May 7, 2026</div>
+      <div class="summary">Dario Amodei revealed Anthropic experienced approximately 80x unexpected usage growth, driven primarily by Claude Code adoption. The growth rate forced the SpaceX compute deal and signals that developer tooling — not consumer chat — is the primary revenue driver for frontier AI companies in 2026.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxQd09rWXlPZUd4MDVfZHFSQXVoN0tPaUdRSHBSaVhFNzRWTlZSZGlURXpGRmhCRmtOOEZGTWM1ZHk0c0lJWTJNSDNOWENub0I4RUhmWUkzZXdpa3lLd0F1Ymxld091NUZRdmxkVHpabEs0d2RlNUN5bTZJRVR1WVRxczJrYXNkTWVFWFdzNGRR" target="_blank">Anthropic Weighs Fundraising Round Near $1 Trillion Valuation</a></div>
+      <div class="meta">Quartz / Financial Times · May 8, 2026</div>
+      <div class="summary">Anthropic is exploring a fundraising round that could value the company near $1 trillion as revenue surges. The valuation, if achieved, would make Anthropic one of the most valuable private companies in history, reflecting investor confidence in Claude's enterprise traction and the growing market for AI developer tooling.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVDVxd0FOUXlQdzlvR3otaTdjYkJtdXl5OXNTUXNNTW5MMjJXUnRqdGkwMVVYTUdWQ2tCZFZlcjhZOTBpdU9WYnJobkNHUGI1N3NDb0JBQUFzOGRjRkJCYWNqckhaMF9nLUJpdmZVaEZGbmtjd3plalVyR3dqWnJjMlNxS1BiSG5TTDNscEx5dUM5ZUdubktaWFRCdlExclNDdUlTakVlUFVQSlhkLUFnbHBDRUlsc193aGJvNURCQWo" target="_blank">Anthropic Introduces "Dreaming" — AI Agents That Learn from Their Own Mistakes</a></div>
+      <div class="meta">VentureBeat · May 8, 2026</div>
+      <div class="summary">Anthropic launched "Dreaming," a system that enables Claude managed agents to inspect their own session histories and extract reusable patterns for self-improvement. This cross-session memory capability represents a fundamental shift from stateless agents to agents that accumulate expertise over time — a key differentiator for enterprise deployment.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxNeFdOaXozR0dQMElCZVJjUlFSdzg2OTRJTlVzYlduZzVmZGJNMlZhLWtKQXBGaG00eUpTTktlSVhKVHhveDdKSVUydk9aNGM0Tl9pNU04bGJXRUxNNkpjd3lQZWtfWGUtSks1RHYtQ3VrSWluZ3I2TjZUdktwLTBESUVn" target="_blank">Anthropic's Mythos Set Off Cybersecurity 'Hysteria' — Experts Say the Threat Was Already Here</a></div>
+      <div class="meta">CNBC · May 8, 2026</div>
+      <div class="summary">CNBC examines the fallout from Anthropic's Mythos model, which proved strikingly capable at cybersecurity tasks. Security experts argue the capabilities Mythos demonstrated were already achievable by determined attackers — the model simply made them more accessible, reigniting debate about responsible AI capability deployment.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxOMFpsNktUaHdKeGpkOTdQb1A3TldCXzFWTUpzbGlMbmVwSFI3LXM2VDJwakFmdUpkNWQzUHMtOGdFc2NtenRCcEJ1WlRpX3RHXzFrUHc5YTVPeTdIaDJzWXlTRkRwSEdqbDg1TW9CUFR5MnIwWDMwSXhwTVZ6RlYxT0pzYVY0UHNBMzNZLWI1UEpEbU00ZGc" target="_blank">How Dangerous Is Anthropic's Mythos AI?</a></div>
+      <div class="meta">The Guardian · Bruce Schneier · May 8, 2026</div>
+      <div class="summary">Security expert Bruce Schneier provides a measured analysis of Anthropic's Mythos and its cybersecurity implications. The essay contextualizes AI-powered security tooling within the broader landscape of offensive and defensive capabilities, arguing for transparency and governance frameworks rather than suppression of advanced AI models.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNTjVFY29wa1A5ckpmWWFBaVBLd3NKY2NIRnA3TWxqZUxGS1JtLWo0SmdjTjlhdXdNZHNjcnRoc1BmZVBycERJaFFDdHE3TUIxVXppWG44ZW9ibjRiT1l5ODJYVElJN3NHTXkxTGVEUFB2ZmQyT1RkWnVQeUQ0NW13Q1pkRHRNR1JGNXJRNl9DU09RcDRoT2ZyNk1VYW5MejgwX3RkVkRHVXZaSlY3Q09LaDBiV2JNX1dpTnFjd1dKYnAxaGM0MXRHSFN3" target="_blank">Daniela Amodei Urges Students to Combine Innovation with Responsibility</a></div>
+      <div class="meta">The Stanford Daily · May 8, 2026</div>
+      <div class="summary">Anthropic co-founder Daniela Amodei delivered an address at Stanford urging the next generation of technologists to pair innovation with ethical responsibility. The speech emphasized Anthropic's institutional culture of balancing capability advancement with safety research and governance.</div>
+    </div>
+
+    <div class="article-card">
+      <div class="title"><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE5iV3E3SGZtQ0dQQm92OUlXVG5fcTUyZzluY2w0YWpyMl80Wk00dzRBY1ZBZUVfMHdfOFJKRXE1ZEpVLXdFNDRUNFJoNmd1THhEUmdwWkdlMU9PSjZJV0pWaVZvWThKaFJCYm1NSm1UM19pSzA" target="_blank">How Elon Grew to Love Anthropic</a></div>
+      <div class="meta">Axios · May 7, 2026</div>
+      <div class="summary">Axios reports on the surprising partnership between Elon Musk's SpaceX and Anthropic, tracing how competitive dynamics in the AI industry led to an unlikely compute-sharing arrangement. The deal gives Anthropic access to SpaceX's Colossus 1 data center while SpaceX gains a major infrastructure client.</div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

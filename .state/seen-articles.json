@@ -2331,5 +2331,237 @@
     "themes": [
       "platform-modernization"
     ]
+  },
+  "https://www.redhat.com/en/blog/why-developer-portals-matter-more-age-ai-agents": {
+    "title": "Why developer portals matter more in the age of AI agents",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration",
+      "platform-modernization"
+    ]
+  },
+  "https://www.redhat.com/en/blog/why-automation-still-needs-human-loop-os-upgrades": {
+    "title": "Why automated OS upgrades still need a human in the loop",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.redhat.com/en/blog/f5-ai-guardrails-quickstart-answering-hard-questions": {
+    "title": "F5 AI Guardrails quickstart: Answering the hard questions",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "governance-compliance"
+    ]
+  },
+  "https://www.redhat.com/en/blog/accelerate-innovation-and-govern-integrity-red-hat-satellite-619": {
+    "title": "Accelerate innovation and govern integrity with Red Hat Satellite 6.19",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/05/08/federated-identity-across-hybrid-cloud-using-zero-trust-workload-identity": {
+    "title": "Federated Identity Across Hybrid Cloud Using Zero Trust Workload Identity Manager",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "edge-hybrid-cloud",
+      "governance-compliance"
+    ]
+  },
+  "https://developers.redhat.com/articles/2026/05/07/introducing-virtualization-platform-autopilot": {
+    "title": "Introducing Virtualization Platform Autopilot",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "platform-modernization"
+    ]
+  },
+  "https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr": {
+    "title": "Anthropic-SpaceXai 300MW/$5B/yr deal for Colossus I",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/anthropic-spacex-claude-limits/": {
+    "title": "Anthropic recruited SpaceX Colossus 1 to fix Claude limits",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/openai-codex-claude-code/": {
+    "title": "OpenAI Codex vs Claude Code comparison",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-devex-lightspeed",
+      "competitive-migration"
+    ]
+  },
+  "https://thenewstack.io/github-mcp-security-scanning/": {
+    "title": "GitHub builds an immune system for AI coding agents running on MCP",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration",
+      "governance-compliance"
+    ]
+  },
+  "https://thenewstack.io/yugabyte-meko-ai-agent-state/": {
+    "title": "Yugabyte launches Meko for AI agent state management",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/ai-agents-credential-crisis/": {
+    "title": "Cursor AI agent wipes PocketOS production database",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "governance-compliance",
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://thenewstack.io/kubernetes-fleet-management-scale/": {
+    "title": "Microsoft governing thousands of Kubernetes clusters",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "edge-hybrid-cloud"
+    ]
+  },
+  "https://thenewstack.io/temporal-replay-2026-news/": {
+    "title": "Temporal reveals serverless workers for durable execution",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "event-driven-automation",
+      "platform-modernization"
+    ]
+  },
+  "https://www.infoq.com/news/2026/05/cloudflare-artifacts-ai-agents/": {
+    "title": "Cloudflare Launches Artifacts Beta for AI Agents",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration",
+      "content-ecosystem"
+    ]
+  },
+  "https://www.infoq.com/presentations/engineering-ai/": {
+    "title": "Engineering at AI Speed: Lessons from Claude Code team",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/news/2026/05/gke-agent-sandbox-hypercluster/": {
+    "title": "Google GKE Agent Sandbox and Hypercluster",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration",
+      "platform-modernization"
+    ]
+  },
+  "https://www.infoq.com/presentations/ai-first-practices/": {
+    "title": "AI-First Software Delivery: RIPER-5 Framework",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/presentations/ai-assisted-engineering/": {
+    "title": "Leadership in AI-Assisted Engineering: The GenAI Divide",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-devex-lightspeed"
+    ]
+  },
+  "https://www.infoq.com/news/2026/05/openai-websocket-responses-api/": {
+    "title": "OpenAI WebSocket execution mode for agentic workflows",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber": {
+    "title": "GPT-5.5 with Trusted Access for Cyber",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
+  },
+  "https://www.dynatrace.com/news/blog/red-hat-summit-2026-powering-intelligent-automated-operations-across-hybrid-cloud-and-ai-workloads/": {
+    "title": "Dynatrace at Red Hat Summit 2026",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://blogs.cisco.com/partner/cisco-networking-app-marketplace-partners-at-cisco-live-2026": {
+    "title": "Cisco Networking App Marketplace Partners at Cisco Live 2026",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "integrations-partnerships"
+    ]
+  },
+  "https://simonwillison.net/2026/May/6/code-w-claude-2026/": {
+    "title": "Code with Claude 2026 live blog",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMif0FVX3lxTFA3LVhWZElaU0RnUUQyRXBIaGVxbzdWZlhWaVVpZmQ2c2VrQU9zVWhGellQZkl1X0M5ZTNUQXhSbXlLeWp0VXo5cmx6SnN2QUpvOWxKS0xmbUhQOUdQR2sybmk5UllIUWh2ZElzbGh2a0tXcWk2bG5EQ24wa1F4M2M": {
+    "title": "Anthropic CEO Says It Could Grow by 80 Times This Year",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMijgFBVV95cUxQd09rWXlPZUd4MDVfZHFSQXVoN0tPaUdRSHBSaVhFNzRWTlZSZGlURXpGRmhCRmtOOEZGTWM1ZHk0c0lJWTJNSDNOWENub0I4RUhmWUkzZXdpa3lLd0F1Ymxld091NUZRdmxkVHpabEs0d2RlNUN5bTZJRVR1WVRxczJrYXNkTWVFWFdzNGRR": {
+    "title": "Anthropic weighs fundraising round near $1 trillion valuation",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNVDVxd0FOUXlQdzlvR3otaTdjYkJtdXl5OXNTUXNNTW5MMjJXUnRqdGkwMVVYTUdWQ2tCZFZlcjhZOTBpdU9WYnJobkNHUGI1N3NDb0JBQUFzOGRjRkJCYWNqckhaMF9nLUJpdmZVaEZGbmtjd3plalVyR3dqWnJjMlNxS1BiSG5TTDNscEx5dUM5ZUdubktaWFRCdlExclNDdUlTakVlUFVQSlhkLUFnbHBDRUlsc193aGJvNURCQWo": {
+    "title": "Anthropic introduces Dreaming for AI agent self-improvement",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiggFBVV95cUxNeFdOaXozR0dQMElCZVJjUlFSdzg2OTRJTlVzYlduZzVmZGJNMlZhLWtKQXBGaG00eUpTTktlSVhKVHhveDdKSVUydk9aNGM0Tl9pNU04bGJXRUxNNkpjd3lQZWtfWGUtSks1RHYtQ3VrSWluZ3I2TjZUdktwLTBESUVn": {
+    "title": "Anthropic Mythos cybersecurity hysteria",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMilgFBVV95cUxOMFpsNktUaHdKeGpkOTdQb1A3TldCXzFWTUpzbGlMbmVwSFI3LXM2VDJwakFmdUpkNWQzUHMtOGdFc2NtenRCcEJ1WlRpX3RHXzFrUHc5YTVPeTdIaDJzWXlTRkRwSEdqbDg1TW9CUFR5MnIwWDMwSXhwTVZ6RlYxT0pzYVY0UHNBMzNZLWI1UEpEbU00ZGc": {
+    "title": "How dangerous is Anthropic Mythos AI? - Bruce Schneier",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMiygFBVV95cUxNTjVFY29wa1A5ckpmWWFBaVBLd3NKY2NIRnA3TWxqZUxGS1JtLWo0SmdjTjlhdXdNZHNjcnRoc1BmZVBycERJaFFDdHE3TUIxVXppWG44ZW9ibjRiT1l5ODJYVElJN3NHTXkxTGVEUFB2ZmQyT1RkWnVQeUQ0NW13Q1pkRHRNR1JGNXJRNl9DU09RcDRoT2ZyNk1VYW5MejgwX3RkVkRHVXZaSlY3Q09LaDBiV2JNX1dpTnFjd1dKYnAxaGM0MXRHSFN3": {
+    "title": "Daniela Amodei urges innovation with responsibility at Stanford",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://news.google.com/rss/articles/CBMic0FVX3lxTE5iV3E3SGZtQ0dQQm92OUlXVG5fcTUyZzluY2w0YWpyMl80Wk00dzRBY1ZBZUVfMHdfOFJKRXE1ZEpVLXdFNDRUNFJoNmd1THhEUmdwWkdlMU9PSjZJV0pWaVZvWThKaFJCYm1NSm1UM19pSzA": {
+    "title": "How Elon grew to love Anthropic",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "anthropic-watch"
+    ]
+  },
+  "https://www.latent.space/p/ainews-gpt-realtime-2-translate-and": {
+    "title": "GPT-Realtime-2: new SOTA realtime voice APIs",
+    "date_seen": "2026-05-08",
+    "themes": [
+      "ai-agentic-orchestration"
+    ]
   }
 }
